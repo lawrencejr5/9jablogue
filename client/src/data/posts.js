@@ -36,7 +36,21 @@ export const posts = [
   },
   {
     id: 6,
-    title: "Is Nigeria joining the war against Niger ?",
+    title: "Is Nigeria joining the war against Niger?",
+    description: `Lorem ipsum dolor sit amet bankai kuchicki no niger admirable shit. Kanon biraki, benihime aratame`,
+    thumb: `/imgs/daniel-n9yEuk5HhSM-unsplash.jpg`,
+    tags: [`Politics`],
+  },
+  {
+    id: 7,
+    title: "Is Nigeria joining the war against Niger?",
+    description: `Lorem ipsum dolor sit amet bankai kuchicki no niger admirable shit. Kanon biraki, benihime aratame`,
+    thumb: `/imgs/daniel-n9yEuk5HhSM-unsplash.jpg`,
+    tags: [`Politics`],
+  },
+  {
+    id: 8,
+    title: "Is Nigeria joining the war against Niger?",
     description: `Lorem ipsum dolor sit amet bankai kuchicki no niger admirable shit. Kanon biraki, benihime aratame`,
     thumb: `/imgs/daniel-n9yEuk5HhSM-unsplash.jpg`,
     tags: [`Politics`],

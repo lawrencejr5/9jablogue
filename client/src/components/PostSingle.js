@@ -15,7 +15,7 @@ const PostSingle = ({ data }) => {
               }}
             ></div>
             <div className="content">
-              <Link className="link" to={`/post/${title}/${id}`}>
+              <Link className="link" to={`/post/${id}`}>
                 {tags.map((tag, index) => {
                   return (
                     tag && (

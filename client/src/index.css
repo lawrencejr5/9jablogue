@@ -1,6 +1,11 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   transition: 0.5s;
+  box-sizing: border-box;
 }
 body {
   background-color: whitesmoke;
@@ -75,7 +80,7 @@ button {
 }
 nav {
   box-sizing: border-box;
-  padding: 0 0.6rem;
+  padding: 0;
   width: 100%;
   height: 70px;
   background-color: transparent;
@@ -93,19 +98,40 @@ nav .nav-center {
   font-size: 30px;
   color: whitesmoke;
   font-weight: 600;
+  margin-left: 0.6rem;
 }
 .logo .rlo {
   color: #16b816;
 }
 
-nav .menu {
+nav .menu-wide {
+  width: 500px;
+  background-color: #000;
+  border-bottom-left-radius: 30px;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 0;
+  position: fixed;
+  z-index: 2;
+  right: 0;
+}
+nav .menu-wide .link {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 1rem;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+nav .menu {
+  display: none;
   align-items: center;
   justify-content: space-between;
   background: black;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1rem;
   color: #24cd24;
-  width: 70px;
+  width: 100px;
   position: fixed;
   right: 10px;
   font-size: 18px;
@@ -146,6 +172,7 @@ nav .baek_link {
   color: black;
   font-size: 25px;
   cursor: pointer;
+  margin-left: 0.6rem;
 }
 .sidenav-container {
   width: 100%;
@@ -210,7 +237,7 @@ nav .baek_link {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(/public/imgs/emmanuel-ikwuegbu-T4q6ZPpYjog-unsplash.jpg);
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -320,7 +347,6 @@ nav .baek_link {
   margin-left: 0.5rem;
 }
 .posts {
-  background-color: white;
   padding: 0.5rem 1rem;
 }
 .posts .header {
@@ -336,21 +362,15 @@ nav .baek_link {
   border-radius: 5px;
 }
 .singlePost-container {
-  display: flex;
-  flex-flow: row wrap;
-  box-sizing: border-box;
-  margin: 0 auto;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 1rem;
 }
 .singlePost {
   border-radius: 10px;
-  width: 100%;
-  max-width: 380px;
   margin: 1rem;
-  box-sizing: border-box;
   background-color: white;
   box-shadow: 0px 8px 24px rgba(209, 205, 205, 0.741);
-  height: 100%;
 }
 .singlePost .img {
   height: 200px;
@@ -382,6 +402,11 @@ nav .baek_link {
 .singlePost .content p::first-letter {
   text-transform: capitalize;
 }
+
+.posts.featured {
+  width: 100%;
+}
+
 .apost_container {
   padding: 3.5rem 1rem;
 }
@@ -446,6 +471,8 @@ nav .baek_link {
 }
 .categ-container {
   padding: 4rem 1rem;
+  display: grid;
+  place-items: center;
 }
 .categ-container .header {
   display: flex;
@@ -460,19 +487,14 @@ nav .baek_link {
   font-size: 30px;
 }
 .categs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .categs .categ {
-  width: 100%;
-  max-width: 300px;
-  height: 100%;
   margin: 1rem;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0px 8px 24px rgb(195, 190, 190);
-  flex-basis: 25%;
 }
 .categs .categ h1 {
   text-transform: capitalize;
@@ -489,8 +511,6 @@ nav .baek_link {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
-  /* border-top-right-radius: 5px;
-  border-top-left-radius: 5px; */
 }
 .categs .categ .content-link {
   color: black;
@@ -627,6 +647,7 @@ footer .tag {
 footer .news-letter {
   background-color: transparent;
 }
+
 @media only screen and (max-width: 1312px) {
   .contact-image {
     flex-basis: 40%;
@@ -635,7 +656,18 @@ footer .news-letter {
     flex-basis: 40%;
   }
 }
+@media only screen and (max-width: 1200px) {
+  .singlePost-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
+@media only screen and (max-width: 1013px) {
+  .categs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 @media only screen and (max-width: 912px) {
   .singlePost-container .singlePost {
     max-width: 100%;
@@ -647,15 +679,16 @@ footer .news-letter {
     display: none;
   }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 760px) {
+  .singlePost-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   nav .links-container {
     display: none;
   }
   nav .search-icon {
     display: none;
-  }
-  .singlePost-container .singlePost {
-    max-width: 300px;
   }
   .news-letter span {
     font-size: 16px;
@@ -672,20 +705,15 @@ footer .news-letter {
     flex-basis: 40%;
   }
 }
-
 @media only screen and (max-width: 697px) {
-  .singlePost-container {
-    flex-basis: 100%;
+  nav .menu-wide {
+    display: none;
   }
-  .singlePost-container .singlePost {
-    max-width: 100%;
+  nav .menu {
+    display: flex;
   }
   .contact-form {
     flex-basis: 100%;
-  }
-  .categs .categ {
-    flex-basis: 100%;
-    max-width: 100%;
   }
   .apost_container .wrapper .postImg {
     flex-basis: 100%;
@@ -704,6 +732,9 @@ footer .news-letter {
   .apost_container .wrapper .entry_header .info .detail {
     flex-basis: 90%;
   }
+  .categs {
+    grid-template-columns: 1fr;
+  }
 }
 @media only screen and (max-width: 500px) {
   .apost_container .wrapper .entry_header .info .img {
@@ -711,6 +742,9 @@ footer .news-letter {
   }
   .apost_container .wrapper .entry_header .info .detail {
     flex-basis: 89%;
+  }
+  .posts .singlePost-container .singlePost {
+    margin: 1rem 0;
   }
 }
 @media only screen and (max-width: 390px) {

@@ -45,5 +45,8 @@
     "url": "9jaoldschool"
   },
   "author": "lawrencejr5",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  }
 }

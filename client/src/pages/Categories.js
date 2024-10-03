@@ -44,7 +44,7 @@ const Categories = () => {
                   <div className="content">
                     <h1>{name}</h1>
                     <p>{text}</p>
-                    <small> (10 Posts)</small>
+                    {/* <small> (10 Posts)</small> */}
                   </div>
                 </Link>
               </div>
