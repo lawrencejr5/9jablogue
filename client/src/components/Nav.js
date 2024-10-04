@@ -13,7 +13,7 @@ import Sidenav from "./Sidenav";
 const Navbar = ({ color }) => {
   const { openSideNav, closeSideNav, sideNavOpen } = useGlobalContext();
   return (
-    <nav className="nav">
+    <nav className="user-nav">
       <div className="nav-center">
         {color == "black" ? <Logo2 /> : <Logo />}
         <div className="menu-wide">
@@ -26,7 +26,10 @@ const Navbar = ({ color }) => {
                 onClick={closeSideNav}
                 className="link"
               >
-                <span>{name}</span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  {icon}&nbsp;
+                  {name}
+                </span>
               </Link>
             );
           })}

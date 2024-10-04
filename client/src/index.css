@@ -78,7 +78,7 @@ button {
     height: 40px;
   }
 }
-nav {
+.user-nav {
   box-sizing: border-box;
   padding: 0;
   width: 100%;
@@ -89,7 +89,7 @@ nav {
   align-items: center;
   position: absolute;
 }
-nav .nav-center {
+.user-nav .nav-center {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -104,27 +104,28 @@ nav .nav-center {
   color: #16b816;
 }
 
-nav .menu-wide {
-  width: 500px;
+.user-nav .menu-wide {
+  width: 420px;
   background-color: #000;
-  border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   position: fixed;
   z-index: 2;
   right: 0;
 }
-nav .menu-wide .link {
+.user-nav .menu-wide .link {
   text-decoration: none;
-  color: #fff;
+  color: #24cd24;
   margin: 0 1rem;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
 }
 
-nav .menu {
+.user-nav .menu {
   display: none;
   align-items: center;
   justify-content: space-between;
@@ -138,7 +139,7 @@ nav .menu {
   cursor: pointer;
   z-index: 1;
 }
-nav .menu span {
+.user-nav .menu span {
   font-weight: 300;
 }
 nav .links-container {
@@ -149,26 +150,26 @@ nav .links-container {
   margin: 0 2rem;
   max-width: 700px;
 }
-nav .links-container .search-icon {
+.user-nav .links-container .search-icon {
   color: white;
   font-size: 20px;
 }
-nav .links-container ul {
+.user-nav .links-container ul {
   width: 100%;
   margin-right: 1rem;
   display: flex;
   list-style-type: none;
 }
-nav .links-container ul li {
+.user-nav .links-container ul li {
   margin: 0 1rem;
 }
-nav .links-container ul li .link {
+.user-nav .links-container ul li .link {
   color: whitesmoke;
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
 }
-nav .baek_link {
+.user-nav .baek_link {
   color: black;
   font-size: 25px;
   cursor: pointer;
@@ -757,4 +758,17 @@ footer .news-letter {
   .news-letter input {
     max-width: 200px;
   }
+}
+
+/***************** ADMIN STYLING ********************* */
+.admin-main {
+  padding: 1rem;
+}
+.admin-main .logo {
+  background-color: #fff;
+  display: table;
+  margin: 0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  box-shadow: 0px 2px 12px rgba(195, 190, 190, 0.593);
 }

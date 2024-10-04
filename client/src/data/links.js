@@ -5,3 +5,10 @@ export const links = [
   { name: "Categories", linkto: "/categories", icon: <FaTags /> },
   { name: "Contact", linkto: "/contact", icon: <FaPhone /> },
 ];
+
+export const adminLinks = [
+  { name: "Dashboard", link: "/admin/" },
+  { name: "Write", link: "/admin/write" },
+  { name: "Posts", link: "/admin/posts" },
+  { name: "Account", link: "/admin/account" },
+];
