@@ -23,15 +23,15 @@ const App = () => {
         <ScrollTop />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="categories" element={<Categories />} />
+          <Route path="categories/" element={<Categories />} />
           <Route path="categories/:name" element={<CategoryPosts />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
+          <Route path="about/" element={<About />} />
+          <Route path="contact/" element={<Contact />} />
           <Route path="/post/:id" element={<Post />} />
-          <Route path="admin" element={<Dashboard />} />
-          <Route path="admin/posts" element={<Posts />} />
-          <Route path="admin/write" element={<Write />} />
-          <Route path="admin/account" element={<Account />} />
+          <Route path="admin/" element={<Dashboard />} />
+          <Route path="admin/posts/" element={<Posts />} />
+          <Route path="admin/write/" element={<Write />} />
+          <Route path="admin/account/" element={<Account />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>

@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 import { adminLinks } from "../data/links";
 
 const AdminNav = () => {
+  const { pathname } = useLocation();
   return (
-    <nav>
-      {adminLinks.map((link) => {
-        return <Link to={link.link}>{link.name}</Link>;
+    <nav className="admin-links">
+      {adminLinks.map((link, i) => {
+        return (
+          <Link
+            key={i}
+            className={`link ${pathname === link.link ? "active" : ""}`}
+            to={link.link}
+          >
+            {link.name}
+          </Link>
+        );
       })}
     </nav>
   );

@@ -1,14 +1,18 @@
 import React from "react";
+
 import AdminNav from "../../components/AdminNav";
-import Logo2 from "../../components/Logo2";
+import Logo from "../../components/Logo";
+import AdminDd from "../../components/AdminDd";
 
 const Dashboard = () => {
   return (
     <main className="admin-main">
-      <Logo2 />
-      <br />
-      <br />
+      <Logo />
+      <AdminDd />
       <AdminNav />
+      <div className="header">
+        <h1>Dashboard</h1>
+      </div>
     </main>
   );
 };
