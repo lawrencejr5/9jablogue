@@ -6,7 +6,7 @@ const Navbaek = () => {
   const navigate = useNavigate();
   return (
     <>
-      <nav className="nav">
+      <nav className="user-nav">
         <div className="nav-center">
           <FaChevronLeft className="baek_link" onClick={() => navigate(-1)} />
         </div>

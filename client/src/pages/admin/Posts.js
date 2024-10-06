@@ -1,18 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
 import AdminDd from "../../components/AdminDd";
+import EditPost from "../../components/modals/EditPost";
+import DelPost from "../../components/modals/DelPost";
+
+import { posts } from "../../data/posts";
 
 const Posts = () => {
+  const navigate = useNavigate();
+
+  const [delClosed, setDelClosed] = useState(true);
+  const [editClosed, setEditClosed] = useState(true);
+
   return (
-    <main className="admin-main">
+    <main className="admin-main my-posts">
       <Logo />
       <AdminDd />
       <AdminNav />
       <div className="header">
-        <h1>Your Posts</h1>
+        <h1>Your Posts({posts.length})</h1>
       </div>
+      <div className="posts-container">
+        {posts.map((post, i) => {
+          return (
+            <div className="post" key={i}>
+              <div
+                className="thumb"
+                onClick={() => navigate(`/post/${post.id}`)}
+                style={{ backgroundImage: `url(${post.thumb})` }}
+              ></div>
+              <div className="content">
+                <h2 onClick={() => navigate(`/post/${post.id}`)}>
+                  {post.title}
+                </h2>
+                <span> {post.description} </span>
+                <br />
+                {post.tags.map((tag, index) => {
+                  return (
+                    tag && (
+                      <button
+                        key={index}
+                        onClick={() => navigate(`/categories/${tag}`)}
+                        className="tag"
+                      >
+                        {tag}
+                      </button>
+                    )
+                  );
+                })}
+                <div className="actn-btns">
+                  <button id="edit" onClick={() => setEditClosed(false)}>
+                    Edit &nbsp;
+                    <FaEdit />
+                  </button>
+                  <button id="del" onClick={() => setDelClosed(false)}>
+                    Delete &nbsp;
+                    <FaTrash />
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <EditPost closed={editClosed} setClosed={setEditClosed} />
+      <DelPost closed={delClosed} setClosed={setDelClosed} />
     </main>
   );
 };
