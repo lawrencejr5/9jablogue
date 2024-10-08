@@ -11,6 +11,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import Write from "./pages/admin/Write";
 import Posts from "./pages/admin/Posts";
 import Account from "./pages/admin/Account";
+import EditPost from "./pages/admin/EditPost";
 
 import ErrorPage from "./pages/Error";
 import ScrollTop from "./components/ScrollTop";
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="admin/" element={<Dashboard />} />
           <Route path="admin/posts/" element={<Posts />} />
           <Route path="admin/write/" element={<Write />} />
+          <Route path="admin/edit-post/:id" element={<EditPost />} />
           <Route path="admin/account/" element={<Account />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

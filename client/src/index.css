@@ -662,12 +662,29 @@ footer .news-letter {
   box-shadow: 0px 2px 12px rgba(217, 216, 216, 0.593);
 }
 .admin-dd {
+  margin: 1rem 0 2rem;
   width: 100%;
+}
+.admin-dd .click {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin: 1rem 0 2rem;
 }
+.admin-dd .dd-list {
+  position: absolute;
+  right: 1rem;
+  background-color: #fff;
+  padding: 0.3rem 1rem;
+  margin: 0.3rem;
+  border-radius: 5px;
+  box-shadow: 0px 2px 12px rgba(217, 216, 216, 0.593);
+  display: flex;
+  align-items: center;
+}
+.admin-dd .dd-list.hide {
+  display: none;
+}
+
 .admin-links {
   width: 100%;
 }
@@ -828,7 +845,6 @@ footer .news-letter {
   border-radius: 10px;
   box-shadow: 0px 4px 24px rgba(209, 205, 205, 0.741);
 }
-
 .modal-container .modal h2 {
   margin: 0 auto;
   display: table;

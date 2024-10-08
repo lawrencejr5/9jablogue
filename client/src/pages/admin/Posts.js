@@ -5,7 +5,6 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
 import AdminDd from "../../components/AdminDd";
-import EditPost from "../../components/modals/EditPost";
 import DelPost from "../../components/modals/DelPost";
 
 import { posts } from "../../data/posts";
@@ -14,7 +13,6 @@ const Posts = () => {
   const navigate = useNavigate();
 
   const [delClosed, setDelClosed] = useState(true);
-  const [editClosed, setEditClosed] = useState(true);
 
   return (
     <main className="admin-main my-posts">
@@ -53,7 +51,10 @@ const Posts = () => {
                   );
                 })}
                 <div className="actn-btns">
-                  <button id="edit" onClick={() => setEditClosed(false)}>
+                  <button
+                    id="edit"
+                    onClick={() => navigate(`/admin/edit-post/${post.id}`)}
+                  >
                     Edit &nbsp;
                     <FaEdit />
                   </button>
@@ -67,7 +68,6 @@ const Posts = () => {
           );
         })}
       </div>
-      <EditPost closed={editClosed} setClosed={setEditClosed} />
       <DelPost closed={delClosed} setClosed={setDelClosed} />
     </main>
   );
