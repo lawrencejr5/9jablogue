@@ -119,10 +119,13 @@ button {
 }
 .user-nav .menu-wide .link {
   text-decoration: none;
-  color: #24cd24;
+  color: #f5f5f5;
   margin: 0 1rem;
   font-weight: 600;
   font-size: 16px;
+}
+.user-nav .menu-wide .link.active {
+  color: #24cd24;
 }
 
 .user-nav .menu {
@@ -297,7 +300,6 @@ nav .links-container {
   margin-right: 0.3rem;
   border-radius: 50px;
 }
-
 .news-letter button {
   background-color: #0b6c0b;
   color: whitesmoke;
@@ -305,6 +307,28 @@ nav .links-container {
   font-size: 18px;
   border-radius: 10px;
 }
+
+.req-admin {
+  background-color: white;
+  height: 100%;
+  padding: 0rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.req-admin p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.req-admin button {
+  background-color: #0b6c0b;
+  color: whitesmoke;
+  padding: 0.7rem 1rem;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
 .tags-container {
   padding: 0.5rem 1rem;
 }

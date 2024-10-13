@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PostSingle = ({ data }) => {
   return (
     <article className="singlePost-container">
-      {data.map((datum) => {
+      {data.slice(0, 3).map((datum) => {
         const { title, description, thumb, id, tags } = datum;
         return (
           <div key={id} className="singlePost">

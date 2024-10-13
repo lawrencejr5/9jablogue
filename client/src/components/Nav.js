@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Logo from "./Logo";
 import Logo2 from "./Logo2";
@@ -12,6 +12,8 @@ import Sidenav from "./Sidenav";
 
 const Navbar = ({ color }) => {
   const { openSideNav, closeSideNav, sideNavOpen } = useGlobalContext();
+  const { pathname } = useLocation();
+
   return (
     <nav className="user-nav">
       <div className="nav-center">
@@ -24,7 +26,7 @@ const Navbar = ({ color }) => {
                 to={linkto}
                 key={index}
                 onClick={closeSideNav}
-                className="link"
+                className={`link ${pathname === linkto ? "active" : ""}`}
               >
                 <span style={{ display: "flex", alignItems: "center" }}>
                   {icon}&nbsp;
