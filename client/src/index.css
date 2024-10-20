@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities; */
 
+@font-face {
+  font-family: Montserat;
+  src: url(/public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* font-family: Montserat; */
   transition: 0.5s;
   box-sizing: border-box;
 }
@@ -105,7 +111,7 @@ button {
 }
 
 .user-nav .menu-wide {
-  width: 500px;
+  width: auto;
   background-color: #000;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
@@ -245,6 +251,7 @@ nav .links-container {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .banner span {
   position: absolute;
@@ -309,24 +316,34 @@ nav .links-container {
 }
 
 .req-admin {
-  background-color: white;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(/public/imgs/obinna-okerekeocha-fGd8paHzN98-unsplash.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100%;
   padding: 0rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  padding: 1rem;
+  background-attachment: fixed;
+}
+.req-admin h1 {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 0;
 }
 .req-admin p {
   font-size: 20px;
   font-weight: 600;
 }
 .req-admin button {
-  background-color: #0b6c0b;
+  background-color: transparent;
   color: whitesmoke;
   padding: 0.7rem 1rem;
   font-size: 18px;
-  border-radius: 10px;
+  border: 3px solid #0b6c0b;
 }
 
 .tags-container {
@@ -429,7 +446,40 @@ nav .links-container {
 }
 
 .posts.featured {
+  width: 90%;
+}
+.posts.featured .post {
+  display: flex;
   width: 100%;
+  padding: 1rem 2rem;
+}
+.posts.featured .post .img {
+  background-image: url(/public/imgs/tope-a-asokere-aWc0hP9OoVI-unsplash.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  border-radius: 5px;
+}
+.posts.featured .post .content {
+  margin: 0 1rem;
+}
+.posts.featured .post .content:hover {
+  color: #033903;
+  text-decoration: underline;
+}
+.posts.featured .post .content h1 {
+  margin: 0;
+  font-size: 50px;
+}
+.posts.featured .post .content .link button {
+  margin: 0.2rem;
+  border-radius: 2px;
+  background-color: whitesmoke;
+  font-weight: 600;
+  color: #1fa91f;
+  text-transform: capitalize;
 }
 
 .apost_container {

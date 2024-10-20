@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaStar, FaTags } from "react-icons/fa";
 
 import Navbar from "../components/Nav";
@@ -53,9 +54,26 @@ const Home = () => {
         </h1>
         <TagSingle data={catgories} />
       </section>
-      <section className="posts">
-        <h1 className="header">Featured posts</h1>
-        <PostSingle data={posts} />
+      <section className="posts featured">
+        <h1 className="header">Featured</h1>
+        <div className="post">
+          <div className="img"></div>
+          <div className="content">
+            <h1>Hunger dey Nigeria, We dey call on Tinubu</h1>
+            <Link to={`/categories/Documentary`} className="link">
+              <button className="tag">documentary</button>
+            </Link>
+            <Link to={`/categories/Politics`} className="link">
+              <button className="tag">politics</button>
+            </Link>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+              similique non blanditiis a eum officiis at assumenda laboriosam,
+              repellendus corporis animi quos adipisci provident ducimus nihil,
+              officia suscipit esse! Earum?e
+            </p>
+          </div>
+        </div>
       </section>
       <section className="posts">
         <h1 className="header">Latest posts</h1>
@@ -65,6 +83,7 @@ const Home = () => {
         </div>
       </section>
       <section className="req-admin">
+        <h1>Join us</h1>
         <p>Want to be a blogger on 9jablogue? What are you waiting for?</p>
         <button>Apply now...</button>
       </section>
