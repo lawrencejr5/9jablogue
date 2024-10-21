@@ -3,13 +3,16 @@
 @tailwind utilities; */
 
 @font-face {
-  font-family: Montserat;
-  src: url(/public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+  font-family: Arima;
+  src: url(/public/regular-fonts/Arima-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/public/regular-fonts/Poppins-Regular.ttf);
 }
 
 * {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  /* font-family: Montserat; */
+  font-family: Poppins;
   transition: 0.5s;
   box-sizing: border-box;
 }
@@ -23,6 +26,17 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+.quill-editor .ql-container {
+  min-height: 400px;
+  height: 100%;
+}
+.quill-editor img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+}
+
 .loading-container {
   background-color: #000;
   position: fixed;
@@ -353,7 +367,7 @@ nav .links-container {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 175px;
+  max-width: 220px;
   justify-content: space-between;
   font-size: 25px;
   color: #074d07;
@@ -776,6 +790,10 @@ footer .news-letter {
   color: #24cd24;
 }
 
+.admin-main {
+  background-color: #fff;
+  height: 100%;
+}
 .admin-main.dashboard .header h1 {
   display: table;
   margin-bottom: 0;
@@ -813,6 +831,63 @@ footer .news-letter {
   display: block;
   font-size: 30px;
   font-weight: 600;
+}
+.admin-main.dashboard .table-container {
+  width: 100%;
+  overflow: auto;
+}
+.admin-main.dashboard table {
+  width: 100%;
+}
+.admin-main.dashboard table .img {
+  border-radius: 5px;
+  width: 250px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+}
+.admin-main.dashboard table td {
+  min-width: 150px;
+  padding-right: 2rem;
+  font-size: 16px;
+  align-items: center;
+}
+.admin-main.dashboard table td.post {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: center;
+  min-width: 300px;
+}
+.admin-main.dashboard table td .actn-btns {
+  display: table;
+}
+.admin-main.dashboard table td .actn-btns button {
+  padding: 0.3rem;
+  margin: 0.2rem;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 18px;
+  background-color: transparent;
+  margin-right: 1rem;
+}
+.admin-main.dashboard table td.post .content {
+  margin-left: 1rem;
+  width: 400px;
+}
+.admin-main.dashboard table td.wide {
+  min-width: 200px;
+}
+.admin-main.dashboard table td strong {
+  font-size: 17px;
+  text-transform: capitalize;
+}
+.admin-main.dashboard table th {
+  text-align: left;
+  font-size: 25px;
+  padding-bottom: 1rem;
+}
+.admin-main.dashboard table th .icon {
+  color: #054e05;
 }
 
 .admin-main.write form {
@@ -886,6 +961,7 @@ footer .news-letter {
 .admin-main.my-posts .posts-container .post {
   display: flex;
   width: 95%;
+  height: 250px;
   margin-bottom: 1rem;
   background-color: #fff;
   border-radius: 10px;
@@ -903,6 +979,7 @@ footer .news-letter {
 .admin-main.my-posts .posts-container .post .content {
   margin: 0.5rem;
   width: 75%;
+  position: relative;
 }
 .admin-main.my-posts .posts-container .post .content h2 {
   margin: 0 0 0.3rem;
@@ -922,8 +999,9 @@ footer .news-letter {
 }
 .admin-main.my-posts .posts-container .post .content .actn-btns {
   display: flex;
-  align-items: end;
-  justify-content: flex-end;
+  position: absolute;
+  bottom: 0.1rem;
+  right: 0.1rem;
 }
 .admin-main.my-posts .posts-container .post .content .actn-btns button {
   padding: 0.3rem;

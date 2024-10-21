@@ -14,7 +14,7 @@ export const links = [
   { name: "Bloggers", linkto: "/contact", icon: <FaUserFriends /> },
   // { name: "Contact", linkto: "/contact", icon: <FaPhone /> },
   { name: "About", linkto: "/about", icon: <FaInfo /> },
-  { name: "Admin", linkto: "/admin", icon: <FaUser /> },
+  // { name: "Admin", linkto: "/admin", icon: <FaUser /> },
 ];
 
 export const adminLinks = [

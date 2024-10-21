@@ -1,8 +1,12 @@
 import React from "react";
+import { FaSave } from "react-icons/fa";
 
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
 import AdminDd from "../../components/AdminDd";
+import MyEditor from "../../components/MyEditor";
+
+import "react-quill/dist/quill.snow.css";
 
 import { catgories } from "../../data/categories";
 
@@ -40,10 +44,12 @@ const Write = () => {
         </div>
         <div className="inp-holder">
           <label htmlFor="">Post:</label>
-          <textarea name="" placeholder="write something..." id=""></textarea>
+          <MyEditor />
         </div>
         <div className="btn-holder">
-          <button>Post</button>
+          <button>
+            Save <FaSave />
+          </button>
         </div>
       </form>
     </main>

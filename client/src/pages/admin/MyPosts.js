@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaArrowUp } from "react-icons/fa";
 
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
@@ -9,7 +9,7 @@ import DelPost from "../../components/modals/DelPost";
 
 import { posts } from "../../data/posts";
 
-const Posts = () => {
+const MyPosts = () => {
   const navigate = useNavigate();
 
   const [delClosed, setDelClosed] = useState(true);
@@ -50,17 +50,20 @@ const Posts = () => {
                     )
                   );
                 })}
+                <br />
+                <br />
+                <br />
                 <div className="actn-btns">
                   <button
                     id="edit"
                     onClick={() => navigate(`/admin/edit-post/${post.id}`)}
                   >
-                    Edit &nbsp;
+                    Continue... &nbsp;
                     <FaEdit />
                   </button>
-                  <button id="del" onClick={() => setDelClosed(false)}>
-                    Delete &nbsp;
-                    <FaTrash />
+                  <button id="edit">
+                    Post &nbsp;
+                    <FaArrowUp />
                   </button>
                 </div>
               </div>
@@ -73,4 +76,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default MyPosts;

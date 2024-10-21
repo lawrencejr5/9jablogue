@@ -9,7 +9,7 @@ import Post from "./pages/Post";
 // Admin
 import Dashboard from "./pages/admin/Dashboard";
 import Write from "./pages/admin/Write";
-import Posts from "./pages/admin/Posts";
+import MyPosts from "./pages/admin/MyPosts";
 import Account from "./pages/admin/Account";
 import EditPost from "./pages/admin/EditPost";
 
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="contact/" element={<Contact />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="admin/" element={<Dashboard />} />
-          <Route path="admin/posts/" element={<Posts />} />
+          <Route path="admin/posts/" element={<MyPosts />} />
           <Route path="admin/write/" element={<Write />} />
           <Route path="admin/edit-post/:id" element={<EditPost />} />
           <Route path="admin/account/" element={<Account />} />
