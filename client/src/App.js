@@ -4,6 +4,7 @@ import Categories from "./pages/Categories";
 import CategoryPosts from "./pages/CategoryPosts";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Posts from "./pages/Posts";
 import Post from "./pages/Post";
 
 // Admin
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="categories/:name" element={<CategoryPosts />} />
           <Route path="about/" element={<About />} />
           <Route path="contact/" element={<Contact />} />
+          <Route path="/posts" element={<Posts />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="admin/" element={<Dashboard />} />
           <Route path="admin/posts/" element={<MyPosts />} />

@@ -1,15 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaStar, FaTags } from "react-icons/fa";
 
 import Navbar from "../components/Nav";
-import Sidenav from "../components/Sidenav";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import NewsLetterForm from "../components/NewsLetterForm";
 import TagSingle from "../components/TagSingle";
 import PostSingle from "../components/PostSingle";
-import LoadMore from "../components/LoadMore";
 
 import { useGlobalContext } from "../context";
 
@@ -19,6 +17,8 @@ import { posts } from "../data/posts";
 
 const Home = () => {
   const { loading, dukNo } = useGlobalContext();
+
+  const navigate = useNavigate();
 
   if (loading) {
     return <Loading />;
@@ -77,15 +77,22 @@ const Home = () => {
       </section>
       <section className="posts">
         <h1 className="header">Latest posts</h1>
-        <PostSingle data={posts} />
+        <article className="singlePost-container">
+          {posts.slice(0, 3).map((post) => {
+            return <PostSingle data={post} />;
+          })}
+        </article>
+
         <div className="loadMoreCont">
-          <button className="loadmore">Show me more...</button>
+          <button className="loadmore" onClick={() => navigate("/posts")}>
+            Show me more...
+          </button>
         </div>
       </section>
       <section className="req-admin">
         <h1>Join us</h1>
         <p>Want to be a blogger on 9jablogue? What are you waiting for?</p>
-        <button>Apply now...</button>
+        <button onClick={() => navigate("/admin")}>Apply now...</button>
       </section>
       <Footer />
     </main>

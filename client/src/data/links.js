@@ -9,11 +9,11 @@ import {
 } from "react-icons/fa";
 export const links = [
   { name: "Home", linkto: "/", icon: <FaHome /> },
-  { name: "Posts", linkto: "/contact", icon: <FaBars /> },
   { name: "Categories", linkto: "/categories", icon: <FaTags /> },
-  { name: "Bloggers", linkto: "/contact", icon: <FaUserFriends /> },
+  { name: "Posts", linkto: "/posts", icon: <FaBars /> },
+  // { name: "Bloggers", linkto: "/contact", icon: <FaUserFriends /> },
   // { name: "Contact", linkto: "/contact", icon: <FaPhone /> },
-  { name: "About", linkto: "/about", icon: <FaInfo /> },
+  // { name: "About", linkto: "/about", icon: <FaInfo /> },
   // { name: "Admin", linkto: "/admin", icon: <FaUser /> },
 ];
 
