@@ -1059,6 +1059,64 @@ footer .news-letter {
   color: #056705;
 }
 
+.admin-main.account .header {
+  width: 100%;
+}
+.admin-main.account .header .header-center {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+.admin-main.account .header .header-center .img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+.admin-main.account .body {
+  width: 100%;
+}
+.admin-main.account .body form {
+  width: 80%;
+  background-color: #fff;
+  border: 1px solid grey;
+  margin: 0 auto;
+}
+.admin-main.account .body form .inp-handler {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.admin-main.account .body form .inp-holder {
+  width: 90%;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid green;
+  border-radius: 5px;
+}
+.admin-main.account .body form .inp-holder input {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: medium;
+}
+.admin-main.account .body form .btn-holder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+.admin-main.account .body form .btn-holder button {
+  font-size: large;
+  border: 1px solid #054e05;
+  color: #054e05;
+  font-weight: 600;
+  background-color: transparent;
+}
+
 .modal-container {
   position: fixed;
   top: 0;
