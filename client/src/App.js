@@ -6,6 +6,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Posts from "./pages/Posts";
 import Post from "./pages/Post";
+import Bloggers from "./pages/Bloggers";
+import BloggerPosts from "./pages/BloggerPosts";
 
 // Admin
 import Dashboard from "./pages/admin/Dashboard";
@@ -25,13 +27,15 @@ const App = () => {
         <ScrollTop />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="categories/" element={<Categories />} />
-          <Route path="categories/:name" element={<CategoryPosts />} />
-          <Route path="about/" element={<About />} />
-          <Route path="contact/" element={<Contact />} />
-          <Route path="/posts" element={<Posts />} />
+          <Route path="/categories/" element={<Categories />} />
+          <Route path="/categories/:name" element={<CategoryPosts />} />
+          <Route path="/about/" element={<About />} />
+          <Route path="/contact/" element={<Contact />} />
+          <Route path="/bloggers" element={<Bloggers />} />
+          <Route path="/bloggers/:name" element={<BloggerPosts />} />
+          <Route path="/posts/" element={<Posts />} />
           <Route path="/post/:id" element={<Post />} />
-          <Route path="admin/" element={<Dashboard />} />
+          <Route path="/admin/" element={<Dashboard />} />
           <Route path="admin/posts/" element={<MyPosts />} />
           <Route path="admin/write/" element={<Write />} />
           <Route path="admin/edit-post/:id" element={<EditPost />} />

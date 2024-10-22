@@ -3,7 +3,7 @@
 @tailwind utilities; */
 
 @font-face {
-  font-family: Arima;
+  font-family: Nyash;
   src: url(/public/regular-fonts/Arima-VariableFont_wght.ttf);
 }
 @font-face {
@@ -12,7 +12,7 @@
 }
 
 * {
-  font-family: Poppins;
+  font-family: Nyash;
   transition: 0.5s;
   box-sizing: border-box;
 }
@@ -559,6 +559,52 @@ nav .links-container {
   padding: 4rem 1rem;
 }
 
+.bloggers-container {
+  padding: 4rem 1rem;
+  width: 100%;
+}
+.bloggers-container .header {
+  display: grid;
+  place-items: center;
+}
+.bloggers-container .header h1 {
+  margin-bottom: 0;
+}
+
+.bloggers-container .body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 95%;
+  margin: 0 auto;
+}
+.bloggers-container .body .layout {
+  border: 1px solid #054e05;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem;
+  margin: 1rem;
+}
+.bloggers-container .body .layout .img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.bloggers-container .body .layout .content {
+  margin-top: 1rem;
+}
+
+.blogger-post-container {
+  padding: 4rem 1rem;
+}
+.blogger-post-container .header .header-center {
+  display: grid;
+  place-items: center;
+}
 .all-posts-container {
   padding: 4rem 1rem;
   display: grid;

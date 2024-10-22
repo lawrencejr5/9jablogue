@@ -30,8 +30,8 @@ const Posts = () => {
         </article>
         <div className="posts">
           <article className="singlePost-container">
-            {posts.map((post) => {
-              return <PostSingle data={post} />;
+            {posts.map((post, i) => {
+              return <PostSingle data={post} key={i} />;
             })}
           </article>
         </div>

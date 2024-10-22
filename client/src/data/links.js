@@ -11,7 +11,7 @@ export const links = [
   { name: "Home", linkto: "/", icon: <FaHome /> },
   { name: "Categories", linkto: "/categories", icon: <FaTags /> },
   { name: "Posts", linkto: "/posts", icon: <FaBars /> },
-  // { name: "Bloggers", linkto: "/contact", icon: <FaUserFriends /> },
+  { name: "Bloggers", linkto: "/bloggers", icon: <FaUserFriends /> },
   // { name: "Contact", linkto: "/contact", icon: <FaPhone /> },
   // { name: "About", linkto: "/about", icon: <FaInfo /> },
   // { name: "Admin", linkto: "/admin", icon: <FaUser /> },

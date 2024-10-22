@@ -54,10 +54,11 @@ const CategoryPosts = () => {
         <article className="cat_posts">
           <div className="cat_posts_header">Posts on {name}</div>
           {singlePost.length > 0 ? (
-            <>
-              <PostSingle data={singlePost} />
-              <LoadMore />
-            </>
+            <article className="singlePost-container">
+              {singlePost.map((post, i) => {
+                return <PostSingle key={i} data={post} />;
+              })}
+            </article>
           ) : (
             <h1>No posts</h1>
           )}
