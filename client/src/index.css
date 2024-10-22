@@ -583,7 +583,7 @@ nav .links-container {
   place-items: center;
   width: 100%;
   max-width: 300px;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 1rem;
 }
 .bloggers-container .body .layout .img {
@@ -597,6 +597,13 @@ nav .links-container {
 .bloggers-container .body .layout .content {
   margin-top: 1rem;
 }
+.bloggers-container .body .layout .content .socials {
+  margin-top: 0.5rem;
+  display: table;
+}
+.bloggers-container .body .layout .content .socials .icon {
+  margin-right: 1rem;
+}
 
 .blogger-post-container {
   padding: 4rem 1rem;
@@ -605,6 +612,7 @@ nav .links-container {
   display: grid;
   place-items: center;
 }
+
 .all-posts-container {
   padding: 4rem 1rem;
   display: grid;

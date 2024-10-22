@@ -36,7 +36,13 @@ const Account = () => {
               <input type="email" placeholder="email" />
             </div>
             <div className="inp-holder">
-              <input type="text" placeholder="bio" />
+              <input type="text" placeholder="facebook" />
+            </div>
+            <div className="inp-holder">
+              <input type="text" placeholder="instagram" />
+            </div>
+            <div className="inp-holder">
+              <input type="text" placeholder="twitter" />
             </div>
           </div>
           <div className="btn-holder">

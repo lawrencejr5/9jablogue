@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const SingleBlogger = ({ data }) => {
@@ -14,8 +15,10 @@ const SingleBlogger = ({ data }) => {
         <br />
         <span style={{ color: "green" }}>@{username}</span>
         <br />
-        <span>{bio}</span>
-        <br />
+        <span className="socials">
+          <FaFacebook className="icon" /> <FaInstagram className="icon" />{" "}
+          <FaTwitter className="icon" />
+        </span>
       </div>
     </div>
   );

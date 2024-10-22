@@ -34,7 +34,6 @@ const BloggerPosts = () => {
                 backgroundImage: `url(/imgs/4757780.jpg)`,
               }}
             ></div>
-            <p>lawrencejr</p>
           </div>
         </div>
         <div className="posts">
