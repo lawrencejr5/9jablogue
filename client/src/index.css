@@ -954,6 +954,7 @@ footer .news-letter {
 }
 .admin-main.dashboard table td .actn-btns {
   display: table;
+  width: 150px;
 }
 .admin-main.dashboard table td .actn-btns button {
   padding: 0.3rem;
@@ -974,6 +975,11 @@ footer .news-letter {
 .admin-main.dashboard table td strong {
   font-size: 17px;
   text-transform: capitalize;
+}
+.admin-main.dashboard table td button#approve-btn {
+  border: 1px solid #056705;
+  color: #056705;
+  background-color: transparent;
 }
 .admin-main.dashboard table th {
   text-align: left;

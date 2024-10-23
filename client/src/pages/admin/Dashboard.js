@@ -62,9 +62,7 @@ const Dashboard = () => {
           <table>
             <thead>
               <tr>
-                {/* <th></th> */}
                 <th>Post</th>
-                {/* <th>Description</th> */}
                 <th>
                   <FaEye className="icon" />
                 </th>
@@ -80,7 +78,7 @@ const Dashboard = () => {
             <tbody>
               {posts.map((post, i) => {
                 return (
-                  <tr>
+                  <tr key={i}>
                     <td className="post">
                       <div
                         className="img"
