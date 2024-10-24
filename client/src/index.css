@@ -257,6 +257,72 @@ nav .links-container {
 .sidenav-container-close .sidenav {
   transform: translate(-105%);
 }
+
+/* Login and Registration Page */
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.login-container form {
+  display: grid;
+  place-items: center;
+}
+.login-container .inp-handler {
+  display: grid;
+  place-items: center;
+}
+.login-container .inp-handler .inp-holder {
+  width: 300px;
+  padding: 0.5rem;
+  border: 1px solid #054e05;
+  border-radius: 5px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+.login-container .inp-handler .inp-holder input {
+  background-color: transparent;
+  padding-left: 0.5rem;
+  border: 0;
+  outline: 0;
+}
+.login-container .inp-handler .btn-holder {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}
+.login-container .inp-handler .btn-holder button {
+  background-color: #054e05;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: capitalize;
+  border-radius: 3px;
+  padding: 0.2rem 1.2rem;
+}
+.login-container .rh-sec {
+  height: 100vh;
+  width: 100%;
+  background-image: url(/public/imgs/emmanuel-ikwuegbu-T4q6ZPpYjog-unsplash.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.login-container .question {
+  /* background-color: blue; */
+  width: 95%;
+}
+.login-container .answer {
+  width: 95%;
+  height: 200px;
+  border: 2px solid #054e05;
+  outline: 0;
+  font-size: 18px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 .banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(/public/imgs/emmanuel-ikwuegbu-T4q6ZPpYjog-unsplash.jpg);
