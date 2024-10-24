@@ -3,10 +3,10 @@ import {
   FaEye,
   FaThumbsUp,
   FaShare,
-  FaChartLine,
   FaEdit,
   FaTrash,
   FaStar,
+  FaPlus,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -180,6 +180,25 @@ const Super = () => {
 
       <div className="categories">
         <h1>Categories</h1>
+        <h3>
+          Create category <FaPlus size={13} />
+        </h3>
+        <form>
+          <div className="inp-holder">
+            <input type="file" />
+          </div>
+          <div className="inp-holder">
+            <input type="text" placeholder="category" />
+          </div>
+          <div className="inp-holder">
+            <input type="text" placeholder="description" />
+          </div>
+          <div className="btn-holder">
+            <button>
+              Create <FaPlus />
+            </button>
+          </div>
+        </form>
         <div className="table-container">
           <table>
             <thead>
@@ -226,6 +245,19 @@ const Super = () => {
 
       <div className="duks">
         <h1>Did you know?</h1>
+        <h3>
+          Add "did you know" <FaPlus size={13} />
+        </h3>
+        <form>
+          <div className="inp-holder">
+            <input type="text" placeholder="did you know..." />
+          </div>
+          <div className="btn-holder">
+            <button>
+              Add <FaPlus />
+            </button>
+          </div>
+        </form>
         <div className="table-container">
           <table>
             <thead>

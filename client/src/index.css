@@ -1061,7 +1061,7 @@ footer .news-letter {
   color: #054e05;
 }
 
-/* User table */
+/* super admin manage accounts */
 .admin-main.dashboard .accounts table td.post .content {
   width: 200px;
 }
@@ -1073,7 +1073,6 @@ footer .news-letter {
 .admin-main.dashboard .accounts table th {
   font-size: 20px;
 }
-
 .admin-main.dashboard .accounts table .img {
   border-radius: 50%;
   width: 120px;
@@ -1083,6 +1082,61 @@ footer .news-letter {
 }
 .admin-main.dashboard .accounts table th {
   font-size: 20px;
+}
+
+/* super admin categories */
+.admin-main.dashboard .categories form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+}
+.admin-main.dashboard .categories form .inp-holder {
+  border: 1px solid #054e05;
+  width: 98%;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+}
+.admin-main.dashboard .categories form .inp-holder input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.admin-main.dashboard .categories form .btn-holder {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.admin-main.dashboard .categories form .btn-holder button {
+  font-weight: 600;
+  width: 100px;
+  border-radius: 3px;
+  background-color: #054e05;
+  color: #fff;
+  padding: 0.3rem;
+}
+/* super admin did you know */
+.admin-main.dashboard .duks form {
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+.admin-main.dashboard .duks form .inp-holder {
+  border: 1px solid #054e05;
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  margin-right: 0.3rem;
+}
+.admin-main.dashboard .duks form .inp-holder input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.admin-main.dashboard .duks form .btn-holder button {
+  font-weight: 600;
+  width: 100px;
+  border-radius: 3px;
+  background-color: #054e05;
+  color: #fff;
+  padding: 0.3rem;
 }
 
 .admin-main.write form {
