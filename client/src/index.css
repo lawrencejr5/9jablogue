@@ -1047,6 +1047,11 @@ footer .news-letter {
   color: #056705;
   background-color: transparent;
 }
+.admin-main.dashboard table td button#block-btn {
+  border: 1px solid #ff0f0f;
+  color: #ff0f0f;
+  background-color: transparent;
+}
 .admin-main.dashboard table th {
   text-align: left;
   font-size: 25px;
@@ -1054,6 +1059,30 @@ footer .news-letter {
 }
 .admin-main.dashboard table th .icon {
   color: #054e05;
+}
+
+/* User table */
+.admin-main.dashboard .accounts table td.post .content {
+  width: 200px;
+}
+.admin-main.dashboard .accounts table .img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+.admin-main.dashboard .accounts table th {
+  font-size: 20px;
+}
+
+.admin-main.dashboard .accounts table .img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+}
+.admin-main.dashboard .accounts table th {
+  font-size: 20px;
 }
 
 .admin-main.write form {
