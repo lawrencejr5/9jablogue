@@ -22,5 +22,5 @@ export const adminLinks = [
   { name: "Write", link: "/admin/write" },
   { name: "Posts", link: "/admin/posts" },
   { name: "Account", link: "/admin/account" },
-  { name: "Super Admin", link: "/admin/super" },
+  { name: "Super", link: "/admin/super" },
 ];

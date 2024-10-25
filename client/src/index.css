@@ -526,11 +526,12 @@ nav .links-container {
 }
 
 .posts.featured {
-  width: 90%;
+  width: 100%;
+  background-color: #fff;
 }
 .posts.featured .post {
   display: flex;
-  width: 100%;
+  width: 90%;
   padding: 1rem 2rem;
 }
 .posts.featured .post .img {

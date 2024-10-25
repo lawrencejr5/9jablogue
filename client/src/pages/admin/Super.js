@@ -14,6 +14,9 @@ import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
 import AdminDd from "../../components/AdminDd";
 import DelPost from "../../components/modals/DelPost";
+import DelCat from "../../components/modals/DelCat";
+import DelDuk from "../../components/modals/DelDuk";
+import DelUsr from "../../components/modals/DelUsr";
 
 import { posts } from "../../data/posts";
 import { bloggers } from "../../data/bloggers";
@@ -23,7 +26,10 @@ import { didUKnw } from "../../data/didUKnw";
 const Super = () => {
   const navigate = useNavigate();
 
-  const [delClosed, setDelClosed] = useState(true);
+  const [delPostClosed, setDelPostClosed] = useState(true);
+  const [delCatClosed, setDelCatClosed] = useState(true);
+  const [delDukClosed, setDelDukClosed] = useState(true);
+  const [delUsrClosed, setDelUsrClosed] = useState(true);
   return (
     <main className="admin-main dashboard">
       <Logo />
@@ -80,7 +86,11 @@ const Super = () => {
                         <button id="edit" style={{ color: "green" }}>
                           <FaEdit />
                         </button>
-                        <button id="del" style={{ color: "red" }}>
+                        <button
+                          id="del"
+                          onClick={() => setDelUsrClosed(false)}
+                          style={{ color: "red" }}
+                        >
                           <FaTrash />
                         </button>
                       </div>{" "}
@@ -95,6 +105,7 @@ const Super = () => {
             </tbody>
           </table>
         </div>
+        <DelUsr closed={delUsrClosed} setClosed={setDelUsrClosed} />
       </div>
 
       <div className="posts">
@@ -157,7 +168,7 @@ const Super = () => {
                         <button
                           id="del"
                           style={{ color: "red" }}
-                          onClick={() => setDelClosed(false)}
+                          onClick={() => setDelPostClosed(false)}
                         >
                           <FaTrash />
                         </button>
@@ -175,7 +186,7 @@ const Super = () => {
             </tbody>
           </table>
         </div>
-        <DelPost closed={delClosed} setClosed={setDelClosed} />
+        <DelPost closed={delPostClosed} setClosed={setDelPostClosed} />
       </div>
 
       <div className="categories">
@@ -230,7 +241,11 @@ const Super = () => {
                         <button id="edit" style={{ color: "green" }}>
                           <FaEdit />
                         </button>
-                        <button id="del" style={{ color: "red" }}>
+                        <button
+                          id="del"
+                          onClick={() => setDelCatClosed(false)}
+                          style={{ color: "red" }}
+                        >
                           <FaTrash />
                         </button>
                       </div>{" "}
@@ -241,6 +256,7 @@ const Super = () => {
             </tbody>
           </table>
         </div>
+        <DelCat closed={delCatClosed} setClosed={setDelCatClosed} />
       </div>
 
       <div className="duks">
@@ -280,7 +296,11 @@ const Super = () => {
                         <button id="edit" style={{ color: "green" }}>
                           <FaEdit />
                         </button>
-                        <button id="del" style={{ color: "red" }}>
+                        <button
+                          id="del"
+                          onClick={() => setDelDukClosed(false)}
+                          style={{ color: "red" }}
+                        >
                           <FaTrash />
                         </button>
                       </div>{" "}
@@ -291,6 +311,7 @@ const Super = () => {
             </tbody>
           </table>
         </div>
+        <DelDuk closed={delDukClosed} setClosed={setDelDukClosed} />
       </div>
     </main>
   );
