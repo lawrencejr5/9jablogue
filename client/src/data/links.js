@@ -12,9 +12,9 @@ export const links = [
   { name: "Categories", linkto: "/categories", icon: <FaTags /> },
   { name: "Posts", linkto: "/posts", icon: <FaBars /> },
   { name: "Bloggers", linkto: "/bloggers", icon: <FaUserFriends /> },
-  // { name: "Contact", linkto: "/contact", icon: <FaPhone /> },
-  // { name: "About", linkto: "/about", icon: <FaInfo /> },
-  // { name: "Admin", linkto: "/admin", icon: <FaUser /> },
+  { name: "Contact", linkto: "/contact", icon: <FaPhone /> },
+  { name: "About", linkto: "/about", icon: <FaInfo /> },
+  { name: "Admin", linkto: "/admin", icon: <FaUser /> },
 ];
 
 export const adminLinks = [

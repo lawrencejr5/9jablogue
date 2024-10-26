@@ -173,9 +173,9 @@ const Super = () => {
                     <td>
                       {post.tags.map((cat) => {
                         return (
-                          <span>
+                          <>
                             {cat} <br />
-                          </span>
+                          </>
                         );
                       })}
                     </td>

@@ -26,7 +26,6 @@ const Home = () => {
   return (
     <main>
       <Navbar color={"white"} />
-      {/* <Sidenav /> */}
       <section className="banner">
         <div className="banner-center">
           <h1>Did you know?</h1>
@@ -92,7 +91,7 @@ const Home = () => {
       <section className="req-admin">
         <h1>Join us</h1>
         <p>Want to be a blogger on 9jablogue? What are you waiting for?</p>
-        <button onClick={() => navigate("/admin")}>Apply now...</button>
+        <button onClick={() => navigate("/register")}>Apply now...</button>
       </section>
       <Footer />
     </main>

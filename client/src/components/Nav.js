@@ -11,7 +11,7 @@ import { useGlobalContext } from "../context";
 import Sidenav from "./Sidenav";
 
 const Navbar = ({ color }) => {
-  const { openSideNav, closeSideNav, sideNavOpen } = useGlobalContext();
+  const { openSideNav, closeSideNav } = useGlobalContext();
   const { pathname } = useLocation();
 
   return (
@@ -19,7 +19,7 @@ const Navbar = ({ color }) => {
       <div className="nav-center">
         {color == "black" ? <Logo2 /> : <Logo />}
         <div className="menu-wide">
-          {links.map((link, index) => {
+          {links.slice(0, 4).map((link, index) => {
             const { name, linkto, icon } = link;
             return (
               <Link
@@ -38,7 +38,7 @@ const Navbar = ({ color }) => {
         </div>
         <div className="menu" onClick={openSideNav}>
           <span>Menu</span>
-          <FaBars />
+          <FaBars size={16} />
         </div>
       </div>
       {/* Sidenav for sm screens */}
