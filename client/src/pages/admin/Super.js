@@ -7,6 +7,8 @@ import {
   FaTrash,
   FaStar,
   FaPlus,
+  FaEnvelope,
+  FaRegHeart,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -17,11 +19,13 @@ import DelPost from "../../components/modals/DelPost";
 import DelCat from "../../components/modals/DelCat";
 import DelDuk from "../../components/modals/DelDuk";
 import DelUsr from "../../components/modals/DelUsr";
+import EditUsr from "../../components/modals/EditUsr";
 
 import { posts } from "../../data/posts";
 import { bloggers } from "../../data/bloggers";
 import { catgories } from "../../data/categories";
 import { didUKnw } from "../../data/didUKnw";
+import Application from "../../components/modals/Application";
 
 const Super = () => {
   const navigate = useNavigate();
@@ -30,6 +34,10 @@ const Super = () => {
   const [delCatClosed, setDelCatClosed] = useState(true);
   const [delDukClosed, setDelDukClosed] = useState(true);
   const [delUsrClosed, setDelUsrClosed] = useState(true);
+
+  const [editUsrClosed, setEditUsrClosed] = useState(true);
+
+  const [openApply, setOpenApply] = useState(true);
   return (
     <main className="admin-main dashboard">
       <Logo />
@@ -83,8 +91,19 @@ const Super = () => {
                     </td>
                     <td>
                       <div className="actn-btns">
-                        <button id="edit" style={{ color: "green" }}>
+                        <button
+                          id="edit"
+                          onClick={() => setEditUsrClosed(false)}
+                          style={{ color: "green" }}
+                        >
                           <FaEdit />
+                        </button>
+                        <button
+                          id="edit"
+                          onClick={() => setOpenApply(false)}
+                          style={{ color: "grey" }}
+                        >
+                          <FaEnvelope />
                         </button>
                         <button
                           id="del"
@@ -105,6 +124,8 @@ const Super = () => {
             </tbody>
           </table>
         </div>
+        <Application closed={openApply} setClosed={setOpenApply} />
+        <EditUsr closed={editUsrClosed} setClosed={setEditUsrClosed} />
         <DelUsr closed={delUsrClosed} setClosed={setDelUsrClosed} />
       </div>
 
@@ -115,6 +136,9 @@ const Super = () => {
             <thead>
               <tr>
                 <th>Post</th>
+                <th>By</th>
+                <th>Categories</th>
+                <th>Date & time</th>
                 <th>
                   <FaEye className="icon" />
                 </th>
@@ -142,9 +166,20 @@ const Super = () => {
                       <div className="content">
                         <strong>{post.title}</strong>
                         <br />
-                        <small>23rd Nov, 2023</small>
+                        <small>{post.description}</small>
                       </div>
                     </td>
+                    <td>@lawrencejr</td>
+                    <td>
+                      {post.tags.map((cat) => {
+                        return (
+                          <span>
+                            {cat} <br />
+                          </span>
+                        );
+                      })}
+                    </td>
+                    <td>23rd Nov, 2024</td>
                     <td>
                       365 <FaEye />
                     </td>
@@ -173,7 +208,7 @@ const Super = () => {
                           <FaTrash />
                         </button>
                         <button style={{ color: "black" }}>
-                          <FaStar />
+                          <FaRegHeart />
                         </button>
                       </div>{" "}
                     </td>
