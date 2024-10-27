@@ -48,7 +48,8 @@ const Write = () => {
         </div>
         <div className="btn-holder">
           <button>
-            Save <FaSave />
+            Save &nbsp;
+            <FaSave />
           </button>
         </div>
       </form>

@@ -310,8 +310,11 @@ nav .links-container {
   background-repeat: no-repeat;
 }
 
+.login-container h3 {
+  width: 95%;
+  margin-bottom: 0rem;
+}
 .login-container .question {
-  /* background-color: blue; */
   width: 95%;
 }
 .login-container .answer {
@@ -646,7 +649,6 @@ nav .links-container {
   margin: 0 auto;
 }
 .bloggers-container .body .layout {
-  border: 1px solid #054e05;
   display: grid;
   place-items: center;
   width: 100%;
@@ -807,6 +809,9 @@ nav .links-container {
   color: #033903;
   margin: 2rem 0;
 }
+.contact-main {
+  background-color: #fff;
+}
 .contact-flex h1 {
   margin-top: 1rem;
   font-size: 30px;
@@ -966,16 +971,18 @@ footer .news-letter {
 .admin-main.dashboard .layouts {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .admin-main.dashboard .layouts .layout {
   display: flex;
   align-items: center;
   background-color: #fff;
   padding: 1rem;
-  margin: 0 0.5rem;
+  margin: 0.5rem;
   box-shadow: 0px 4px 4px rgba(217, 216, 216, 0.593);
   border-radius: 7px;
   width: 100%;
+  max-width: 300px;
   border-left: 4px solid #0b6c0b;
 }
 .admin-main.dashboard .layouts .layout .icon {
@@ -1096,6 +1103,7 @@ footer .news-letter {
   width: 98%;
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
+  margin: 0.5rem 0;
 }
 .admin-main.dashboard .categories form .inp-holder input {
   border: none;
@@ -1205,6 +1213,8 @@ footer .news-letter {
   font-weight: 600;
   border-radius: 3px;
   padding: 0.3rem 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .admin-main.my-posts .posts-container {

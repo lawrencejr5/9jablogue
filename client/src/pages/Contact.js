@@ -32,7 +32,7 @@ const Contact = () => {
         </article>
         <article className="contact-image">
           <img
-            src="imgs/desola-lanre-ologun-BVr3XaBiWLU-unsplash.jpg"
+            src="imgs/illustration12.png"
             width="100%"
             height="auto"
             alt=""

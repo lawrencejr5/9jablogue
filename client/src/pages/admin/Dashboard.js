@@ -6,6 +6,7 @@ import {
   FaChartLine,
   FaEdit,
   FaTrash,
+  FaRegHeart,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +20,8 @@ import { posts } from "../../data/posts";
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [delClosed, setDelClosed] = useState(true);
+  const [delPostClosed, setDelPostClosed] = useState(true);
+
   return (
     <main className="admin-main dashboard">
       <Logo />
@@ -63,6 +65,9 @@ const Dashboard = () => {
             <thead>
               <tr>
                 <th>Post</th>
+                <th>By</th>
+                <th>Categories</th>
+                <th>Date & time</th>
                 <th>
                   <FaEye className="icon" />
                 </th>
@@ -73,6 +78,7 @@ const Dashboard = () => {
                   <FaShare className="icon" />
                 </th>
                 <th>Actions</th>
+                <th>Approve</th>
               </tr>
             </thead>
             <tbody>
@@ -89,9 +95,20 @@ const Dashboard = () => {
                       <div className="content">
                         <strong>{post.title}</strong>
                         <br />
-                        <small>23rd Nov, 2023</small>
+                        <small>{post.description}</small>
                       </div>
                     </td>
+                    <td>@lawrencejr</td>
+                    <td>
+                      {post.tags.map((cat) => {
+                        return (
+                          <>
+                            {cat} <br />
+                          </>
+                        );
+                      })}
+                    </td>
+                    <td>23rd Nov, 2024</td>
                     <td>
                       365 <FaEye />
                     </td>
@@ -115,11 +132,17 @@ const Dashboard = () => {
                         <button
                           id="del"
                           style={{ color: "red" }}
-                          onClick={() => setDelClosed(false)}
+                          onClick={() => setDelPostClosed(false)}
                         >
                           <FaTrash />
                         </button>
+                        <button style={{ color: "black" }}>
+                          <FaRegHeart />
+                        </button>
                       </div>{" "}
+                    </td>
+                    <td>
+                      <button id="approve-btn">Approve</button>
                     </td>
                   </tr>
                 );
@@ -127,7 +150,7 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
-        <DelPost closed={delClosed} setClosed={setDelClosed} />
+        <DelPost closed={delPostClosed} setClosed={setDelPostClosed} />
       </div>
     </main>
   );

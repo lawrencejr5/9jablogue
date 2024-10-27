@@ -5,7 +5,6 @@ import {
   FaShare,
   FaEdit,
   FaTrash,
-  FaStar,
   FaPlus,
   FaEnvelope,
   FaRegHeart,
@@ -20,12 +19,12 @@ import DelCat from "../../components/modals/DelCat";
 import DelDuk from "../../components/modals/DelDuk";
 import DelUsr from "../../components/modals/DelUsr";
 import EditUsr from "../../components/modals/EditUsr";
+import Application from "../../components/modals/Application";
 
 import { posts } from "../../data/posts";
 import { bloggers } from "../../data/bloggers";
 import { catgories } from "../../data/categories";
 import { didUKnw } from "../../data/didUKnw";
-import Application from "../../components/modals/Application";
 
 const Super = () => {
   const navigate = useNavigate();
@@ -325,7 +324,6 @@ const Super = () => {
                   <tr key={i}>
                     <td>{i + 1}</td>
                     <td className="post">{post.text}</td>
-
                     <td>
                       <div className="actn-btns">
                         <button id="edit" style={{ color: "green" }}>

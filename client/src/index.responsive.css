@@ -57,6 +57,12 @@
   .bloggers-container .body .layout {
     max-width: 200px;
   }
+  .admin-main.dashboard .categories form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .admin-main.dashboard .duks form {
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 760px) {
   .singlePost-container {
@@ -94,6 +100,12 @@
   .posts.featured .post .content h1 {
     margin: 0;
     font-size: 30px;
+  }
+  .login-container {
+    grid-template-columns: 1fr 0.5fr;
+  }
+  .admin-main.account .body form {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 697px) {
@@ -138,6 +150,16 @@
   .bloggers-container .body .layout {
     max-width: 250px;
   }
+  .admin-main.dashboard .layouts .layout {
+    max-width: 90%;
+  }
+  .admin-main.dashboard table .img {
+    width: 200px;
+  }
+  .admin-main.dashboard .accounts table .img {
+    width: 90px;
+    height: 90px;
+  }
 }
 
 @media only screen and (max-width: 598px) {
@@ -146,6 +168,36 @@
   }
   .bloggers-container .body .layout {
     max-width: 200px;
+  }
+  .admin-main.my-posts .posts-container .post {
+    display: block;
+    height: 100%;
+  }
+  .admin-main.my-posts .posts-container .post .thumb {
+    height: 150px;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+  }
+  .admin-main.my-posts .posts-container .post .content {
+    width: 100%;
+  }
+  .admin-main.my-posts .posts-container .post .content span {
+    width: 96%;
+    display: table;
+  }
+  .admin-main.my-posts .posts-container .post .content h2 {
+    width: 96%;
+  }
+  .admin-main.my-posts .posts-container .post .content .actn-btns {
+    bottom: 0.5rem;
+    right: 1rem;
+  }
+  .admin-main.account .body form .inp-handler {
+    grid-template-columns: 1fr;
+  }
+  .admin-main.dashboard .categories form {
+    grid-template-columns: 1fr;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -178,41 +230,26 @@
     grid-template-columns: 1fr;
   }
   .bloggers-container .body .layout {
+    background-color: #fff;
+    box-shadow: 0px 2px 12px rgba(209, 205, 205, 0.741);
+    border-radius: 8px;
+  }
+  .bloggers-container .body .layout {
     max-width: 100%;
     margin: 1rem 0rem;
+  }
+  .login-container {
+    grid-template-columns: 1fr 0.2fr;
+  }
+  .admin-main.dashboard .duks form .btn-holder button {
+    width: 60px;
+  }
+  .admin-links .link {
+    font-size: 14px;
   }
 }
 
 @media only screen and (max-width: 435px) {
-  .admin-main.my-posts .posts-container {
-    width: 100%;
-    padding: 0rem;
-    display: block;
-    margin: 0;
-  }
-  .admin-main.my-posts .posts-container .post {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 2px 24px rgba(209, 205, 205, 0.741);
-  }
-  .admin-main.my-posts .posts-container .post .thumb {
-    width: 100%;
-    height: 100px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0px;
-  }
-  .admin-main.my-posts .posts-container .post .content {
-    padding: 0.5rem;
-    margin: 0;
-    width: 100%;
-  }
   .news-letter span {
     font-size: 14px;
   }
@@ -239,8 +276,19 @@
     max-width: 200px;
     margin-bottom: 1rem;
   }
+  .login-container {
+    grid-template-columns: 1fr 0.1fr;
+  }
+  .admin-links .link {
+    margin-right: 0.6rem;
+  }
 }
 
+@media only screen and (max-width: 355px) {
+  .admin-links .link {
+    font-size: 12px;
+  }
+}
 @media only screen and (max-width: 320px) {
   .news-letter input {
     max-width: 200px;
