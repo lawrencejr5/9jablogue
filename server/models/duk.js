@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 const dukSchema = new mongoose.Schema(
   {
-    text: { type: String, required: true },
-    img: { type: String, required: true },
+    text: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

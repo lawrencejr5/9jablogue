@@ -19,6 +19,16 @@ const authorSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    status: {
+      type: Number,
+      default: 0,
+    },
+    socials: {
+      type: [String],
+    },
+    application: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
