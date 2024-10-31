@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const authorSchema = new mongoose.Schema(
   {
-    name: {
+    fullname: {
+      type: String,
+      required: true,
+    },
+    username: {
       type: String,
       required: true,
     },
