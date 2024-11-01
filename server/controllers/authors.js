@@ -29,4 +29,25 @@ const delAuthor = async (req, res) => {
   }
 };
 
-module.exports = { getAuthors, getAuthor, updateAuthor, delAuthor };
+const application = async (req, res) => {
+  try {
+    const { application } = req.body;
+    const id = req.user.userId;
+
+    if (!application)
+      return res.status(500).json({ msg: "application cannot be empty" });
+
+    await Author.findByIdAndUpdate(id, { application });
+    res.status(200).json({ msg: "Application received successfully" });
+  } catch (err) {
+    res.status(500).json({ msg: "an error ocurred", err });
+  }
+};
+
+module.exports = {
+  getAuthors,
+  getAuthor,
+  updateAuthor,
+  delAuthor,
+  application,
+};

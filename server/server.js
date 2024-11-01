@@ -23,7 +23,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/posts", authMiddleware, postRouter);
 app.use("/api/v1/categories", catRouter);
 app.use("/api/v1/authors", authorRouter);
-app.use("/api/v1/duk", dukRouter);
+app.use("/api/v1/duks", dukRouter);
 
 app.use(notFound);
 

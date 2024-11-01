@@ -70,18 +70,4 @@ const login = async (req, res) => {
   }
 };
 
-const application = async (req, res) => {
-  try {
-    const { id, application } = req.body;
-
-    if (!application)
-      return res.status(500).json({ msg: "application cannot be empty" });
-
-    await Author.findByIdAndUpdate(id, { application });
-    res.status(200).json({ msg: "Application received successfully" });
-  } catch (err) {
-    res.status(500).json({ msg: "an error ocurred", err });
-  }
-};
-
-module.exports = { register, login, application };
+module.exports = { register, login };
