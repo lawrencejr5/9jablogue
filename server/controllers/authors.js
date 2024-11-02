@@ -44,7 +44,14 @@ const updateAuthor = async (req, res) => {
 
 const updateProfilePic = async (req, res) => {
   try {
-    res.status(200).json({ msg: "success" });
+    const { id } = req.params;
+
+    await Author.findByIdAndUpdate(
+      id,
+      { profilePic: req.file.path },
+      { runValidators: true, new: true }
+    );
+    res.status(200).json({ msg: "profile pic updated successfully" });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
