@@ -10,6 +10,10 @@ const authorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profilePic: {
+      type: String,
+      default: "default.png",
+    },
     email: {
       type: String,
       required: true,
