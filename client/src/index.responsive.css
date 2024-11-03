@@ -261,6 +261,13 @@
     font-size: 12px;
   }
 }
+
+@media screen and (max-width: 405px) {
+  .notification-container .notification {
+    width: 96%;
+  }
+}
+
 @media only screen and (max-width: 390px) {
   .banner span {
     font-size: 20px;

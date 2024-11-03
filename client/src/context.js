@@ -28,6 +28,7 @@ export const ContextApp = ({ children }) => {
   const closeSideNav = () => {
     setSideNavOpen(false);
   };
+
   return (
     <Mycontext.Provider
       value={{
