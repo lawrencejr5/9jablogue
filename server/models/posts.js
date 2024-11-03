@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      maxLength: 25,
+      maxLength: 50,
     },
     categories: {
       type: [mongoose.Types.ObjectId],
@@ -13,6 +13,10 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     thumb: {
+      type: String,
+      required: true,
+    },
+    body: {
       type: String,
       required: true,
     },

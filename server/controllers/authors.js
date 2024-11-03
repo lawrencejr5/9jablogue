@@ -25,10 +25,10 @@ const updateAuthor = async (req, res) => {
   try {
     const {
       params: { id },
-      body: { fullname, username, email, status, admin },
+      body: { fullname, username, email, status, admin, socials },
     } = req;
 
-    if (!fullname && !username && !email && !status && !admin)
+    if (!fullname && !username && !email && !status && !admin && !socials)
       return res.status(500).json({ msg: "wetin you dey update" });
 
     const updatedAuthor = await Author.findByIdAndUpdate(

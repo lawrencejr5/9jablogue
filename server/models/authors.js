@@ -32,7 +32,10 @@ const authorSchema = new mongoose.Schema(
       default: 0,
     },
     socials: {
-      type: [String],
+      instagram: String,
+      facebook: String,
+      twitter: String,
+      linkedin: String,
     },
     application: {
       type: String,

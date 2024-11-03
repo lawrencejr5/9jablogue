@@ -19,7 +19,7 @@ authorRouter.route("/:id").get(getAuthor).patch(updateAuthor).delete(delAuthor);
 authorRouter.post("/application", authMiddleware, application);
 authorRouter.patch("/password/update", authMiddleware, updatePassword);
 authorRouter.patch(
-  "/profilePic/update/:id",
+  "/profilePic/:id",
   uploadMiddleware.single("pic"),
   updateProfilePic
 );
