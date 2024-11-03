@@ -27,6 +27,13 @@ button {
   cursor: pointer;
 }
 
+.text-success {
+  color: #0b6c0b;
+}
+.text-danger {
+  color: #d10404;
+}
+
 .quill-editor .ql-container {
   min-height: 400px;
   height: 100%;
@@ -316,6 +323,7 @@ nav .links-container {
   padding-left: 0.5rem;
   border: 0;
   outline: 0;
+  width: 100%;
 }
 .login-container .inp-handler .btn-holder {
   width: 300px;

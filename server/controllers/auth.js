@@ -27,9 +27,19 @@ const register = async (req, res) => {
     const dataObj = { fullname, username, email, password: newPassword };
     const data = await Author.create({ ...dataObj });
 
-    const token = jwt.sign({ userId: data._id }, "bankai", { expiresIn: "7d" });
+    const token = jwt.sign(
+      { userId: data._id, admin: data.admin, status: data.status },
+      "bankai",
+      {
+        expiresIn: "7d",
+      }
+    );
 
-    res.status(200).json({ msg: "successfully created account", data, token });
+    res.status(200).json({
+      msg: "Registration successfull, redirecting...",
+      userId: data._id,
+      token,
+    });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
@@ -63,8 +73,16 @@ const login = async (req, res) => {
         msg: "Ur account has been suspended for a while, contact admin for further info...",
       });
 
-    const token = jwt.sign({ userId: user._id }, "bankai", { expiresIn: "7d" });
-    res.status(201).json({ msg: "Signed in succesfully", token });
+    const token = jwt.sign(
+      { userId: userData._id, admin: userData.admin, status: userData.status },
+      "bankai",
+      { expiresIn: "7d" }
+    );
+    res.status(201).json({
+      msg: "Signed in succesfully, redirecting...",
+      token,
+      userId: userData._id,
+    });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }

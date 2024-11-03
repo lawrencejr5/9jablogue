@@ -18,7 +18,7 @@ authorRouter.get("/", getAuthors);
 authorRouter.get("/:id", getAuthor);
 authorRouter.patch("/:id", authMiddleware, updateAuthor);
 authorRouter.delete("/:id", authMiddleware, delAuthor);
-authorRouter.post("/application", authMiddleware, application);
+authorRouter.patch("/register/application", authMiddleware, application);
 authorRouter.patch("/password/update", authMiddleware, updatePassword);
 authorRouter.patch(
   "/profilePic/:id",
