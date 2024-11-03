@@ -14,8 +14,10 @@ const {
   updateProfilePic,
 } = require("../controllers/authors");
 
-authorRouter.route("/").get(getAuthors);
-authorRouter.route("/:id").get(getAuthor).patch(updateAuthor).delete(delAuthor);
+authorRouter.get("/", getAuthors);
+authorRouter.get("/:id", getAuthor);
+authorRouter.patch("/:id", authMiddleware, updateAuthor);
+authorRouter.delete("/:id", authMiddleware, delAuthor);
 authorRouter.post("/application", authMiddleware, application);
 authorRouter.patch("/password/update", authMiddleware, updatePassword);
 authorRouter.patch(

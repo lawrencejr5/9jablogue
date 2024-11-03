@@ -1,6 +1,8 @@
 const express = require("express");
 const catRouter = express.Router();
 
+const authMiddleware = require("../middlewares/auth");
+
 const {
   getCategories,
   getCategory,
@@ -9,11 +11,10 @@ const {
   delCategory,
 } = require("../controllers/categories");
 
-catRouter.route("/").get(getCategories).post(createCategory);
-catRouter
-  .route("/:id")
-  .get(getCategory)
-  .patch(updateCategory)
-  .delete(delCategory);
+catRouter.get("/", getCategories);
+catRouter.post("/", authMiddleware, createCategory);
+catRouter.get("/:id", getCategory);
+catRouter.patch("/:id", authMiddleware, updateCategory);
+catRouter.delete("/:id", authMiddleware, delCategory);
 
 module.exports = catRouter;

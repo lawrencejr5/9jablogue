@@ -2,6 +2,7 @@ const express = require("express");
 const postRouter = express.Router();
 
 const uploadMiddleware = require("../middlewares/upload");
+const authMiddleware = require("../middlewares/auth");
 
 const {
   getPosts,
@@ -14,12 +15,21 @@ const {
   delPost,
 } = require("../controllers/posts");
 
-postRouter.route("/").get(getPosts);
-postRouter.route("/:id").get(getPost).delete(delPost);
-postRouter.post("/", uploadMiddleware.single("thumb"), createPost);
-postRouter.patch("/:id", uploadMiddleware.single("thumb"), updatePost);
-postRouter.patch("/feature/:id", featurePost);
+postRouter.get("/", getPosts);
+postRouter.get("/:id", getPost);
+postRouter.post(
+  "/",
+  [authMiddleware, uploadMiddleware.single("thumb")],
+  createPost
+);
+postRouter.patch(
+  "/:id",
+  [authMiddleware, uploadMiddleware.single("thumb")],
+  updatePost
+);
+postRouter.patch("/feature/:id", authMiddleware, featurePost);
 postRouter.patch("/view/:id", viewPost);
 postRouter.patch("/like/:id", likePost);
+postRouter.delete("/:id", authMiddleware, delPost);
 
 module.exports = postRouter;

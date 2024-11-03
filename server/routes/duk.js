@@ -1,6 +1,8 @@
 const express = require("express");
 const dukRouter = express.Router();
 
+const authMiddleware = require("../middlewares/auth");
+
 const {
   getDuks,
   getDuk,
@@ -9,7 +11,10 @@ const {
   delDuk,
 } = require("../controllers/duk");
 
-dukRouter.route("/").get(getDuks).post(createDuk);
-dukRouter.route("/:id").get(getDuk).patch(updateDuk).delete(delDuk);
+dukRouter.get("/", getDuks);
+dukRouter.post("/", authMiddleware, createDuk);
+dukRouter.get("/:id", getDuk);
+dukRouter.patch("/:id", authMiddleware, updateDuk);
+dukRouter.delete("/:id", authMiddleware, delDuk);
 
 module.exports = dukRouter;

@@ -6,7 +6,6 @@ const app = express();
 const cors = require("cors");
 
 const notFound = require("./middlewares/not-found");
-const authMiddleware = require("./middlewares/auth");
 
 const connectDb = require("./config/conn");
 
@@ -20,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/posts", authMiddleware, postRouter);
+app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/categories", catRouter);
 app.use("/api/v1/authors", authorRouter);
 app.use("/api/v1/duks", dukRouter);
