@@ -1181,6 +1181,7 @@ footer .news-letter {
 .admin-main.dashboard .duks form .inp-holder input {
   border: none;
   outline: none;
+  width: 100%;
   background-color: transparent;
 }
 .admin-main.dashboard .duks form .btn-holder button {

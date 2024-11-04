@@ -16,7 +16,7 @@ import { catgories } from "../data/categories";
 import { posts } from "../data/posts";
 
 const Home = () => {
-  const { loading, dukNo } = useGlobalContext();
+  const { loading, dukNo, duks } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const Home = () => {
         <div className="banner-center">
           <h1>Did you know?</h1>
           <em>
-            {didUKnw.map((d, i) => {
+            {duks.map((d, i) => {
               return (
                 <span key={i} className={i == dukNo && "active-carousel"}>
                   {d.text}

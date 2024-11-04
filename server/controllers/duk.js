@@ -22,7 +22,7 @@ const getDuk = async (req, res) => {
 const createDuk = async (req, res) => {
   try {
     const { text } = req.body;
-
+    if (!text) return res.status(500).json({ msg: "fill in required fields" });
     const dukCreated = await Duk.create({ ...req.body });
     res.status(200).json({ msg: "success", dukCreated });
   } catch (err) {
@@ -42,7 +42,7 @@ const updateDuk = async (req, res) => {
       { ...req.body },
       { new: true, runValidators: true }
     );
-    res.status(200).json({ msg: "success", dukUpdated });
+    res.status(200).json({ msg: "updated successfully", dukUpdated });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
@@ -51,7 +51,9 @@ const delDuk = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedDuk = await Duk.findByIdAndDelete(id);
-    res.status(200).json({ msg: "success", deleted: deletedDuk._id });
+    res
+      .status(200)
+      .json({ msg: "deleted successfully", deleted: deletedDuk._id });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
