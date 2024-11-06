@@ -11,6 +11,7 @@ export const ContextApp = ({ children }) => {
 
   // data
   const [duks, setDuks] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   // constants
   const endpoint = "http://localhost:5000/api/v1";
@@ -113,9 +114,6 @@ export const ContextApp = ({ children }) => {
   };
 
   useEffect(() => {
-    getDuks();
-  }, []);
-  useEffect(() => {
     const myInterval = setInterval(() => {
       setDukNo((curr) => {
         const newNum = curr + 1;
@@ -129,6 +127,91 @@ export const ContextApp = ({ children }) => {
     return () => {
       clearInterval(myInterval);
     };
+  }, []);
+
+  // Category
+  const getCategories = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/categories`);
+      setLoading(false);
+      setCategories(data.categories);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  const createCategory = async (formData) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.post(`${endpoint}/categories`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setNotification({ text: data.msg, theme: "success", status: true });
+      getCategories();
+      setBtnLoad(false);
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+      setBtnLoad(false);
+    }
+  };
+
+  const deleteCategory = async (id) => {
+    try {
+      const { data } = await axios.delete(`${endpoint}/categories/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setNotification({ text: data.msg, theme: "success", status: true });
+      getCategories();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
+  const updateCategory = async (id, formdata) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.patch(
+        `${endpoint}/categories/${id}`,
+        formdata,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "success", status: true });
+      getCategories();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getDuks();
+    getCategories();
   }, []);
 
   return (
@@ -155,6 +238,12 @@ export const ContextApp = ({ children }) => {
         addDuk,
         deleteDuk,
         updateDuk,
+        //
+        categories,
+        getCategories,
+        createCategory,
+        deleteCategory,
+        updateCategory,
       }}
     >
       {children}

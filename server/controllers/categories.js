@@ -8,6 +8,7 @@ const getCategories = async (req, res) => {
     res.status(500).json({ msg: "an error ocurred", err });
   }
 };
+
 const getCategory = async (req, res) => {
   try {
     const { id } = req.params;
@@ -18,31 +19,40 @@ const getCategory = async (req, res) => {
     res.status(500).json({ msg: "an error ocurred", err });
   }
 };
+
 const createCategory = async (req, res) => {
   try {
-    const { img, category, description } = req.body;
-    if (!img || !category || !description)
+    const { category, description } = req.body;
+    if (!category || !description)
       return res.status(500).json({ msg: "fill in required fields oga!" });
 
-    const categoryCreated = await Category.create({ ...req.body });
+    const img = req.file.path.split("\\")[1];
+
+    const categoryCreated = await Category.create({
+      ...req.body,
+      img,
+    });
 
     res.status(200).json({ msg: "created successfully", categoryCreated });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
 };
+
 const updateCategory = async (req, res) => {
   try {
     const {
-      body: { img, category, description },
+      body: { category, description },
       params: { id },
     } = req;
+    const img = req.file && req.file.path.split("\\")[1];
+
     if (!img && !category && !description)
       return res.status(500).json({ msg: "wetin you come dey update" });
 
     const updatedCategory = await Category.findByIdAndUpdate(
       id,
-      { ...req.body },
+      { ...req.body, img },
       { new: true, runValidators: true }
     );
     res.status(200).json({ msg: "success", updatedCategory });
@@ -50,6 +60,7 @@ const updateCategory = async (req, res) => {
     res.status(500).json({ msg: "an error ocurred", err });
   }
 };
+
 const delCategory = async (req, res) => {
   try {
     const { id } = req.params;

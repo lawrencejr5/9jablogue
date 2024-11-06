@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   FaEye,
   FaThumbsUp,
@@ -32,8 +32,18 @@ import { didUKnw } from "../../data/didUKnw";
 import { useGlobalContext } from "../../context";
 
 const Super = () => {
-  const { duks, addDuk, updateDuk, notification, btnLoad, loading } =
-    useGlobalContext();
+  const {
+    duks,
+    addDuk,
+    updateDuk,
+    categories,
+    createCategory,
+    updateCategory,
+    notification,
+    btnLoad,
+    loading,
+    endpoint,
+  } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -46,7 +56,13 @@ const Super = () => {
 
   const [openApply, setOpenApply] = useState(true);
 
-  const [input, setInput] = useState({ duk: "" });
+  // Inputs
+  const [input, setInput] = useState({
+    duk: "",
+    category: "",
+    description: "",
+    file: null,
+  });
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -55,32 +71,84 @@ const Super = () => {
       return { ...prev, [name]: value };
     });
   };
+  const handleFileChange = (e) => {
+    setInput((prev) => {
+      return { ...prev, file: e.target.files[0] };
+    });
+  };
 
-  const handleSubmit = async (e) => {
+  // Duk
+  const [currDuk, setCurrDuk] = useState(null);
+  const [dukEditing, setDukEditing] = useState(false);
+
+  const handleDukSubmit = async (e) => {
     e.preventDefault();
     await addDuk(input);
     setInput({ ...input, duk: "" });
   };
 
-  const [currDuk, setCurrDuk] = useState(null);
-  const [editing, setEditing] = useState(false);
-  const delFunc = (curr) => {
-    setCurrDuk(curr);
-    setDelDukClosed(false);
-  };
-  const editFunc = (curr) => {
+  const editDukFunc = (curr) => {
     setCurrDuk(curr);
     setInput({ duk: curr.text });
-    setEditing(true);
+    setDukEditing(true);
   };
 
-  const handleUpdate = async (e) => {
+  const handleDukUpdate = async (e) => {
     e.preventDefault();
     await updateDuk(currDuk._id, input);
     setCurrDuk(null);
     setInput({ duk: "" });
-    setEditing(false);
+    setDukEditing(false);
   };
+
+  const delDukFunc = (curr) => {
+    setCurrDuk(curr);
+    setDelDukClosed(false);
+  };
+
+  // Category
+  const inputRef = useRef(null);
+  const [currCateg, setCurrCateg] = useState([]);
+  const [categEditing, setCategEditing] = useState(false);
+  const handleCategSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    for (const key in input) {
+      formData.append(key, input[key]);
+    }
+    await createCategory(formData);
+    setInput({ ...input, category: "", description: "", file: null });
+    inputRef.current.value = "";
+  };
+  const delCategFunc = (categ) => {
+    setCurrCateg(categ);
+    setDelCatClosed(false);
+  };
+  const editCategFunc = (categ) => {
+    setCurrCateg(categ);
+    setCategEditing(true);
+    setInput({
+      ...input,
+      category: categ.category,
+      description: categ.description,
+      file: "",
+    });
+  };
+
+  const handleCategUpdate = async (e) => {
+    e.preventDefault();
+    const formdata = new FormData();
+    formdata.append("category", input.category);
+    formdata.append("description", input.description);
+    if (input.file) {
+      formdata.append("file", input.file);
+    }
+    await updateCategory(currCateg._id, formdata);
+    setCategEditing(false);
+    setInput({ ...input, category: "", description: "", file: null });
+    inputRef.current.value = "";
+  };
+
   return (
     <>
       {loading && <Loading />}
@@ -275,21 +343,49 @@ const Super = () => {
           <h3>
             Create category <FaPlus size={13} />
           </h3>
-          <form>
+          <form onSubmit={categEditing ? handleCategUpdate : handleCategSubmit}>
             <div className="inp-holder">
-              <input type="file" />
-            </div>
-            <div className="inp-holder">
-              <input type="text" placeholder="category" />
+              <input type="file" ref={inputRef} onChange={handleFileChange} />
             </div>
             <div className="inp-holder">
-              <input type="text" placeholder="description" />
+              <input
+                type="text"
+                placeholder="category"
+                name="category"
+                onChange={handleChange}
+                value={input.category}
+              />
             </div>
-            <div className="btn-holder">
-              <button>
-                Create <FaPlus />
-              </button>
+            <div className="inp-holder">
+              <input
+                type="text"
+                placeholder="description"
+                name="description"
+                onChange={handleChange}
+                value={input.description}
+              />
             </div>
+            {categEditing ? (
+              <div className="btn-holder">
+                {btnLoad ? (
+                  <button>Upudating...</button>
+                ) : (
+                  <button>
+                    Edit <FaEdit />
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div className="btn-holder">
+                {btnLoad ? (
+                  <button>Adding...</button>
+                ) : (
+                  <button>
+                    Add <FaPlus />
+                  </button>
+                )}
+              </div>
+            )}
           </form>
           <div className="table-container">
             <table>
@@ -300,31 +396,35 @@ const Super = () => {
                 </tr>
               </thead>
               <tbody>
-                {catgories.map((categ, i) => {
+                {categories.map((categ, i) => {
                   return (
                     <tr key={i}>
                       <td className="post">
                         <div
                           className="img"
                           style={{
-                            backgroundImage: `url(${categ.img})`,
+                            backgroundImage: `url(${endpoint}/uploads/${categ.img})`,
                           }}
                         ></div>
                         <div className="content">
-                          <strong>{categ.name}</strong>
+                          <strong>{categ.category}</strong>
                           <br />
-                          <small>{categ.text}</small>
+                          <small>{categ.description}</small>
                         </div>
                       </td>
 
                       <td>
                         <div className="actn-btns">
-                          <button id="edit" style={{ color: "green" }}>
+                          <button
+                            id="edit"
+                            onClick={() => editCategFunc(categ)}
+                            style={{ color: "green" }}
+                          >
                             <FaEdit />
                           </button>
                           <button
                             id="del"
-                            onClick={() => setDelCatClosed(false)}
+                            onClick={() => delCategFunc(categ)}
                             style={{ color: "red" }}
                           >
                             <FaTrash />
@@ -337,7 +437,11 @@ const Super = () => {
               </tbody>
             </table>
           </div>
-          <DelCat closed={delCatClosed} setClosed={setDelCatClosed} />
+          <DelCat
+            closed={delCatClosed}
+            setClosed={setDelCatClosed}
+            categ={currCateg}
+          />
         </div>
 
         <div className="duks">
@@ -345,7 +449,7 @@ const Super = () => {
           <h3>
             Add "did you know" <FaPlus size={13} />
           </h3>
-          <form onSubmit={editing ? handleUpdate : handleSubmit}>
+          <form onSubmit={dukEditing ? handleDukUpdate : handleDukSubmit}>
             <div className="inp-holder">
               <input
                 type="text"
@@ -355,7 +459,7 @@ const Super = () => {
                 placeholder="did you know..."
               />
             </div>
-            {editing ? (
+            {dukEditing ? (
               <div className="btn-holder">
                 {btnLoad ? (
                   <button>Upudating...</button>
@@ -397,14 +501,14 @@ const Super = () => {
                         <div className="actn-btns">
                           <button
                             id="edit"
-                            onClick={() => editFunc(duk)}
+                            onClick={() => editDukFunc(duk)}
                             style={{ color: "green" }}
                           >
                             <FaEdit />
                           </button>
                           <button
                             id="del"
-                            onClick={() => delFunc(duk)}
+                            onClick={() => delDukFunc(duk)}
                             style={{ color: "red" }}
                           >
                             <FaTrash />
