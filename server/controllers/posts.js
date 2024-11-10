@@ -35,11 +35,12 @@ const createPost = async (req, res) => {
     const { userId } = req.user;
     if (!title || !desc || !categories || !body)
       return res.status(400).json({ msg: "Fill in required fields" });
-
+    const thumb = req.file.path.split(`\\`)[1];
     const post = await Post.create({
       ...req.body,
       author: userId,
-      thumb: req.file.path,
+      thumb,
+      // thumb: req.file.path,
       contentHTML: body,
     });
 

@@ -23,7 +23,7 @@ const Login = () => {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     setInput((prev) => {
       return { ...prev, [name]: value };
     });

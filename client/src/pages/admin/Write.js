@@ -23,7 +23,8 @@ const Write = () => {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const value = name === "thumb" ? e.target.files[0] : e.target.value;
+    const value =
+      name === "thumb" ? e.target.files[0] : e.target.value.toLowerCase();
     setInput((prev) => {
       return { ...prev, [name]: value };
     });
