@@ -259,9 +259,9 @@ const Super = () => {
                   <th>
                     <FaThumbsUp className="icon" />
                   </th>
-                  <th>
+                  {/* <th>
                     <FaShare className="icon" />
-                  </th>
+                  </th> */}
                   <th>Actions</th>
                   <th>Approve</th>
                 </tr>
@@ -285,11 +285,11 @@ const Super = () => {
                       </td>
                       <td>@lawrencejr</td>
                       <td>
-                        {post.tags.map((cat) => {
+                        {post.tags.map((cat, i) => {
                           return (
-                            <>
+                            <span key={i}>
                               {cat} <br />
-                            </>
+                            </span>
                           );
                         })}
                       </td>
@@ -300,9 +300,9 @@ const Super = () => {
                       <td>
                         222 <FaThumbsUp />
                       </td>
-                      <td>
+                      {/* <td>
                         281 <FaShare />
-                      </td>
+                      </td> */}
                       <td>
                         <div className="actn-btns">
                           <button

@@ -4,11 +4,14 @@ const getPosts = async (req, res) => {
   try {
     const { user } = req.query;
     if (user) {
-      const userPosts = await Post.find({ author: user });
+      const userPosts = await Post.find({ author: user }).populate(
+        "categories",
+        "category"
+      );
       res.status(200).json({ msg: "success", userPosts });
     }
 
-    const posts = await Post.find();
+    const posts = await Post.find().populate("categories", "category");
     res.status(200).json({ msg: "success", posts });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });

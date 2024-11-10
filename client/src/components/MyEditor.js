@@ -18,15 +18,13 @@ const modules = {
     ["clean"],
   ],
 };
-const MyEditor = () => {
-  const [value, setValue] = useState("");
-
+const MyEditor = ({ value, handleChange }) => {
   return (
     <ReactQuill
       className="quill-editor"
       modules={modules}
       value={value}
-      onChange={setValue}
+      onChange={handleChange}
     />
   );
 };

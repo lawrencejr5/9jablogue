@@ -12,6 +12,7 @@ export const ContextApp = ({ children }) => {
   // data
   const [duks, setDuks] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   // constants
   const endpoint = "http://localhost:5000/api/v1";
@@ -209,9 +210,46 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  // Posts
+  const getPosts = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts`);
+      setLoading(false);
+      setPosts(data.posts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  const createPost = async (formData) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.post(`${endpoint}/posts`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setNotification({ text: data.msg, theme: "success", status: true });
+      getPosts();
+      setBtnLoad(false);
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+      setBtnLoad(false);
+    }
+  };
+
   useEffect(() => {
     getDuks();
     getCategories();
+    getPosts();
   }, []);
 
   return (
@@ -244,6 +282,10 @@ export const ContextApp = ({ children }) => {
         createCategory,
         deleteCategory,
         updateCategory,
+        //
+        posts,
+        getPosts,
+        createPost,
       }}
     >
       {children}

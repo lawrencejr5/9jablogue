@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      maxLength: 50,
+      maxLength: 150,
     },
     categories: {
       type: [mongoose.Types.ObjectId],
@@ -28,7 +28,7 @@ const postSchema = new mongoose.Schema(
     desc: {
       type: String,
       required: true,
-      maxLength: 40,
+      maxLength: 300,
     },
     featured: {
       type: Boolean,
