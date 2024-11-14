@@ -17,8 +17,12 @@ import DelPost from "../../components/modals/DelPost";
 
 import { posts } from "../../data/posts";
 
+import { useGlobalContext } from "../../context";
+
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const { userPosts, getUserPosts } = useGlobalContext();
 
   const [delPostClosed, setDelPostClosed] = useState(true);
 
@@ -37,6 +41,13 @@ const Dashboard = () => {
       </h2>
       <div className="layouts">
         <div className="layout">
+          <FaShare className="icon" />
+          <div className="content">
+            <strong>Posts</strong>
+            <span>922 posts</span>
+          </div>
+        </div>
+        <div className="layout">
           <FaEye className="icon" />
           <div className="content">
             <strong>Views</strong>
@@ -48,13 +59,6 @@ const Dashboard = () => {
           <div className="content">
             <strong>Likes</strong>
             <span>400 likes</span>
-          </div>
-        </div>
-        <div className="layout">
-          <FaShare className="icon" />
-          <div className="content">
-            <strong>Shares</strong>
-            <span>922 shares</span>
           </div>
         </div>
       </div>
@@ -74,57 +78,56 @@ const Dashboard = () => {
                 <th>
                   <FaThumbsUp className="icon" />
                 </th>
-                <th>
+                {/* <th>
                   <FaShare className="icon" />
-                </th>
+                </th> */}
                 <th>Actions</th>
-                <th>Approve</th>
               </tr>
             </thead>
             <tbody>
-              {posts.map((post, i) => {
+              {userPosts.map((post, i) => {
                 return (
                   <tr key={i}>
                     <td className="post">
                       <div
                         className="img"
                         style={{
-                          backgroundImage: `url(${post.thumb})`,
+                          backgroundImage: `url(http://localhost:5000/api/v1/uploads/${post.thumb})`,
                         }}
                       ></div>
                       <div className="content">
                         <strong>{post.title}</strong>
                         <br />
-                        <small>{post.description}</small>
+                        <small>{post.desc}</small>
                       </div>
                     </td>
-                    <td>@lawrencejr</td>
+                    <td>@{post.author.username}</td>
                     <td>
-                      {post.tags.map((cat) => {
+                      {post.categories.map((cat) => {
                         return (
-                          <>
-                            {cat} <br />
-                          </>
+                          <span key={cat._id}>
+                            {cat.category} <br />
+                          </span>
                         );
                       })}
                     </td>
-                    <td>23rd Nov, 2024</td>
+                    <td>{post.createdAt.split("T")[0]}</td>
                     <td>
-                      365 <FaEye />
+                      {post.views} <FaEye />
                     </td>
                     <td>
-                      222 <FaThumbsUp />
+                      {post.likes} <FaThumbsUp />
                     </td>
-                    <td>
+                    {/* <td>
                       281 <FaShare />
-                    </td>
+                    </td> */}
                     <td>
                       <div className="actn-btns">
                         <button
                           id="edit"
                           style={{ color: "green" }}
                           onClick={() =>
-                            navigate(`/admin/edit-post/${post.id}`)
+                            navigate(`/admin/edit-post/${post._id}`)
                           }
                         >
                           <FaEdit />
@@ -136,13 +139,7 @@ const Dashboard = () => {
                         >
                           <FaTrash />
                         </button>
-                        <button style={{ color: "black" }}>
-                          <FaRegHeart />
-                        </button>
                       </div>{" "}
-                    </td>
-                    <td>
-                      <button id="approve-btn">Approve</button>
                     </td>
                   </tr>
                 );

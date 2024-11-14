@@ -4,11 +4,10 @@ const getPosts = async (req, res) => {
   try {
     const { user } = req.query;
     if (user) {
-      const userPosts = await Post.find({ author: user }).populate(
-        "categories",
-        "category"
-      );
-      res.status(200).json({ msg: "success", userPosts });
+      const userPosts = await Post.find({ author: user })
+        .populate("categories", "category")
+        .populate("author", "username");
+      return res.status(200).json({ msg: "success", userPosts });
     }
 
     const posts = await Post.find().populate("categories", "category");
@@ -40,7 +39,6 @@ const createPost = async (req, res) => {
       ...req.body,
       author: userId,
       thumb,
-      // thumb: req.file.path,
       contentHTML: body,
     });
 

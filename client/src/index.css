@@ -1,7 +1,3 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
 @font-face {
   font-family: Nyash;
   src: url(/public/regular-fonts/Arima-VariableFont_wght.ttf);
@@ -20,6 +16,9 @@ body {
   background-color: whitesmoke;
   margin: 0;
   padding: 0;
+}
+tr:hover {
+  background-color: #eef7f4;
 }
 button {
   border: none;

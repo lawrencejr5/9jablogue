@@ -13,6 +13,7 @@ export const ContextApp = ({ children }) => {
   const [duks, setDuks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
   // constants
   const endpoint = "http://localhost:5000/api/v1";
@@ -223,6 +224,18 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const getUserPosts = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts?user=${signedIn}`);
+      setLoading(false);
+      setUserPosts(data.userPosts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   const createPost = async (formData) => {
     setBtnLoad(true);
     try {
@@ -250,6 +263,7 @@ export const ContextApp = ({ children }) => {
     getDuks();
     getCategories();
     getPosts();
+    getUserPosts();
   }, []);
 
   return (
@@ -285,7 +299,9 @@ export const ContextApp = ({ children }) => {
         //
         posts,
         getPosts,
+        getUserPosts,
         createPost,
+        userPosts,
       }}
     >
       {children}
