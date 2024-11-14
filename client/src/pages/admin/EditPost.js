@@ -10,9 +10,16 @@ import { catgories } from "../../data/categories";
 import { posts } from "../../data/posts";
 import { text } from "../../data/postText";
 
+import { useGlobalContext } from "../../context";
+
 const EditPost = () => {
+  const { getPost, singlePost, getCategories, categories } = useGlobalContext();
   const { id } = useParams();
-  const thePost = posts.find((post) => post.id === Number(id));
+
+  useEffect(() => {
+    getPost(id);
+    getCategories();
+  }, []);
 
   return (
     <main className="admin-main write">
@@ -28,7 +35,7 @@ const EditPost = () => {
             type="title"
             placeholder="title"
             name=""
-            value={thePost.title}
+            value={singlePost.title}
             id=""
           />
         </div>
@@ -41,17 +48,17 @@ const EditPost = () => {
           <input
             type="title"
             placeholder="description"
-            value={thePost.description}
+            value={singlePost.desc}
             name=""
             id=""
           />
         </div>
         <div className="check-holder">
-          {catgories.map((cat, i) => {
+          {categories.map((cat, i) => {
             return (
               <div className="check" key={i}>
                 <input type="checkbox" name="" id="" />
-                <label htmlFor="">{cat.name}</label>
+                <label htmlFor="">{cat.category}</label>
               </div>
             );
           })}
@@ -61,7 +68,7 @@ const EditPost = () => {
           <textarea
             name=""
             placeholder="write something..."
-            value={text}
+            value={singlePost.body}
             id=""
           ></textarea>
         </div>

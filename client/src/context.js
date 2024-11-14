@@ -14,6 +14,7 @@ export const ContextApp = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
+  const [singlePost, setSinglePost] = useState([]);
 
   // constants
   const endpoint = "http://localhost:5000/api/v1";
@@ -236,6 +237,18 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const getPost = async (id) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts/${id}`);
+      setLoading(false);
+      setSinglePost(data.post);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   const createPost = async (formData) => {
     setBtnLoad(true);
     try {
@@ -318,10 +331,12 @@ export const ContextApp = ({ children }) => {
         //
         posts,
         getPosts,
+        getPost,
         getUserPosts,
         createPost,
         deletePost,
         userPosts,
+        singlePost,
       }}
     >
       {children}

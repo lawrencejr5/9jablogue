@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEdit, FaTrash, FaArrowUp } from "react-icons/fa";
 
@@ -9,10 +9,17 @@ import DelPost from "../../components/modals/DelPost";
 
 import { posts } from "../../data/posts";
 
+import { useGlobalContext } from "../../context";
+
 const MyPosts = () => {
   const navigate = useNavigate();
 
   const [delClosed, setDelClosed] = useState(true);
+  const { getUserPosts, userPosts } = useGlobalContext();
+
+  useEffect(() => {
+    getUserPosts();
+  }, []);
 
   return (
     <main className="admin-main my-posts">
@@ -20,32 +27,34 @@ const MyPosts = () => {
       <AdminDd />
       <AdminNav />
       <div className="header">
-        <h1>Your Posts({posts.length})</h1>
+        <h1>Your Posts({userPosts.length})</h1>
       </div>
       <div className="posts-container">
-        {posts.map((post, i) => {
+        {userPosts.map((post, i) => {
           return (
             <div className="post" key={i}>
               <div
                 className="thumb"
-                onClick={() => navigate(`/post/${post.id}`)}
-                style={{ backgroundImage: `url(${post.thumb})` }}
+                onClick={() => navigate(`/post/${post._id}`)}
+                style={{
+                  backgroundImage: `url(http://localhost:5000/api/v1/uploads/${post.thumb})`,
+                }}
               ></div>
               <div className="content">
-                <h2 onClick={() => navigate(`/post/${post.id}`)}>
+                <h2 onClick={() => navigate(`/post/${post._id}`)}>
                   {post.title}
                 </h2>
-                <span> {post.description} </span>
+                <span> {post.desc} </span>
                 <br />
-                {post.tags.map((tag, index) => {
+                {post.categories.map((tag, index) => {
                   return (
                     tag && (
                       <button
                         key={index}
-                        onClick={() => navigate(`/categories/${tag}`)}
+                        onClick={() => navigate(`/categories/${tag.category}`)}
                         className="tag"
                       >
-                        {tag}
+                        {tag.category}
                       </button>
                     )
                   );
@@ -56,7 +65,7 @@ const MyPosts = () => {
                 <div className="actn-btns">
                   <button
                     id="edit"
-                    onClick={() => navigate(`/admin/edit-post/${post.id}`)}
+                    onClick={() => navigate(`/admin/edit-post/${post._id}`)}
                   >
                     Continue... &nbsp;
                     <FaEdit />

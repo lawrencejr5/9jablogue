@@ -54,21 +54,21 @@ const Dashboard = () => {
           <FaBars className="icon" />
           <div className="content">
             <strong>Posts</strong>
-            <span>922 posts</span>
+            <span>{userPosts.length} post(s)</span>
           </div>
         </div>
         <div className="layout">
           <FaEye className="icon" />
           <div className="content">
             <strong>Views</strong>
-            <span>756 views</span>
+            <span>0 view(s)</span>
           </div>
         </div>
         <div className="layout">
           <FaThumbsUp className="icon" />
           <div className="content">
             <strong>Likes</strong>
-            <span>400 likes</span>
+            <span>0 like(s)</span>
           </div>
         </div>
       </div>
