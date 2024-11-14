@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaEye,
   FaThumbsUp,
@@ -7,6 +7,7 @@ import {
   FaEdit,
   FaTrash,
   FaRegHeart,
+  FaBars,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +26,15 @@ const Dashboard = () => {
   const { userPosts, getUserPosts } = useGlobalContext();
 
   const [delPostClosed, setDelPostClosed] = useState(true);
+  const [currPost, setCurrPost] = useState([]);
+
+  const delFunc = (post) => {
+    setDelPostClosed(false);
+    setCurrPost(post);
+  };
+  useEffect(() => {
+    getUserPosts();
+  }, []);
 
   return (
     <main className="admin-main dashboard">
@@ -41,7 +51,7 @@ const Dashboard = () => {
       </h2>
       <div className="layouts">
         <div className="layout">
-          <FaShare className="icon" />
+          <FaBars className="icon" />
           <div className="content">
             <strong>Posts</strong>
             <span>922 posts</span>
@@ -135,7 +145,7 @@ const Dashboard = () => {
                         <button
                           id="del"
                           style={{ color: "red" }}
-                          onClick={() => setDelPostClosed(false)}
+                          onClick={() => delFunc(post)}
                         >
                           <FaTrash />
                         </button>
@@ -146,8 +156,12 @@ const Dashboard = () => {
               })}
             </tbody>
           </table>
+          <DelPost
+            closed={delPostClosed}
+            setClosed={setDelPostClosed}
+            currPost={currPost}
+          />
         </div>
-        <DelPost closed={delPostClosed} setClosed={setDelPostClosed} />
       </div>
     </main>
   );

@@ -259,6 +259,25 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const deletePost = async (id) => {
+    try {
+      const { data } = await axios.delete(`${endpoint}/posts/${id}`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setNotification({ text: data.msg, theme: "success", status: true });
+      getCategories();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getDuks();
     getCategories();
@@ -301,6 +320,7 @@ export const ContextApp = ({ children }) => {
         getPosts,
         getUserPosts,
         createPost,
+        deletePost,
         userPosts,
       }}
     >
