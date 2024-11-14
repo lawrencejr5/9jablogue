@@ -36,11 +36,11 @@ const EditPost = () => {
             placeholder="title"
             name=""
             value={singlePost.title}
-            id=""
+            id="title"
           />
         </div>
         <div className="inp-holder">
-          <label htmlFor="">Thumbnail:</label>
+          <label htmlFor="">Cover photo:</label>
           <input type="file" name="" id="" />
         </div>
         <div className="inp-holder">

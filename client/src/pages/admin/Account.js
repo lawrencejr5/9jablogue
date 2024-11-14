@@ -5,7 +5,18 @@ import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
 import AdminDd from "../../components/AdminDd";
 
+import { useGlobalContext } from "../../context";
+
 const Account = () => {
+  const {
+    signedInUser: {
+      username,
+      fullname,
+      profilePic,
+      email,
+      // socials: { instagram, twitter, linkedin, facebook },
+    },
+  } = useGlobalContext();
   return (
     <main className="admin-main account">
       <Logo />
@@ -18,8 +29,8 @@ const Account = () => {
             className="img"
             style={{ backgroundImage: `url(/imgs/profilePic1.jpg)` }}
           ></div>
-          <h2>Oputa Ifeanyi Lawrence</h2>
-          <span>lawrencejr</span>
+          <h2>{fullname}</h2>
+          <span>{username}</span>
         </div>
       </div>
       <div className="body">

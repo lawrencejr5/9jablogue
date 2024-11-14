@@ -23,8 +23,7 @@ const Write = () => {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const value =
-      name === "thumb" ? e.target.files[0] : e.target.value.toLowerCase();
+    const value = name === "thumb" ? e.target.files[0] : e.target.value;
     setInput((prev) => {
       return { ...prev, [name]: value };
     });
@@ -51,9 +50,7 @@ const Write = () => {
     e.preventDefault();
     const formData = new FormData();
     for (const key in input) {
-      if (key !== "categories") {
-        formData.append(key, input[key]);
-      }
+      if (key !== "categories") formData.append(key, input[key]);
     }
     input.categories.forEach((category) => {
       formData.append(`categories[]`, category);
@@ -80,11 +77,11 @@ const Write = () => {
             name="title"
             value={input.title}
             onChange={handleChange}
-            id=""
+            id="title"
           />
         </div>
         <div className="inp-holder">
-          <label htmlFor="">Thumbnail:</label>
+          <label htmlFor="">Cover photo:</label>
           <input
             type="file"
             name="thumb"

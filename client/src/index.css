@@ -36,6 +36,7 @@ button {
 .quill-editor .ql-container {
   min-height: 400px;
   height: 100%;
+  font-size: 20px;
 }
 .quill-editor img {
   max-width: 100%;
@@ -1202,11 +1203,12 @@ footer .news-letter {
 }
 .admin-main.write form .inp-holder,
 .admin-main.write form .check-holder {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 100%;
   background-color: #fff;
   padding: 0.5rem;
-  box-shadow: 0px 2px 12px rgba(217, 216, 216, 0.593);
+  border: 1px solid rgb(204, 204, 204);
+  /* box-shadow: 0px 2px 12px rgba(217, 216, 216, 0.593); */
   border-radius: 5px;
 }
 .admin-main.write form .inp-holder label {
@@ -1221,6 +1223,10 @@ footer .news-letter {
   font-size: 18px;
   outline: none;
   border: none;
+}
+.admin-main.write form .inp-holder input#title {
+  font-size: 40px;
+  text-transform: capitalize;
 }
 .admin-main.write form .check-holder {
   display: flex;
@@ -1266,7 +1272,7 @@ footer .news-letter {
 .admin-main.my-posts .posts-container .post {
   display: flex;
   width: 95%;
-  height: 250px;
+  height: 200px;
   margin-bottom: 1rem;
   background-color: #fff;
   border-radius: 10px;

@@ -15,10 +15,12 @@ export const ContextApp = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
   const [singlePost, setSinglePost] = useState([]);
+  const [bloggers, setBloggers] = useState([]);
 
   // constants
   const endpoint = "http://localhost:5000/api/v1";
   const signedIn = localStorage.getItem("user");
+  const [signedInUser, setSignedInUser] = useState([]);
   const token = localStorage.getItem("token");
 
   // Sidenav
@@ -281,7 +283,7 @@ export const ContextApp = ({ children }) => {
         },
       });
       setNotification({ text: data.msg, theme: "success", status: true });
-      getCategories();
+      getPosts();
     } catch (err) {
       const {
         response: { data },
@@ -291,11 +293,38 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  // Bloggers
+  const getBloggers = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/authors`);
+      setLoading(false);
+      setBloggers(data.authors);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  const getUser = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/authors/${signedIn}`);
+      setLoading(false);
+      setSignedInUser(data.author);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getDuks();
     getCategories();
     getPosts();
     getUserPosts();
+    getBloggers();
+    getUser();
   }, []);
 
   return (
@@ -337,6 +366,10 @@ export const ContextApp = ({ children }) => {
         deletePost,
         userPosts,
         singlePost,
+        //
+        getBloggers,
+        bloggers,
+        signedInUser,
       }}
     >
       {children}

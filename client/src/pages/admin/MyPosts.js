@@ -44,9 +44,13 @@ const MyPosts = () => {
                 <h2 onClick={() => navigate(`/post/${post._id}`)}>
                   {post.title}
                 </h2>
-                <span> {post.desc} </span>
+                <span>
+                  {" "}
+                  {post.desc.slice(0, 100)}
+                  {post.desc.length > 100 && "..."}{" "}
+                </span>
                 <br />
-                {post.categories.map((tag, index) => {
+                {/* {post.categories.map((tag, index) => {
                   return (
                     tag && (
                       <button
@@ -58,7 +62,7 @@ const MyPosts = () => {
                       </button>
                     )
                   );
-                })}
+                })} */}
                 <br />
                 <br />
                 <br />
@@ -67,13 +71,13 @@ const MyPosts = () => {
                     id="edit"
                     onClick={() => navigate(`/admin/edit-post/${post._id}`)}
                   >
-                    Continue... &nbsp;
+                    Continue writing... &nbsp;
                     <FaEdit />
                   </button>
-                  <button id="edit">
+                  {/* <button id="edit">
                     Post &nbsp;
                     <FaArrowUp />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
