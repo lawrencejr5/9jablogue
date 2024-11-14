@@ -17,9 +17,6 @@ body {
   margin: 0;
   padding: 0;
 }
-tr:hover {
-  background-color: #eef7f4;
-}
 button {
   border: none;
   outline: none;
@@ -1045,6 +1042,8 @@ footer .news-letter {
 }
 .admin-main.dashboard table {
   width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 .admin-main.dashboard table .img {
   border-radius: 5px;
@@ -1055,9 +1054,14 @@ footer .news-letter {
 }
 .admin-main.dashboard table td {
   min-width: 150px;
-  padding-right: 2rem;
   font-size: 16px;
   align-items: center;
+  border: 1px solid transparent;
+  padding: 8px;
+  padding-right: 2rem;
+}
+.admin-main.dashboard table tr:hover {
+  background-color: #eeffee;
 }
 .admin-main.dashboard table td.post {
   display: flex;
@@ -1101,7 +1105,7 @@ footer .news-letter {
 }
 .admin-main.dashboard table th {
   text-align: left;
-  font-size: 25px;
+  font-size: 20px;
   padding-bottom: 1rem;
 }
 .admin-main.dashboard table th .icon {
@@ -1352,7 +1356,7 @@ footer .news-letter {
 .admin-main.account .body form {
   width: 80%;
   background-color: #fff;
-  border: 1px solid grey;
+  border: 1px solid #c8c7c7;
   margin: 0 auto;
 }
 .admin-main.account .body form .inp-handler {
@@ -1362,9 +1366,9 @@ footer .news-letter {
 .admin-main.account .body form .inp-holder {
   width: 90%;
   margin: 1rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   background-color: #fff;
-  border: 1px solid green;
+  border: 1px solid #c8c7c7;
   border-radius: 5px;
 }
 .admin-main.account .body form .inp-holder input {
@@ -1383,9 +1387,11 @@ footer .news-letter {
 .admin-main.account .body form .btn-holder button {
   font-size: large;
   border: 1px solid #054e05;
-  color: #054e05;
-  font-weight: 600;
-  background-color: transparent;
+  color: #fff;
+  font-weight: 500;
+  background-color: #054e05;
+  border-radius: 3px;
+  width: 250px;
 }
 
 .modal-container {

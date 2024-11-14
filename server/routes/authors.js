@@ -16,7 +16,11 @@ const {
 
 authorRouter.get("/", getAuthors);
 authorRouter.get("/:id", getAuthor);
-authorRouter.patch("/:id", authMiddleware, updateAuthor);
+authorRouter.patch(
+  "/:id",
+  [authMiddleware, uploadMiddleware.single("profilePic")],
+  updateAuthor
+);
 authorRouter.delete("/:id", authMiddleware, delAuthor);
 authorRouter.patch("/register/application", authMiddleware, application);
 authorRouter.patch("/password/update", authMiddleware, updatePassword);

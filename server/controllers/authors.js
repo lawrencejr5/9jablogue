@@ -28,12 +28,22 @@ const updateAuthor = async (req, res) => {
       body: { fullname, username, email, status, admin, socials },
     } = req;
 
-    if (!fullname && !username && !email && !status && !admin && !socials)
+    const profilePic = req.file && req.file.path.split("\\")[1];
+
+    if (
+      !profilePic &&
+      !fullname &&
+      !username &&
+      !email &&
+      !status &&
+      !admin &&
+      !socials
+    )
       return res.status(500).json({ msg: "wetin you dey update" });
 
     const updatedAuthor = await Author.findByIdAndUpdate(
       id,
-      { ...req.body },
+      { ...req.body, profilePic },
       { runValidators: true, new: true }
     );
     res.status(200).json({ msg: "success", updatedAuthor });
@@ -61,9 +71,9 @@ const updatePassword = async (req, res) => {
   try {
     const {
       user: { userId: id },
-      body: { oldPassword, newPassword, cPassword },
+      body: { oldPassword, newPassword, confirmPassword },
     } = req;
-    if (!oldPassword || !newPassword || !cPassword)
+    if (!oldPassword || !newPassword || !confirmPassword)
       return res
         .status(500)
         .json({ msg: "please fill in all required fields" });
@@ -74,7 +84,7 @@ const updatePassword = async (req, res) => {
     if (!oldPassCorrect)
       return res.status(500).json({ msg: "Old password is not correct" });
 
-    if (newPassword !== cPassword)
+    if (newPassword !== confirmPassword)
       return res.status(500).json({ msg: "passwords do not match" });
 
     const salt = await bcrypt.genSalt(10);

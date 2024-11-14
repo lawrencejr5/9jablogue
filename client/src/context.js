@@ -20,7 +20,7 @@ export const ContextApp = ({ children }) => {
   // constants
   const endpoint = "http://localhost:5000/api/v1";
   const signedIn = localStorage.getItem("user");
-  const [signedInUser, setSignedInUser] = useState([]);
+  const [signedInUser, setSignedInUser] = useState(null);
   const token = localStorage.getItem("token");
 
   // Sidenav
@@ -310,15 +310,69 @@ export const ContextApp = ({ children }) => {
     setLoading(true);
     try {
       const { data } = await axios.get(`${endpoint}/authors/${signedIn}`);
-      setLoading(false);
       setSignedInUser(data.author);
+      setLoading(false);
     } catch (err) {
       setLoading(false);
       console.log(err);
     }
   };
 
+  const updateUser = async (formdata) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.patch(
+        `${endpoint}/authors/${signedIn}`,
+        formdata,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "success", status: true });
+      await getUser();
+      await getBloggers();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
+  const updatePassword = async (formdata) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.patch(
+        `${endpoint}/authors/password/update`,
+        { ...formdata },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "success", status: true });
+      await getUser();
+      await getBloggers();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
+    console.log("fetching data...");
     getDuks();
     getCategories();
     getPosts();
@@ -345,6 +399,8 @@ export const ContextApp = ({ children }) => {
         signedIn,
         token,
         //
+        getUser,
+        //
         duks,
         setDuks,
         getDuks,
@@ -370,6 +426,8 @@ export const ContextApp = ({ children }) => {
         getBloggers,
         bloggers,
         signedInUser,
+        updateUser,
+        updatePassword,
       }}
     >
       {children}

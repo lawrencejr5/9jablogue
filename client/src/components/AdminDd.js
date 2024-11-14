@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp, FaPowerOff } from "react-icons/fa";
+
+import { useGlobalContext } from "../context";
 
 const AdminDd = () => {
   const [dd, setDd] = useState(false);
+
+  const { signedInUser, getUser } = useGlobalContext();
 
   return (
     <>
       <div className="admin-dd">
         <div className="click" onClick={() => setDd((prev) => !prev)}>
-          Admin, Lawrencejr &nbsp;
+          Admin, {signedInUser && signedInUser.username} &nbsp;
           {dd ? <FaChevronUp /> : <FaChevronDown />}
         </div>
         <div className={`dd-list ${dd ? "" : "hide"}`}>

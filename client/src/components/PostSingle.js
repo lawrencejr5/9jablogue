@@ -23,7 +23,10 @@ const PostSingle = ({ data }) => {
             );
           })}
           <h1 className="title">{title}</h1>
-          <p>{description}</p>
+          <p>
+            {description.slice(0, 100)}
+            {description.length > 100 && "..."}
+          </p>
         </Link>
       </div>
     </div>
