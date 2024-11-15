@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaChevronDown, FaChevronUp, FaPowerOff } from "react-icons/fa";
 
 import { useGlobalContext } from "../context";
 
 const AdminDd = () => {
+  const navigate = useNavigate();
   const [dd, setDd] = useState(false);
 
-  const { signedInUser, getUser } = useGlobalContext();
+  const { signedInUser } = useGlobalContext();
 
   return (
     <>
@@ -15,7 +17,10 @@ const AdminDd = () => {
           Admin, {signedInUser && signedInUser.username} &nbsp;
           {dd ? <FaChevronUp /> : <FaChevronDown />}
         </div>
-        <div className={`dd-list ${dd ? "" : "hide"}`}>
+        <div
+          className={`dd-list ${dd ? "" : "hide"}`}
+          onClick={() => navigate("/login")}
+        >
           Logout&nbsp;
           <FaPowerOff size={"12px"} />
         </div>

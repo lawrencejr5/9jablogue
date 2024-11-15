@@ -12,6 +12,8 @@ const {
   application,
   updatePassword,
   updateProfilePic,
+  getAuthorNumOfLikes,
+  getAuthorNumOfViews,
 } = require("../controllers/authors");
 
 authorRouter.get("/", getAuthors);
@@ -22,6 +24,10 @@ authorRouter.patch(
   updateAuthor
 );
 authorRouter.delete("/:id", authMiddleware, delAuthor);
+
+authorRouter.get("/posts/likes", authMiddleware, getAuthorNumOfLikes);
+authorRouter.get("/posts/views", authMiddleware, getAuthorNumOfViews);
+
 authorRouter.patch("/register/application", authMiddleware, application);
 authorRouter.patch("/password/update", authMiddleware, updatePassword);
 authorRouter.patch(

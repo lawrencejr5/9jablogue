@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
@@ -8,6 +9,8 @@ import Notification from "../../components/Notification";
 import { useGlobalContext } from "../../context";
 
 const Account = () => {
+  const navigate = useNavigate();
+
   const {
     signedInUser,
     getUser,
@@ -72,6 +75,9 @@ const Account = () => {
       confirmPassword: input.confirmPassword,
     };
     await updatePassword(formdata);
+    setTimeout(() => {
+      navigate("/login");
+    }, 2500);
   };
 
   useEffect(() => {

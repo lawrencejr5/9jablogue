@@ -267,7 +267,7 @@ nav .links-container {
 .notification-container {
   display: flex;
   justify-content: center;
-  transition: 5s;
+  transition: 0s;
 }
 .notification-container .notification {
   background-color: #fff;
@@ -1229,7 +1229,7 @@ footer .news-letter {
   border: none;
 }
 .admin-main.write form .inp-holder input#title {
-  font-size: 40px;
+  font-size: 30px;
   text-transform: capitalize;
 }
 .admin-main.write form .check-holder {

@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const Author = require("../models/authors");
+const Post = require("../models/posts");
 
 const getAuthors = async (req, res) => {
   try {
@@ -16,6 +17,32 @@ const getAuthor = async (req, res) => {
     const { id } = req.params;
     const author = await Author.findById(id);
     res.status(200).json({ msg: "success", author });
+  } catch (err) {
+    res.status(500).json({ msg: "an error ocurred", err });
+  }
+};
+
+const getAuthorNumOfLikes = async (req, res) => {
+  try {
+    const { userId: id } = req.user;
+    const posts = await Post.find({ author: id }).select("likes");
+
+    const totalLikes = posts.reduce((sum, post) => sum + post.likes, 0);
+
+    res.status(200).json({ msg: "success", user: id, totalLikes });
+  } catch (err) {
+    res.status(500).json({ msg: "an error ocurred", err });
+  }
+};
+
+const getAuthorNumOfViews = async (req, res) => {
+  try {
+    const { userId: id } = req.user;
+    const posts = await Post.find({ author: id }).select("views");
+
+    const totalViews = posts.reduce((sum, post) => sum + post.views, 0);
+
+    res.status(200).json({ msg: "success", user: id, totalViews });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
@@ -95,7 +122,9 @@ const updatePassword = async (req, res) => {
       { password },
       { runValidators: true, new: true }
     );
-    res.status(200).json({ msg: "password updated successfully" });
+    res
+      .status(200)
+      .json({ msg: "password updated successfully, loging out..." });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }
@@ -140,4 +169,6 @@ module.exports = {
   application,
   updatePassword,
   updateProfilePic,
+  getAuthorNumOfLikes,
+  getAuthorNumOfViews,
 };

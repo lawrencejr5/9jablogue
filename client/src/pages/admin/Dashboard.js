@@ -23,7 +23,13 @@ import { useGlobalContext } from "../../context";
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const { userPosts, getUserPosts } = useGlobalContext();
+  const {
+    userPosts,
+    getUserPosts,
+    signedInUser,
+    userTotalViews,
+    userTotalLikes,
+  } = useGlobalContext();
 
   const [delPostClosed, setDelPostClosed] = useState(true);
   const [currPost, setCurrPost] = useState([]);
@@ -43,7 +49,9 @@ const Dashboard = () => {
       <AdminNav />
       <div className="header">
         <h1>Dashboard</h1>
-        <span>Welcome back👋 Lawrencejr</span>
+        <span>
+          Welcome back👋 {signedInUser ? signedInUser.username : "..."}
+        </span>
       </div>
       <h2 style={{ display: "flex", alignItems: "center" }}>
         Statistics &nbsp;
@@ -61,14 +69,14 @@ const Dashboard = () => {
           <FaEye className="icon" />
           <div className="content">
             <strong>Views</strong>
-            <span>0 view(s)</span>
+            <span>{userTotalViews} view(s)</span>
           </div>
         </div>
         <div className="layout">
           <FaThumbsUp className="icon" />
           <div className="content">
             <strong>Likes</strong>
-            <span>0 like(s)</span>
+            <span>{userTotalLikes} like(s)</span>
           </div>
         </div>
       </div>

@@ -17,6 +17,9 @@ export const ContextApp = ({ children }) => {
   const [singlePost, setSinglePost] = useState([]);
   const [bloggers, setBloggers] = useState([]);
 
+  const [userTotalLikes, setUserTotalLikes] = useState(0);
+  const [userTotalViews, setUserTotalViews] = useState(0);
+
   // constants
   const endpoint = "http://localhost:5000/api/v1";
   const signedIn = localStorage.getItem("user");
@@ -371,6 +374,38 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const getUserTotalLikes = async () => {
+    try {
+      const { data } = await axios.get(`${endpoint}/authors/posts/likes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserTotalLikes(data.totalLikes);
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      console.log(data.msg);
+    }
+  };
+
+  const getUserTotalViews = async () => {
+    try {
+      const { data } = await axios.get(`${endpoint}/authors/posts/views`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserTotalViews(data.totalViews);
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      console.log(data.msg);
+    }
+  };
+
   useEffect(() => {
     console.log("fetching data...");
     getDuks();
@@ -379,6 +414,8 @@ export const ContextApp = ({ children }) => {
     getUserPosts();
     getBloggers();
     getUser();
+    getUserTotalLikes();
+    getUserTotalViews();
   }, []);
 
   return (
@@ -428,6 +465,9 @@ export const ContextApp = ({ children }) => {
         signedInUser,
         updateUser,
         updatePassword,
+        //
+        userTotalLikes,
+        userTotalViews,
       }}
     >
       {children}
