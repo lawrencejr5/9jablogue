@@ -68,6 +68,7 @@ const Super = () => {
   const [openApply, setOpenApply] = useState(true);
   const [currUser, setCurrUser] = useState([]);
 
+  // User functions
   const openApplyFunc = (curr) => {
     setCurrUser(curr);
     setOpenApply(false);
@@ -84,6 +85,19 @@ const Super = () => {
     };
     await updateUser(id, formData);
   };
+  const makeAdmin = async (id) => {
+    const formData = {
+      admin: true,
+    };
+    await updateUser(id, formData);
+  };
+  const removeAdmin = async (id) => {
+    const formData = {
+      admin: false,
+    };
+    await updateUser(id, formData);
+  };
+
   const editUserFunc = (curr) => {
     setCurrUser(curr);
     setEditUsrClosed(false);
@@ -210,6 +224,7 @@ const Super = () => {
                   <th>Total likes</th>
                   <th>Actions</th>
                   <th>Status</th>
+                  <th>Admin</th>
                 </tr>
               </thead>
               <tbody>
@@ -286,6 +301,23 @@ const Super = () => {
                             onClick={() => approveUser(blogger._id)}
                           >
                             {btnLoad ? "Unblocking..." : "Unblock"}
+                          </button>
+                        )}
+                      </td>
+                      <td>
+                        {!blogger.admin ? (
+                          <button
+                            id="approve-btn"
+                            onClick={() => makeAdmin(blogger._id)}
+                          >
+                            {btnLoad ? "Admining..." : "Make admin"}
+                          </button>
+                        ) : (
+                          <button
+                            id="unblock-btn"
+                            onClick={() => removeAdmin(blogger._id)}
+                          >
+                            {btnLoad ? "Unadmining..." : "Remove Admin"}
                           </button>
                         )}
                       </td>

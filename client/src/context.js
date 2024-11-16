@@ -223,7 +223,7 @@ export const ContextApp = ({ children }) => {
       const { data } = await axios.get(`${endpoint}/posts`);
       setLoading(false);
       setPosts(data.posts);
-      console.log(posts);
+      // console.log(posts);
     } catch (err) {
       setLoading(false);
       console.log(err);
