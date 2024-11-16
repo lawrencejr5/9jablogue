@@ -10,7 +10,9 @@ const getPosts = async (req, res) => {
       return res.status(200).json({ msg: "success", userPosts });
     }
 
-    const posts = await Post.find().populate("categories", "category");
+    const posts = await Post.find()
+      .populate("categories", "category")
+      .populate("author", "username");
     res.status(200).json({ msg: "success", posts });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });

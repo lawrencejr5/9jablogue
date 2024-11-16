@@ -27,9 +27,19 @@ const Dashboard = () => {
     userPosts,
     getUserPosts,
     signedInUser,
+    getUser,
+    getUserTotalViews,
+    getUserTotalLikes,
     userTotalViews,
     userTotalLikes,
   } = useGlobalContext();
+
+  useEffect(() => {
+    getUserTotalViews();
+    getUserTotalLikes();
+    getUserPosts();
+    getUser();
+  }, []);
 
   const [delPostClosed, setDelPostClosed] = useState(true);
   const [currPost, setCurrPost] = useState([]);
@@ -38,9 +48,6 @@ const Dashboard = () => {
     setDelPostClosed(false);
     setCurrPost(post);
   };
-  useEffect(() => {
-    getUserPosts();
-  }, []);
 
   return (
     <main className="admin-main dashboard">

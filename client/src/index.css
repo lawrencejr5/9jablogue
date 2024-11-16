@@ -952,6 +952,7 @@ footer .news-letter {
   box-shadow: 0px 2px 12px rgba(217, 216, 216, 0.593);
 }
 .admin-dd {
+  cursor: pointer;
   margin: 1rem 0 2rem;
   width: 100%;
 }
@@ -1101,6 +1102,11 @@ footer .news-letter {
 .admin-main.dashboard table td button#block-btn {
   border: 1px solid #ff0f0f;
   color: #ff0f0f;
+  background-color: transparent;
+}
+.admin-main.dashboard table td button#unblock-btn {
+  border: 1px solid #ffd700;
+  color: #ffd700;
   background-color: transparent;
 }
 .admin-main.dashboard table th {

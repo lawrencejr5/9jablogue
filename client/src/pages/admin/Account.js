@@ -12,6 +12,7 @@ const Account = () => {
   const navigate = useNavigate();
 
   const {
+    signedIn,
     signedInUser,
     getUser,
     updateUser,
@@ -48,7 +49,7 @@ const Account = () => {
     const formdata = new FormData();
     for (const key in input) formdata.append(key, input[key]);
 
-    await updateUser(formdata);
+    await updateUser(signedIn, formdata);
     await getUser();
   };
 
@@ -63,7 +64,7 @@ const Account = () => {
         linkedin: input.linkedin,
       },
     };
-    await updateUser(formdata);
+    await updateUser(signedIn, formdata);
     await getUser();
   };
   const handlePassSubmit = async (e) => {

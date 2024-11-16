@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   FaEye,
   FaThumbsUp,
@@ -25,9 +25,6 @@ import Notification from "../../components/Notification";
 import Loading from "../../components/Loading";
 
 import { posts } from "../../data/posts";
-import { bloggers } from "../../data/bloggers";
-import { catgories } from "../../data/categories";
-import { didUKnw } from "../../data/didUKnw";
 
 import { useGlobalContext } from "../../context";
 
@@ -39,11 +36,25 @@ const Super = () => {
     categories,
     createCategory,
     updateCategory,
+    bloggers,
+    // posts,
+    getPosts,
+    getDuks,
+    getBloggers,
+    getCategories,
+    updateUser,
     notification,
     btnLoad,
     loading,
     endpoint,
   } = useGlobalContext();
+
+  useEffect(() => {
+    getDuks();
+    getCategories();
+    getPosts();
+    getBloggers();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -55,6 +66,32 @@ const Super = () => {
   const [editUsrClosed, setEditUsrClosed] = useState(true);
 
   const [openApply, setOpenApply] = useState(true);
+  const [currUser, setCurrUser] = useState([]);
+
+  const openApplyFunc = (curr) => {
+    setCurrUser(curr);
+    setOpenApply(false);
+  };
+  const approveUser = async (id) => {
+    const formData = {
+      status: 1,
+    };
+    await updateUser(id, formData);
+  };
+  const blockUser = async (id) => {
+    const formData = {
+      status: 2,
+    };
+    await updateUser(id, formData);
+  };
+  const editUserFunc = (curr) => {
+    setCurrUser(curr);
+    setEditUsrClosed(false);
+  };
+  const delUserFunc = (curr) => {
+    setCurrUser(curr);
+    setDelUsrClosed(false);
+  };
 
   // Inputs
   const [input, setInput] = useState({
@@ -151,7 +188,7 @@ const Super = () => {
 
   return (
     <>
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
       <main className="admin-main dashboard">
         <Logo />
         <AdminDd />
@@ -171,9 +208,8 @@ const Super = () => {
                   <th>Total posts</th>
                   <th>Total views</th>
                   <th>Total likes</th>
-                  <th>Total share</th>
                   <th>Actions</th>
-                  <th>Approve/Block</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -184,7 +220,7 @@ const Super = () => {
                         <div
                           className="img"
                           style={{
-                            backgroundImage: `url(${blogger.img})`,
+                            backgroundImage: `url(http://localhost:5000/api/v1/uploads/${blogger.profilePic})`,
                           }}
                         ></div>
                         <div className="content">
@@ -193,44 +229,65 @@ const Super = () => {
                           <small>@{blogger.username}</small>
                         </div>
                       </td>
-                      <td>7 post(s)</td>
+                      <td>{blogger.totalPosts} post(s)</td>
                       <td>
-                        15k <FaEye />
+                        {blogger.totalViews} <FaEye />
                       </td>
                       <td>
-                        6.5k <FaThumbsUp />
-                      </td>
-                      <td>
-                        8k <FaShare />
+                        {blogger.totalLikes} <FaThumbsUp />
                       </td>
                       <td>
                         <div className="actn-btns">
                           <button
                             id="edit"
-                            onClick={() => setEditUsrClosed(false)}
+                            onClick={() => editUserFunc(blogger)}
                             style={{ color: "green" }}
                           >
                             <FaEdit />
                           </button>
                           <button
                             id="edit"
-                            onClick={() => setOpenApply(false)}
+                            onClick={() => openApplyFunc(blogger)}
                             style={{ color: "grey" }}
                           >
                             <FaEnvelope />
                           </button>
-                          <button
-                            id="del"
-                            onClick={() => setDelUsrClosed(false)}
-                            style={{ color: "red" }}
-                          >
-                            <FaTrash />
-                          </button>
+                          {blogger.admin ? (
+                            ""
+                          ) : (
+                            <button
+                              id="del"
+                              onClick={() => delUserFunc(blogger)}
+                              style={{ color: "red" }}
+                            >
+                              <FaTrash />
+                            </button>
+                          )}
                         </div>{" "}
                       </td>
                       <td>
-                        <button id="approve-btn">Approve</button>&nbsp;
-                        <button id="block-btn">Block</button>
+                        {blogger.status === 0 ? (
+                          <button
+                            id="approve-btn"
+                            onClick={() => approveUser(blogger._id)}
+                          >
+                            {btnLoad ? "Approving..." : "Approve"}
+                          </button>
+                        ) : blogger.status === 1 ? (
+                          <button
+                            id="block-btn"
+                            onClick={() => blockUser(blogger._id)}
+                          >
+                            {btnLoad ? "Blocking..." : "Block"}
+                          </button>
+                        ) : (
+                          <button
+                            id="unblock-btn"
+                            onClick={() => approveUser(blogger._id)}
+                          >
+                            {btnLoad ? "Unblocking..." : "Unblock"}
+                          </button>
+                        )}
                       </td>
                     </tr>
                   );
@@ -238,9 +295,21 @@ const Super = () => {
               </tbody>
             </table>
           </div>
-          <Application closed={openApply} setClosed={setOpenApply} />
-          <EditUsr closed={editUsrClosed} setClosed={setEditUsrClosed} />
-          <DelUsr closed={delUsrClosed} setClosed={setDelUsrClosed} />
+          <Application
+            closed={openApply}
+            setClosed={setOpenApply}
+            currUser={currUser}
+          />
+          <EditUsr
+            closed={editUsrClosed}
+            setClosed={setEditUsrClosed}
+            currUser={currUser}
+          />
+          <DelUsr
+            closed={delUsrClosed}
+            setClosed={setDelUsrClosed}
+            currUser={currUser}
+          />
         </div>
 
         <div className="posts">
@@ -274,16 +343,16 @@ const Super = () => {
                         <div
                           className="img"
                           style={{
-                            backgroundImage: `url(${post.thumb})`,
+                            backgroundImage: `url(http://localhost:5000/api/v1/uploads/${post.thumb})`,
                           }}
                         ></div>
                         <div className="content">
                           <strong>{post.title}</strong>
                           <br />
-                          <small>{post.description}</small>
+                          <small>{post.desc}</small>
                         </div>
                       </td>
-                      <td>@lawrencejr</td>
+                      {/* <td>@{post.author.username}</td> */}
                       <td>
                         {post.tags.map((cat, i) => {
                           return (

@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { didUKnw } from "./data/didUKnw";
 
 const Mycontext = createContext();
 export const ContextApp = ({ children }) => {
@@ -224,6 +223,7 @@ export const ContextApp = ({ children }) => {
       const { data } = await axios.get(`${endpoint}/posts`);
       setLoading(false);
       setPosts(data.posts);
+      console.log(posts);
     } catch (err) {
       setLoading(false);
       console.log(err);
@@ -321,11 +321,11 @@ export const ContextApp = ({ children }) => {
     }
   };
 
-  const updateUser = async (formdata) => {
+  const updateUser = async (id, formdata) => {
     setBtnLoad(true);
     try {
       const { data } = await axios.patch(
-        `${endpoint}/authors/${signedIn}`,
+        `${endpoint}/authors/${id}`,
         formdata,
         {
           headers: {
@@ -337,6 +337,27 @@ export const ContextApp = ({ children }) => {
       setBtnLoad(false);
       setNotification({ text: data.msg, theme: "success", status: true });
       await getUser();
+      await getBloggers();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
+  const deleteUser = async (id) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.delete(`${endpoint}/authors/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "success", status: true });
       await getBloggers();
     } catch (err) {
       const {
@@ -407,7 +428,6 @@ export const ContextApp = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("fetching data...");
     getDuks();
     getCategories();
     getPosts();
@@ -464,8 +484,11 @@ export const ContextApp = ({ children }) => {
         bloggers,
         signedInUser,
         updateUser,
+        deleteUser,
         updatePassword,
         //
+        getUserTotalLikes,
+        getUserTotalViews,
         userTotalLikes,
         userTotalViews,
       }}

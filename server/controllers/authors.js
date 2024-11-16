@@ -5,7 +5,19 @@ const Post = require("../models/posts");
 
 const getAuthors = async (req, res) => {
   try {
-    const authors = await Author.find();
+    const allAuthors = await Author.find();
+
+    const authors = await Promise.all(
+      allAuthors.map(async (author) => {
+        const userPosts = await Post.find({ author: author.id });
+        const totalPosts = userPosts.length;
+        const totalLikes = userPosts.reduce((sum, post) => sum + post.likes, 0);
+        const totalViews = userPosts.reduce((sum, post) => sum + post.views, 0);
+        const data = { ...author._doc, totalPosts, totalLikes, totalViews };
+        return data;
+      })
+    );
+
     res.status(200).json({ msg: "success", authors });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });

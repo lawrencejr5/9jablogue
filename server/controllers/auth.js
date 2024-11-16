@@ -24,7 +24,12 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const newPassword = await bcrypt.hash(password, salt);
 
-    const dataObj = { fullname, username, email, password: newPassword };
+    const dataObj = {
+      fullname: fullname.toLowerCase(),
+      username: username.toLowerCase().replace(/[\s\&\(\)\.com]/g, "_"),
+      email: email.toLowerCase(),
+      password: newPassword,
+    };
     const data = await Author.create({ ...dataObj });
 
     const token = jwt.sign(
@@ -52,7 +57,7 @@ const login = async (req, res) => {
       return res.status(500).json({ msg: "Fill in required fields" });
 
     const userData = await Author.findOne({
-      $or: [{ username: user }, { email: user }],
+      $or: [{ username: user.toLowerCase() }, { email: user.toLowerCase() }],
     });
     if (!userData)
       return res
