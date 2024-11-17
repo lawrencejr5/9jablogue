@@ -37,7 +37,7 @@ const Super = () => {
     createCategory,
     updateCategory,
     bloggers,
-    // posts,
+    posts,
     getPosts,
     getDuks,
     getBloggers,
@@ -353,7 +353,7 @@ const Super = () => {
                   <th>Post</th>
                   <th>By</th>
                   <th>Categories</th>
-                  <th>Date & time</th>
+                  <th>Last modified</th>
                   <th>
                     <FaEye className="icon" />
                   </th>
@@ -384,22 +384,22 @@ const Super = () => {
                           <small>{post.desc}</small>
                         </div>
                       </td>
-                      {/* <td>@{post.author.username}</td> */}
+                      <td>@{post.author.username}</td>
                       <td>
-                        {post.tags.map((cat, i) => {
+                        {post.categories.map((cat, i) => {
                           return (
                             <span key={i}>
-                              {cat} <br />
+                              {cat.category} <br />
                             </span>
                           );
                         })}
                       </td>
-                      <td>23rd Nov, 2024</td>
+                      <td>{post.updatedAt.split("T")[0]}</td>
                       <td>
-                        365 <FaEye />
+                        {post.views} <FaEye />
                       </td>
                       <td>
-                        222 <FaThumbsUp />
+                        {post.likes} <FaThumbsUp />
                       </td>
                       {/* <td>
                         281 <FaShare />
