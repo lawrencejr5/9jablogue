@@ -56,8 +56,6 @@ const Write = () => {
       formData.append(`categories[]`, category);
     });
     await createPost(formData);
-    thumbRef.current.value = "";
-    setInput({ title: "", desc: "", categories: [], thumb: null });
   };
   return (
     <main className="admin-main write">
@@ -72,7 +70,7 @@ const Write = () => {
         <div className="inp-holder">
           <label htmlFor="">Title:</label>
           <input
-            type="title"
+            type="text"
             placeholder="title"
             name="title"
             value={input.title}
@@ -93,7 +91,7 @@ const Write = () => {
         <div className="inp-holder">
           <label htmlFor="">Description:</label>
           <input
-            type="title"
+            type="text"
             placeholder="description"
             name="desc"
             value={input.desc}

@@ -57,12 +57,14 @@ const updatePost = async (req, res) => {
       body: { title, desc, categories, body, status },
     } = req;
 
-    if (!title && !desc && !categories && !body && !status)
+    const thumb = req.file && req.file.path.split(`\\`)[1];
+
+    if (!title && !desc && !categories && !body && !status && !thumb)
       return res.status(400).json({ msg: "Nothing to update" });
 
     const updatedPost = await Post.findByIdAndUpdate(
       id,
-      { ...req.body, contentHTML: body },
+      { ...req.body, thumb, contentHTML: body },
       { runValidators: true, new: true }
     );
     res.status(200).json({ msg: "success", updatedPost });

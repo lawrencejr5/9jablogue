@@ -275,6 +275,7 @@ export const ContextApp = ({ children }) => {
       console.log(err);
     }
   };
+
   const featurePost = async (id) => {
     try {
       const { data } = await axios.patch(
