@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FaEye, FaThumbsUp, FaEdit, FaTrash, FaRegHeart } from "react-icons/fa";
+import {
+  FaEye,
+  FaThumbsUp,
+  FaEdit,
+  FaTrash,
+  FaRegHeart,
+  FaHeart,
+  FaCheckCircle,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { useGlobalContext } from "../../../context";
@@ -9,9 +17,32 @@ import DelPost from "../../../components/modals/DelPost";
 const Posts = () => {
   const navigate = useNavigate();
 
-  const { posts, btnLoad } = useGlobalContext();
+  const { posts, updatePost, featurePost, btnLoad } = useGlobalContext();
 
+  const [currPost, setCurrPost] = useState([]);
   const [delPostClosed, setDelPostClosed] = useState(true);
+
+  const featurePostFunc = async (id) => {
+    await featurePost(id);
+  };
+
+  const approvePost = async (id) => {
+    const formdata = {
+      status: 1,
+    };
+    await updatePost(id, formdata);
+  };
+  const disApprovePost = async (id) => {
+    const formdata = {
+      status: 0,
+    };
+    await updatePost(id, formdata);
+  };
+
+  const deletePostFunc = (curr) => {
+    setCurrPost(curr);
+    setDelPostClosed(false);
+  };
 
   return (
     <div className="posts">
@@ -73,24 +104,46 @@ const Posts = () => {
                       <button
                         id="edit"
                         style={{ color: "green" }}
-                        onClick={() => navigate(`/admin/edit-post/${post.id}`)}
+                        onClick={() => navigate(`/admin/edit-post/${post._id}`)}
                       >
                         <FaEdit />
                       </button>
                       <button
                         id="del"
                         style={{ color: "red" }}
-                        onClick={() => setDelPostClosed(false)}
+                        onClick={() => deletePostFunc(post)}
                       >
                         <FaTrash />
                       </button>
-                      <button style={{ color: "black" }}>
-                        <FaRegHeart />
+                      <button
+                        style={{ color: "black" }}
+                        onClick={() => featurePostFunc(post._id)}
+                      >
+                        {post.featured ? <FaHeart /> : <FaRegHeart />}
                       </button>
                     </div>{" "}
                   </td>
                   <td>
-                    <button id="approve-btn">Approve</button>
+                    {!post.status ? (
+                      <button
+                        id="approve-btn"
+                        onClick={() => {
+                          approvePost(post._id);
+                        }}
+                      >
+                        {btnLoad ? "Approving..." : "Approve"}
+                      </button>
+                    ) : (
+                      <button
+                        id="approve-btn"
+                        onClick={() => {
+                          disApprovePost(post._id);
+                        }}
+                      >
+                        {btnLoad ? "disapproving..." : "Approved"}{" "}
+                        <FaCheckCircle />
+                      </button>
+                    )}
                   </td>
                 </tr>
               );
@@ -98,7 +151,11 @@ const Posts = () => {
           </tbody>
         </table>
       </div>
-      <DelPost closed={delPostClosed} setClosed={setDelPostClosed} />
+      <DelPost
+        closed={delPostClosed}
+        setClosed={setDelPostClosed}
+        currPost={currPost}
+      />
     </div>
   );
 };

@@ -54,10 +54,10 @@ const updatePost = async (req, res) => {
   try {
     const {
       params: { id },
-      body: { title, desc, categories, body },
+      body: { title, desc, categories, body, status },
     } = req;
 
-    if (!title && !desc && !categories && !body)
+    if (!title && !desc && !categories && !body && !status)
       return res.status(400).json({ msg: "Nothing to update" });
 
     const updatedPost = await Post.findByIdAndUpdate(
@@ -113,7 +113,7 @@ const featurePost = async (req, res) => {
       { featured: true },
       { runValidators: true, new: true }
     );
-    res.status(200).json({ msg: "success", featuredPost });
+    res.status(200).json({ msg: "featured", featuredPost });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }

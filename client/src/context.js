@@ -253,6 +253,52 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const updatePost = async (id, formdata) => {
+    setBtnLoad(true);
+    try {
+      const { data } = await axios.patch(`${endpoint}/posts/${id}`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "success", status: true });
+      await getUserPosts();
+      await getPosts();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+  const featurePost = async (id) => {
+    try {
+      const { data } = await axios.patch(
+        `${endpoint}/posts/feature/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setNotification({ text: data.msg, theme: "success", status: true });
+      await getUserPosts();
+      await getPosts();
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
   const createPost = async (formData) => {
     setBtnLoad(true);
     try {
@@ -475,6 +521,8 @@ export const ContextApp = ({ children }) => {
         getPost,
         getUserPosts,
         createPost,
+        featurePost,
+        updatePost,
         deletePost,
         userPosts,
         singlePost,

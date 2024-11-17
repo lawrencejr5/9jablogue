@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
@@ -21,7 +21,6 @@ const Super = () => {
     getBloggers,
     getCategories,
     notification,
-    btnLoad,
     loading,
   } = useGlobalContext();
 
