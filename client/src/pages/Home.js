@@ -16,7 +16,7 @@ import { catgories } from "../data/categories";
 import { posts } from "../data/posts";
 
 const Home = () => {
-  const { loading, dukNo, duks } = useGlobalContext();
+  const { loading, dukNo, duks, posts, categories } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ const Home = () => {
         <h1>
           Popular Tags <FaTags className="tag-icon" />
         </h1>
-        <TagSingle data={catgories} />
+        <TagSingle data={categories} />
       </section>
       <section className="posts featured">
         <h1 className="header">Featured</h1>

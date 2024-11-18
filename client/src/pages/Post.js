@@ -10,14 +10,15 @@ import { posts } from "../data/posts";
 import { text } from "../data/postText";
 
 const Post = () => {
-  const { postLoading } = useGlobalContext();
-  const { id: findId } = useParams();
-  // let ogTitle = title.replaceAll("_", " ");
-  const newPost = posts.find((post) => findId == post.id);
+  const { getPost, singlePost: newPost } = useGlobalContext();
 
-  if (postLoading) {
-    return <Loading />;
-  }
+  const { id } = useParams();
+
+  useEffect(() => {
+    getPost(id);
+    // console.log(newPost.author.username);
+  }, []);
+
   return (
     <main>
       <Navbaek />
@@ -33,7 +34,7 @@ const Post = () => {
               width: "200px",
               backgroundPosition: "center",
               backgroundSize: "cover",
-              backgroundImage: `url(${newPost.thumb})`,
+              backgroundImage: `url(http://localhost:5000/api/v1/uploads/${newPost.thumb})`,
             }}
           ></div>
           <div className="entry_header">
@@ -50,17 +51,17 @@ const Post = () => {
                 }}
               ></div>
               <div className="detail">
-                <b>Oputa Ifeanyi Lawrence </b>
-                <small>{`23rd Nov, 2023`}</small>
+                <b>{newPost.author ? newPost.author.username : "..."} </b>
+                <small>{newPost.createdAt.split("T")[0]}</small>
               </div>
             </div>
             <div className="description">
               <h1>{newPost.title}</h1>
-              <em>{newPost.description}</em>
+              <em>{newPost.desc}</em>
             </div>
           </div>
         </article>
-        <article className="content">{text}</article>
+        <article className="content">{newPost.body}</article>
       </section>
       <Footer />
     </main>

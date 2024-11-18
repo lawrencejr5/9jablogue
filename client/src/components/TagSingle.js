@@ -7,11 +7,11 @@ const TagSingle = ({ data }) => {
       {data.map((datum, index) => {
         return (
           <Link
-            to={`categories/${datum.name}`}
+            to={`categories/${datum.category}`}
             className="singleTag"
             key={index}
           >
-            {datum.name}
+            {datum.category}
             <FaChevronCircleRight className="chevron-right" />
           </Link>
         );

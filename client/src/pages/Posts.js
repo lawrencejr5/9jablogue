@@ -8,10 +8,8 @@ import PostSingle from "../components/PostSingle";
 
 import { useGlobalContext } from "../context";
 
-import { posts } from "../data/posts";
-
 const Posts = () => {
-  const { loading } = useGlobalContext();
+  const { loading, posts } = useGlobalContext();
   if (loading) {
     return <Loading />;
   }
