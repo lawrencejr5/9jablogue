@@ -22,9 +22,10 @@ const getPosts = async (req, res) => {
 const getPost = async (req, res) => {
   try {
     const { id } = req.params;
-    const post = await Post.findById(id)
-      .populate("categories", "category")
-      .populate("author", "username");
+    const post = await Post.findById(id).populate(
+      "author",
+      "username profIlePic"
+    );
 
     res.status(200).json({ msg: "success", post });
   } catch (err) {

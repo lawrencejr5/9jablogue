@@ -10,7 +10,7 @@ import { posts } from "../data/posts";
 import { text } from "../data/postText";
 
 const Post = () => {
-  const { getPost, singlePost: newPost } = useGlobalContext();
+  const { getPost, singlePost: newPost, loading } = useGlobalContext();
 
   const { id } = useParams();
 
@@ -19,6 +19,7 @@ const Post = () => {
     // console.log(newPost.author.username);
   }, []);
 
+  if (loading) return <Loading />;
   return (
     <main>
       <Navbaek />
@@ -51,8 +52,10 @@ const Post = () => {
                 }}
               ></div>
               <div className="detail">
-                <b>{newPost.author ? newPost.author.username : "..."} </b>
-                <small>{newPost.createdAt.split("T")[0]}</small>
+                <b>@{newPost.author ? newPost.author.username : "..."} </b>
+                <small>
+                  {newPost.createdAt ? newPost.createdAt.split("T")[0] : "..."}
+                </small>
               </div>
             </div>
             <div className="description">
@@ -61,7 +64,10 @@ const Post = () => {
             </div>
           </div>
         </article>
-        <article className="content">{newPost.body}</article>
+        <article
+          className="content"
+          dangerouslySetInnerHTML={{ __html: newPost.body }}
+        />
       </section>
       <Footer />
     </main>
