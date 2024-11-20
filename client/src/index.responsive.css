@@ -97,6 +97,9 @@
     width: 100%;
     border-radius: 5px;
   }
+  .posts.featured .post .content {
+    margin: 0;
+  }
   .posts.featured .post .content h1 {
     margin: 0;
     font-size: 30px;
@@ -201,6 +204,9 @@
   }
 }
 @media only screen and (max-width: 500px) {
+  .banner {
+    height: 70vh;
+  }
   .apost_container .wrapper .entry_header .info .img {
     flex-basis: 10%;
   }

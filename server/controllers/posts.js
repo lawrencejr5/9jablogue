@@ -2,12 +2,13 @@ const Post = require("../models/posts");
 
 const getPosts = async (req, res) => {
   try {
-    const { user, category } = req.query;
+    const { user, category, featured } = req.query;
 
     let queryObj = {};
 
     if (user) queryObj.author = user;
     if (category) queryObj.categories = category;
+    if (featured) queryObj.featured = featured;
 
     const posts = await Post.find(queryObj)
       .populate("categories", "category")

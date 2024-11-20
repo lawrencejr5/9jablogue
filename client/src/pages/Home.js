@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaStar, FaTags } from "react-icons/fa";
 
@@ -14,11 +14,26 @@ import { useGlobalContext } from "../context";
 import { didUKnw } from "../data/didUKnw";
 import { catgories } from "../data/categories";
 import { posts } from "../data/posts";
+import FeaturedPost from "../components/FeaturedPost";
 
 const Home = () => {
-  const { loading, dukNo, duks, posts, categories } = useGlobalContext();
+  const {
+    loading,
+    dukNo,
+    duks,
+    posts,
+    getPosts,
+    categories,
+    featuredPost,
+    getFeaturedPost,
+  } = useGlobalContext();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getPosts();
+    getFeaturedPost();
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -55,24 +70,7 @@ const Home = () => {
       </section>
       <section className="posts featured">
         <h1 className="header">Editor's pick</h1>
-        <div className="post">
-          <div className="img"></div>
-          <div className="content">
-            <h1>Hunger dey Nigeria, We dey call on Tinubu</h1>
-            <Link to={`/categories/Documentary`} className="link">
-              <button className="tag">documentary</button>
-            </Link>
-            <Link to={`/categories/Politics`} className="link">
-              <button className="tag">politics</button>
-            </Link>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-              similique non blanditiis a eum officiis at assumenda laboriosam,
-              repellendus corporis animi quos adipisci provident ducimus nihil,
-              officia suscipit esse! Earum?e
-            </p>
-          </div>
-        </div>
+        <FeaturedPost data={featuredPost} />
       </section>
       <section className="posts">
         <h1 className="header">Latest posts</h1>

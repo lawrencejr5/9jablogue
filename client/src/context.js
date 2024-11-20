@@ -13,6 +13,7 @@ export const ContextApp = ({ children }) => {
   const [category, setCategory] = useState([]);
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [featuredPost, setFeaturedPost] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
   const [categoryPosts, setCategoryPosts] = useState([]);
   const [singlePost, setSinglePost] = useState([]);
@@ -268,6 +269,18 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const getFeaturedPost = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts?featured=${true}`);
+      setLoading(false);
+      setFeaturedPost(data.posts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   const getPost = async (id) => {
     setLoading(true);
     try {
@@ -504,6 +517,7 @@ export const ContextApp = ({ children }) => {
     getDuks();
     getCategories();
     getPosts();
+    getFeaturedPost();
     getUserPosts();
     getBloggers();
     getUser();
@@ -550,6 +564,7 @@ export const ContextApp = ({ children }) => {
         posts,
         getPosts,
         getPost,
+        getFeaturedPost,
         getUserPosts,
         getCategoryPosts,
         createPost,
@@ -557,6 +572,7 @@ export const ContextApp = ({ children }) => {
         updatePost,
         deletePost,
         userPosts,
+        featuredPost,
         categoryPosts,
         singlePost,
         //
