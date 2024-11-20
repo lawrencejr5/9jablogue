@@ -10,9 +10,11 @@ export const ContextApp = ({ children }) => {
 
   // data
   const [duks, setDuks] = useState([]);
+  const [category, setCategory] = useState([]);
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
+  const [categoryPosts, setCategoryPosts] = useState([]);
   const [singlePost, setSinglePost] = useState([]);
   const [bloggers, setBloggers] = useState([]);
 
@@ -21,6 +23,7 @@ export const ContextApp = ({ children }) => {
 
   // constants
   const endpoint = "http://localhost:5000/api/v1";
+  const fileEndpoint = "http://localhost:5000/api/v1/uploads";
   const signedIn = localStorage.getItem("user");
   const [signedInUser, setSignedInUser] = useState(null);
   const token = localStorage.getItem("token");
@@ -149,6 +152,18 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const getCategory = async (id) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/categories/${id}`);
+      setLoading(false);
+      setCategory(data.category);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   const createCategory = async (formData) => {
     setBtnLoad(true);
     try {
@@ -234,7 +249,19 @@ export const ContextApp = ({ children }) => {
     try {
       const { data } = await axios.get(`${endpoint}/posts?user=${signedIn}`);
       setLoading(false);
-      setUserPosts(data.userPosts);
+      setUserPosts(data.posts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  const getCategoryPosts = async (id) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts?category=${id}`);
+      setLoading(false);
+      setCategoryPosts(data.posts);
     } catch (err) {
       setLoading(false);
       console.log(err);
@@ -499,6 +526,7 @@ export const ContextApp = ({ children }) => {
         setNotification,
         //
         endpoint,
+        fileEndpoint,
         signedIn,
         token,
         //
@@ -511,7 +539,9 @@ export const ContextApp = ({ children }) => {
         deleteDuk,
         updateDuk,
         //
+        category,
         categories,
+        getCategory,
         getCategories,
         createCategory,
         deleteCategory,
@@ -521,11 +551,13 @@ export const ContextApp = ({ children }) => {
         getPosts,
         getPost,
         getUserPosts,
+        getCategoryPosts,
         createPost,
         featurePost,
         updatePost,
         deletePost,
         userPosts,
+        categoryPosts,
         singlePost,
         //
         getBloggers,

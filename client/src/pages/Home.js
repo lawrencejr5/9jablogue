@@ -54,7 +54,7 @@ const Home = () => {
         <TagSingle data={categories} />
       </section>
       <section className="posts featured">
-        <h1 className="header">Featured</h1>
+        <h1 className="header">Editor's pick</h1>
         <div className="post">
           <div className="img"></div>
           <div className="content">

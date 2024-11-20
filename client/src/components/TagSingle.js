@@ -7,7 +7,7 @@ const TagSingle = ({ data }) => {
       {data.map((datum, index) => {
         return (
           <Link
-            to={`categories/${datum.category}`}
+            to={`categories/${datum._id}`}
             className="singleTag"
             key={index}
           >

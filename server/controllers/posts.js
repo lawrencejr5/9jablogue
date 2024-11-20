@@ -2,18 +2,17 @@ const Post = require("../models/posts");
 
 const getPosts = async (req, res) => {
   try {
-    const { user } = req.query;
-    if (user) {
-      const userPosts = await Post.find({ author: user })
-        .populate("categories", "category")
-        .populate("author", "username");
-      return res.status(200).json({ msg: "success", userPosts });
-    }
+    const { user, category } = req.query;
 
-    const posts = await Post.find()
+    let queryObj = {};
+
+    if (user) queryObj.author = user;
+    if (category) queryObj.categories = category;
+
+    const posts = await Post.find(queryObj)
       .populate("categories", "category")
       .populate("author", "username");
-    res.status(200).json({ msg: "success", posts });
+    res.status(200).json({ msg: "success", rowCount: posts.length, posts });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }

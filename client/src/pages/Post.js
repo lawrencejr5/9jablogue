@@ -6,9 +6,6 @@ import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
-import { posts } from "../data/posts";
-import { text } from "../data/postText";
-
 const Post = () => {
   const { getPost, singlePost: newPost, loading } = useGlobalContext();
 
@@ -16,7 +13,6 @@ const Post = () => {
 
   useEffect(() => {
     getPost(id);
-    // console.log(newPost.author.username);
   }, []);
 
   if (loading) return <Loading />;

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { catgories } from "../data/categories";
 
 const Categories = () => {
-  const { loading } = useGlobalContext();
+  const { loading, fileEndpoint, categories } = useGlobalContext();
   if (loading) {
     return <Loading />;
   }
@@ -30,20 +30,20 @@ const Categories = () => {
           </div>
         </article>
         <article className="categs">
-          {catgories.map((categ, index) => {
-            const { name, img, text } = categ;
+          {categories.map((categ, index) => {
+            const { _id: id, category, img, description } = categ;
             return (
               <div className="categ" key={index}>
                 <div
                   className="img"
                   style={{
-                    backgroundImage: `url(${img})`,
+                    backgroundImage: `url(${fileEndpoint}/${img})`,
                   }}
                 ></div>
-                <Link to={`../categories/${name}`} className="content-link">
+                <Link to={`../categories/${id}`} className="content-link">
                   <div className="content">
-                    <h1>{name}</h1>
-                    <p>{text}</p>
+                    <h1>{category}</h1>
+                    <p>{description}</p>
                     {/* <small> (10 Posts)</small> */}
                   </div>
                 </Link>

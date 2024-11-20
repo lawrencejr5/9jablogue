@@ -13,22 +13,25 @@ import { posts } from "../data/posts";
 import { catgories } from "../data/categories";
 
 const CategoryPosts = () => {
-  const { name } = useParams();
-  const singlePost = posts.filter((post) => {
-    const { tags } = post;
-    if (tags.includes(name)) {
-      return post;
-    }
-  });
-  const singleCat = catgories.find((cat) => {
-    if (name === cat.name) {
-      return cat;
-    }
-  });
+  const {
+    loading,
+    fileEndpoint,
+    category,
+    getCategory,
+    categoryPosts,
+    getCategoryPosts,
+  } = useGlobalContext();
 
-  // if (catLoading) {
-  //   return <Loading />;
-  // }
+  const { name } = useParams();
+
+  useEffect(() => {
+    getCategory(name);
+    getCategoryPosts(name);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <main>
       <Navbaek />
@@ -36,7 +39,7 @@ const CategoryPosts = () => {
       <section className="cat_posts_container">
         <article className="header">
           <div className="header-center">
-            <h1>{name}</h1>
+            <h1>{category.category}</h1>
             <div
               style={{
                 height: "200px",
@@ -45,17 +48,17 @@ const CategoryPosts = () => {
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 margin: "auto",
-                backgroundImage: `url(${singleCat.img})`,
+                backgroundImage: `url(${fileEndpoint}/${category.img})`,
               }}
             ></div>
-            <p>{singleCat.text}</p>
+            <p>{category.description}</p>
           </div>
         </article>
         <article className="cat_posts">
-          <div className="cat_posts_header">Posts on {name}</div>
-          {singlePost.length > 0 ? (
+          <div className="cat_posts_header">Posts on {category.category}</div>
+          {categoryPosts.length > 0 ? (
             <article className="singlePost-container">
-              {singlePost.map((post, i) => {
+              {categoryPosts.map((post, i) => {
                 return <PostSingle key={i} data={post} />;
               })}
             </article>

@@ -16,7 +16,7 @@ const PostSingle = ({ data }) => {
           {categories.map((tag, index) => {
             return (
               tag && (
-                <Link key={index} to={`/categories/${tag.category}`}>
+                <Link key={index} to={`/categories/${tag._id}`}>
                   <button className="tag">{tag.category}</button>
                 </Link>
               )
