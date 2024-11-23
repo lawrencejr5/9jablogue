@@ -10,12 +10,14 @@ const {
   createPost,
   updatePost,
   featurePost,
+  getFeaturedPost,
   viewPost,
   likePost,
   delPost,
 } = require("../controllers/posts");
 
 postRouter.get("/", getPosts);
+postRouter.get("/featured/post", getFeaturedPost);
 postRouter.get("/:id", getPost);
 postRouter.post(
   "/",

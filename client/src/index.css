@@ -42,7 +42,7 @@ button {
 }
 
 .loading-container {
-  background-color: #000;
+  background-color: #f5f5f5;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -629,6 +629,10 @@ nav .links-container {
   margin: 2rem 0;
 }
 .apost_container .wrapper .postImg {
+  height: 200px;
+  width: 200px;
+  background-position: center;
+  background-size: cover;
   flex-basis: 29%;
   border-radius: 5px;
 }
@@ -637,18 +641,27 @@ nav .links-container {
 }
 .apost_container .wrapper .entry_header .info {
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  max-width: 600px;
+  background-color: #fff;
+  max-width: 280px;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0px 2px 8px rgba(217, 216, 216, 0.593);
 }
 .apost_container .wrapper .entry_header .info .img {
-  flex-basis: 8%;
+  height: 40px;
+  width: 40px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
 }
 .apost_container .wrapper .entry_header .info .detail {
-  flex-basis: 90%;
+  margin-left: 0.5rem;
 }
 .apost_container .wrapper .entry_header .info .detail b {
   display: block;
+  line-height: 1;
+  margin-bottom: 0;
 }
 .apost_container .wrapper .entry_header .description h1 {
   font-size: 30px;

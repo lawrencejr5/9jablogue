@@ -272,9 +272,9 @@ export const ContextApp = ({ children }) => {
   const getFeaturedPost = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`${endpoint}/posts?featured=${true}`);
+      const { data } = await axios.get(`${endpoint}/posts/featured/post`);
       setLoading(false);
-      setFeaturedPost(data.posts);
+      setFeaturedPost(data.post);
     } catch (err) {
       setLoading(false);
       console.log(err);

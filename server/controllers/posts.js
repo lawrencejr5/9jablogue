@@ -19,12 +19,23 @@ const getPosts = async (req, res) => {
   }
 };
 
+const getFeaturedPost = async (req, res) => {
+  try {
+    const post = await Post.findOne({ featured: true })
+      .populate("categories", "category")
+      .populate("author", "username");
+    res.status(200).json({ msg: "success", post });
+  } catch (err) {
+    res.status(500).json({ msg: "an error ocurred", err });
+  }
+};
+
 const getPost = async (req, res) => {
   try {
     const { id } = req.params;
     const post = await Post.findById(id).populate(
       "author",
-      "username profIlePic"
+      "username profilePic"
     );
 
     res.status(200).json({ msg: "success", post });
@@ -141,6 +152,7 @@ module.exports = {
   createPost,
   updatePost,
   featurePost,
+  getFeaturedPost,
   viewPost,
   likePost,
   delPost,
