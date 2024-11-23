@@ -113,7 +113,7 @@ const likePost = async (req, res) => {
       { likes: (post.likes += 1) },
       { runValidators: true, new: true }
     );
-    res.status(200).json({ msg: "success", updatedPost });
+    res.status(200).json({ msg: "liked!", updatedPost });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }

@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { useGlobalContext } from "../context";
 
 const PostSingle = ({ data }) => {
-  const { fileEndpoint } = useGlobalContext();
+  const { fileEndpoint, viewPost } = useGlobalContext();
   const { title, desc, thumb, _id: id, categories, author, createdAt } = data;
   return (
     <div key={id} className="singlePost">
@@ -16,7 +16,7 @@ const PostSingle = ({ data }) => {
           backgroundImage: `url(${fileEndpoint}/${thumb})`,
         }}
       ></div>
-      <div className="content">
+      <div className="content" onClick={() => viewPost(id)}>
         <Link className="link" to={`/post/${id}`}>
           {categories.map((tag, index) => {
             return (

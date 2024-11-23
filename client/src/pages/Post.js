@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import Navbaek from "../components/Navbaek";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
+import Notification from "../components/Notification";
 
 import { useGlobalContext } from "../context";
 
@@ -15,6 +16,8 @@ const Post = () => {
     singlePost: newPost,
     loading,
     fileEndpoint,
+    likePost,
+    notification,
   } = useGlobalContext();
 
   const { id } = useParams();
@@ -23,11 +26,16 @@ const Post = () => {
     getPost(id);
   }, []);
 
+  const like = async (id) => {
+    await likePost(id);
+  };
+
   return (
     <>
       {loading && <Loading />}
       <main>
         <Navbaek />
+        <Notification notification={notification} />
         <section className="apost_container">
           <aside className="breadcrumb">
             9jablogue &rarr; Post &rarr; {newPost.title}
@@ -66,11 +74,11 @@ const Post = () => {
           </article>
           <div className="reactions">
             <span>
-              8&nbsp;
+              {newPost.views}&nbsp;
               <FaRegEye />
             </span>
             <span>
-              5&nbsp;
+              {newPost.likes === 0 ? "" : newPost.likes}&nbsp;
               <FaRegHeart />
             </span>
           </div>
@@ -79,7 +87,7 @@ const Post = () => {
             dangerouslySetInnerHTML={{ __html: newPost.body }}
           />
           <div className="floating_like_btn">
-            <button>
+            <button onClick={() => like(id)}>
               <FaRegHeart />
             </button>
           </div>

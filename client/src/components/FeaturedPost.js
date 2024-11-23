@@ -36,7 +36,7 @@ const FeaturedPost = ({ data }) => {
         <small>
           <Link className="post_by">
             <img
-              src={`${fileEndpoint}/${data.author.profilePic}`}
+              src={`${fileEndpoint}/${data.author && data.author.profilePic}`}
               width="20px"
               height="20px"
               alt=""
@@ -47,7 +47,7 @@ const FeaturedPost = ({ data }) => {
           <span className="date">
             <FaCalendar />
             &nbsp;
-            {format(data.createdAt && data.createdAt, "PP")}
+            {data.createdAt && format(data.createdAt, "PP")}
           </span>
         </small>
       </div>

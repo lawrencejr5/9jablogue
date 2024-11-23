@@ -20,6 +20,7 @@ const Home = () => {
     posts,
     getPosts,
     categories,
+    viewPost,
     featuredPost,
     getFeaturedPost,
   } = useGlobalContext();

@@ -340,6 +340,50 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const likePost = async (id) => {
+    try {
+      const { data } = await axios.patch(
+        `${endpoint}/posts/like/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setNotification({ text: data.msg, theme: "success", status: true });
+      await getPost(id);
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      setNotification({ text: data.msg, theme: "danger", status: true });
+      console.log(err);
+    }
+  };
+
+  const viewPost = async (id) => {
+    try {
+      const { data } = await axios.patch(
+        `${endpoint}/posts/view/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      await getPost(id);
+    } catch (err) {
+      const {
+        response: { data },
+      } = err;
+      setBtnLoad(false);
+      console.log(err);
+    }
+  };
+
   const createPost = async (formData) => {
     setBtnLoad(true);
     try {
@@ -569,6 +613,8 @@ export const ContextApp = ({ children }) => {
         getCategoryPosts,
         createPost,
         featurePost,
+        likePost,
+        viewPost,
         updatePost,
         deletePost,
         userPosts,
