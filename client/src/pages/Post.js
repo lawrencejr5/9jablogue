@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { FaRegHeart, FaRegEye, FaHeart } from "react-icons/fa";
 import { format } from "date-fns";
 
 import Navbaek from "../components/Navbaek";
@@ -63,10 +64,25 @@ const Post = () => {
               </div>
             </div>
           </article>
+          <div className="reactions">
+            <span>
+              8&nbsp;
+              <FaRegEye />
+            </span>
+            <span>
+              5&nbsp;
+              <FaRegHeart />
+            </span>
+          </div>
           <article
             className="content"
             dangerouslySetInnerHTML={{ __html: newPost.body }}
           />
+          <div className="floating_like_btn">
+            <button>
+              <FaRegHeart />
+            </button>
+          </div>
         </section>
         <Footer />
       </main>

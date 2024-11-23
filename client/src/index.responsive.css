@@ -132,12 +132,7 @@
   .apost_container .wrapper .entry_header .info {
     max-width: 100%;
   }
-  .apost_container .wrapper .entry_header .info .img {
-    flex-basis: 9%;
-  }
-  .apost_container .wrapper .entry_header .info .detail {
-    flex-basis: 90%;
-  }
+
   .categs {
     grid-template-columns: 1fr;
   }
@@ -207,12 +202,7 @@
   .banner {
     height: 70vh;
   }
-  .apost_container .wrapper .entry_header .info .img {
-    flex-basis: 10%;
-  }
-  .apost_container .wrapper .entry_header .info .detail {
-    flex-basis: 89%;
-  }
+
   .posts .singlePost-container .singlePost {
     margin: 1rem 0;
   }

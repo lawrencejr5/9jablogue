@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaCalendar } from "react-icons/fa";
+import { format } from "date-fns";
 
 import { useGlobalContext } from "../context";
 
@@ -31,6 +33,23 @@ const FeaturedPost = ({ data }) => {
           {data.desc && desc.slice(0, 100)}
           {data.desc && desc.length > 100 && "..."}
         </p>
+        <small>
+          <Link className="post_by">
+            <img
+              src={`${fileEndpoint}/${data.author.profilePic}`}
+              width="20px"
+              height="20px"
+              alt=""
+            />
+            &nbsp;
+            {data.author && data.author.username}
+          </Link>
+          <span className="date">
+            <FaCalendar />
+            &nbsp;
+            {format(data.createdAt && data.createdAt, "PP")}
+          </span>
+        </small>
       </div>
     </div>
   );

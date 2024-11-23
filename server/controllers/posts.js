@@ -12,7 +12,7 @@ const getPosts = async (req, res) => {
 
     const posts = await Post.find(queryObj)
       .populate("categories", "category")
-      .populate("author", "username");
+      .populate("author", "username profilePic");
     res.status(200).json({ msg: "success", rowCount: posts.length, posts });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
@@ -23,7 +23,7 @@ const getFeaturedPost = async (req, res) => {
   try {
     const post = await Post.findOne({ featured: true })
       .populate("categories", "category")
-      .populate("author", "username");
+      .populate("author", "username profilePic");
     res.status(200).json({ msg: "success", post });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
