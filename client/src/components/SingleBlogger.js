@@ -1,26 +1,54 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+import { useGlobalContext } from "../context";
 
 const SingleBlogger = ({ data }) => {
-  const { username, fullname, img, bio } = data;
-
-  const navigate = useNavigate();
+  const { fileEndpoint } = useGlobalContext();
+  const {
+    _id: id,
+    username,
+    fullname,
+    profilePic,
+    socials: { facebook, twitter, instagram, linkedin },
+  } = data;
 
   return (
-    <div className="layout" onClick={() => navigate(`/bloggers/${username}`)}>
-      <div className="img" style={{ backgroundImage: `url(${img})` }}></div>
+    <Link className="layout" to={`/bloggers/${id}`}>
+      <div
+        className="img"
+        style={{ backgroundImage: `url(${fileEndpoint}/${profilePic})` }}
+      ></div>
       <div className="content">
         <strong>{fullname}</strong>
         <br />
         <span style={{ color: "green" }}>@{username}</span>
         <br />
         <span className="socials">
-          <FaFacebook className="icon" /> <FaInstagram className="icon" />{" "}
-          <FaTwitter className="icon" />
+          {facebook && (
+            <a href={facebook} className="social">
+              <FaFacebook className="icon" />
+            </a>
+          )}
+          {instagram && (
+            <a href={instagram} className="social">
+              <FaInstagram className="icon" />
+            </a>
+          )}
+          {twitter && (
+            <a href={twitter} className="social">
+              <FaTwitter className="icon" />
+            </a>
+          )}
+          {linkedin && (
+            <a href={linkedin} className="social">
+              <FaLinkedin className="icon" />
+            </a>
+          )}
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

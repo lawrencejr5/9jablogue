@@ -39,19 +39,17 @@ const CategoryPosts = () => {
       <section className="cat_posts_container">
         <article className="header">
           <div className="header-center">
-            <h1>{category.category}</h1>
             <div
+              className="img"
               style={{
-                height: "200px",
-                width: "200px",
-                borderRadius: "50%",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                margin: "auto",
-                backgroundImage: `url(${fileEndpoint}/${category.img})`,
+                backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${fileEndpoint}/${category.img})`,
               }}
-            ></div>
-            <p>{category.description}</p>
+            >
+              <div>
+                <h1>{category.category}</h1>
+                <p>{category.description}</p>
+              </div>
+            </div>
           </div>
         </article>
         <article className="cat_posts">

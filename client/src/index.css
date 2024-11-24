@@ -606,7 +606,6 @@ nav .links-container {
   padding: 1rem 2rem;
 }
 .posts.featured .post .img {
-  background-image: url(/public/imgs/tope-a-asokere-aWc0hP9OoVI-unsplash.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -624,7 +623,9 @@ nav .links-container {
 .posts.featured .post .content h1 {
   margin: 0;
   font-size: 50px;
+  text-transform: capitalize;
 }
+
 .posts.featured .post .content .link button {
   margin: 0.2rem;
   border-radius: 2px;
@@ -772,6 +773,7 @@ nav .links-container {
 .bloggers-container {
   padding: 4rem 1rem;
   width: 100%;
+  min-height: 70vh;
 }
 .bloggers-container .header {
   display: grid;
@@ -782,18 +784,18 @@ nav .links-container {
 }
 
 .bloggers-container .body {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 .bloggers-container .body .layout {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
   width: 100%;
-  max-width: 300px;
   padding: 0.5rem;
-  margin: 1rem;
+  margin: 1rem 0;
+  border: 1px solid rgb(193, 193, 193);
+  border-radius: 10px;
+  text-decoration: none;
 }
 .bloggers-container .body .layout .img {
   background-size: cover;
@@ -802,9 +804,14 @@ nav .links-container {
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  margin-right: 2rem;
 }
 .bloggers-container .body .layout .content {
   margin-top: 1rem;
+}
+.bloggers-container .body .layout .content strong {
+  text-transform: capitalize;
+  color: #000;
 }
 .bloggers-container .body .layout .content .socials {
   margin-top: 0.5rem;
@@ -813,6 +820,9 @@ nav .links-container {
 .bloggers-container .body .layout .content .socials .icon {
   margin-right: 1rem;
 }
+.bloggers-container .body .layout .content .socials .social {
+  color: #000;
+}
 
 .blogger-post-container {
   padding: 4rem 1rem;
@@ -820,6 +830,25 @@ nav .links-container {
 .blogger-post-container .header .header-center {
   display: grid;
   place-items: center;
+}
+.blogger-post-container .header .header-center h1 {
+  margin: 0;
+}
+.blogger-post-container .header .header-center span {
+  margin-bottom: 2rem;
+}
+.blogger-post-container .header .header-center .img {
+  height: 250px;
+  width: 90%;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  margin: auto;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  text-transform: capitalize;
+  font-size: 45px;
 }
 
 .all-posts-container {
@@ -921,6 +950,7 @@ nav .links-container {
 
 .cat_posts_container {
   padding: 3rem 1rem;
+  min-height: 70vh;
 }
 .cat_posts_container .header {
   width: 100%;
@@ -930,13 +960,28 @@ nav .links-container {
 }
 .cat_posts_container .header .header-center {
   width: 100%;
-  max-width: 600px;
 }
-.cat_posts_container .header h1 {
-  font-size: 30px;
+.cat_posts_container .header .header-center .img {
+  height: 250px;
+  width: 90%;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  margin: 1rem auto;
+  color: #fff;
+  display: grid;
+  place-items: center;
   text-transform: capitalize;
 }
-.cat_posts_container .header p::first-letter {
+.cat_posts_container .header .header-center .img h1 {
+  font-size: 35px;
+  margin: 0;
+  text-transform: capitalize;
+}
+.cat_posts_container .header .header-center .img p {
+  font-size: larger;
+}
+.cat_posts_container .header .header-center .img p::first-letter {
   text-transform: capitalize;
 }
 .cat_posts .cat_posts_header {

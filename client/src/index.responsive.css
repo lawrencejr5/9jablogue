@@ -8,6 +8,12 @@
   }
 }
 @media only screen and (max-width: 1200px) {
+  .posts.featured .post .img {
+    width: 80%;
+  }
+  .posts.featured .post .content h1 {
+    font-size: 35px;
+  }
   .singlePost-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -31,8 +37,8 @@
   .posts.featured .post {
     width: 100%;
   }
-  .bloggers-container .body .layout {
-    max-width: 250px;
+  .blogger-post-container .header .header-center .img {
+    font-size: 25px;
   }
 }
 @media only screen and (max-width: 912px) {
@@ -48,15 +54,11 @@
   .posts.featured .post .img {
     height: 250px;
   }
-
   .posts.featured .post .content h1 {
     font-size: 30px;
   }
 }
 @media only screen and (max-width: 880px) {
-  .bloggers-container .body .layout {
-    max-width: 200px;
-  }
   .admin-main.dashboard .categories form {
     grid-template-columns: 1fr 1fr;
   }
@@ -104,6 +106,9 @@
     margin: 0;
     font-size: 30px;
   }
+  .blogger-post-container .header .header-center .img {
+    font-size: 20px;
+  }
   .login-container {
     grid-template-columns: 1fr 0.5fr;
   }
@@ -141,13 +146,6 @@
     padding: 0.5rem 1rem;
     margin: 1rem 0.5rem;
   }
-  .bloggers-container .body {
-    grid-template-columns: 1fr 1fr;
-    width: 95%;
-  }
-  .bloggers-container .body .layout {
-    max-width: 250px;
-  }
   .admin-main.dashboard .layouts .layout {
     max-width: 90%;
   }
@@ -161,12 +159,6 @@
 }
 
 @media only screen and (max-width: 598px) {
-  .bloggers-container .body {
-    grid-template-columns: 1fr 1fr;
-  }
-  .bloggers-container .body .layout {
-    max-width: 200px;
-  }
   .admin-main.my-posts .posts-container .post {
     display: block;
     height: 100%;
@@ -216,24 +208,22 @@
   .singlePost-container {
     margin: 0rem;
   }
+  .cat_posts_container .header .header-center .img {
+    height: 180px;
+  }
+  .cat_posts_container .header .header-center .img h1 {
+    font-size: 25px;
+  }
+  .cat_posts_container .header .header-center .img p {
+    font-size: 16px;
+  }
   .all-posts-container .header .header-center .inp-holder {
     padding: 0.4rem 1rem;
   }
   .all-posts-container .header .header-center .inp-holder input {
     font-size: medium;
   }
-  .bloggers-container .body {
-    grid-template-columns: 1fr;
-  }
-  .bloggers-container .body .layout {
-    background-color: #fff;
-    box-shadow: 0px 2px 12px rgba(209, 205, 205, 0.741);
-    border-radius: 8px;
-  }
-  .bloggers-container .body .layout {
-    max-width: 100%;
-    margin: 1rem 0rem;
-  }
+
   .login-container {
     grid-template-columns: 1fr 0.2fr;
   }
@@ -255,6 +245,10 @@
   }
   .news-letter form button {
     font-size: 12px;
+  }
+  .blogger-post-container .header .header-center .img {
+    font-size: 16px;
+    height: 150px;
   }
 }
 

@@ -15,9 +15,11 @@ export const ContextApp = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [featuredPost, setFeaturedPost] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
+  const [bloggerPosts, setBloggerPosts] = useState([]);
   const [categoryPosts, setCategoryPosts] = useState([]);
   const [singlePost, setSinglePost] = useState([]);
   const [bloggers, setBloggers] = useState([]);
+  const [blogger, setBlogger] = useState({});
 
   const [userTotalLikes, setUserTotalLikes] = useState(0);
   const [userTotalViews, setUserTotalViews] = useState(0);
@@ -439,6 +441,30 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const getBlogger = async (id) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/authors/${id}`);
+      setLoading(false);
+      setBlogger(data.author);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  const getBloggerPosts = async (id) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts?user=${id}`);
+      setLoading(false);
+      setBloggerPosts(data.posts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   const getUser = async () => {
     setLoading(true);
     try {
@@ -623,7 +649,11 @@ export const ContextApp = ({ children }) => {
         singlePost,
         //
         getBloggers,
+        getBlogger,
+        getBloggerPosts,
+        blogger,
         bloggers,
+        bloggerPosts,
         signedInUser,
         updateUser,
         deleteUser,

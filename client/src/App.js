@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
 import CategoryPosts from "./pages/CategoryPosts";
@@ -20,11 +22,12 @@ import MyPosts from "./pages/admin/MyPosts";
 import Account from "./pages/admin/Account";
 import EditPost from "./pages/admin/EditPost";
 import Super from "./pages/admin/Super";
+import Application from "./pages/admin/Application";
 
 import ErrorPage from "./pages/Error";
+
+// Components
 import ScrollTop from "./components/ScrollTop";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Application from "./pages/admin/Application";
 
 const App = () => {
   return (
@@ -41,8 +44,10 @@ const App = () => {
           <Route path="/bloggers/:name" element={<BloggerPosts />} />
           <Route path="/posts/" element={<Posts />} />
           <Route path="/post/:id" element={<Post />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route path="/application" element={<Application />} />
           <Route path="/admin/" element={<Dashboard />} />
           <Route path="/admin/super" element={<Super />} />
@@ -50,6 +55,7 @@ const App = () => {
           <Route path="admin/write/" element={<Write />} />
           <Route path="admin/edit-post/:id" element={<EditPost />} />
           <Route path="admin/account/" element={<Account />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>

@@ -33,7 +33,7 @@ const PostSingle = ({ data }) => {
             {desc.length > 100 && "..."}
           </p>
           <small>
-            <Link className="post_by">
+            <Link className="post_by" to={`/bloggers/${author._id}`}>
               <img
                 src={`${fileEndpoint}/${author.profilePic}`}
                 width="20px"

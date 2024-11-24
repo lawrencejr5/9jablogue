@@ -34,7 +34,10 @@ const FeaturedPost = ({ data }) => {
           {data.desc && desc.length > 100 && "..."}
         </p>
         <small>
-          <Link className="post_by">
+          <Link
+            className="post_by"
+            to={`/bloggers/${data.author && data.author._id}`}
+          >
             <img
               src={`${fileEndpoint}/${data.author && data.author.profilePic}`}
               width="20px"
