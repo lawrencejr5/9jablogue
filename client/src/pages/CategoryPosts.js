@@ -9,9 +9,6 @@ import Loading from "../components/Loading";
 
 import { useParams } from "react-router-dom";
 
-import { posts } from "../data/posts";
-import { catgories } from "../data/categories";
-
 const CategoryPosts = () => {
   const {
     loading,
@@ -27,7 +24,7 @@ const CategoryPosts = () => {
   useEffect(() => {
     getCategory(name);
     getCategoryPosts(name);
-  }, []);
+  }, [name]);
 
   if (loading) {
     return <Loading />;

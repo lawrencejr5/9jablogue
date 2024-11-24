@@ -135,12 +135,11 @@ export const ContextApp = ({ children }) => {
         }
         return newNum;
       });
-      // console.log(duks);
     }, 10000);
     return () => {
       clearInterval(myInterval);
     };
-  }, []);
+  }, [duks]);
 
   // Category
   const getCategories = async () => {

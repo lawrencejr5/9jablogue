@@ -17,7 +17,7 @@ const Duks = () => {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value;
     setInput((prev) => {
       return { ...prev, [name]: value };
     });

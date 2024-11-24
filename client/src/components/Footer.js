@@ -7,6 +7,7 @@ import NewsLetter from "./NewsLetterForm";
 import { catgories } from "../data/categories";
 
 const Footer = () => {
+  const { categories } = useGlobalContext();
   return (
     <footer>
       <Logo />
@@ -25,10 +26,10 @@ const Footer = () => {
         </div>
         <div className="tags">
           <h3>Tags</h3>
-          {catgories.map((cat, index) => {
+          {categories.map((cat, index) => {
             return (
-              <Link className="tag" to={`/categories/${cat.name}`} key={index}>
-                {cat.name}
+              <Link className="tag" to={`/categories/${cat._id}`} key={index}>
+                {cat.category}
               </Link>
             );
           })}

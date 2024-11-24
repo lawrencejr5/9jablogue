@@ -159,6 +159,13 @@
 }
 
 @media only screen and (max-width: 598px) {
+  .banner .banner-center h1 {
+    margin-bottom: 0;
+    font-size: 40px;
+  }
+  .banner .banner-center em {
+    font-size: 18px;
+  }
   .admin-main.my-posts .posts-container .post {
     display: block;
     height: 100%;
@@ -259,9 +266,6 @@
 }
 
 @media only screen and (max-width: 390px) {
-  .banner span {
-    font-size: 20px;
-  }
   .news-letter form input {
     font-size: 10px;
     max-width: 240px;
