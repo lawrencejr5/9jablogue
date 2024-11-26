@@ -13,6 +13,7 @@ export const ContextApp = ({ children }) => {
   const [category, setCategory] = useState([]);
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
   const [featuredPost, setFeaturedPost] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
   const [bloggerPosts, setBloggerPosts] = useState([]);
@@ -234,10 +235,22 @@ export const ContextApp = ({ children }) => {
   };
 
   // Posts
-  const getPosts = async () => {
+  const getAllPosts = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(`${endpoint}/posts`);
+      setLoading(false);
+      setAllPosts(data.posts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  const getPosts = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/posts?status=1`);
       setLoading(false);
       setPosts(data.posts);
     } catch (err) {
@@ -261,7 +274,9 @@ export const ContextApp = ({ children }) => {
   const getCategoryPosts = async (id) => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`${endpoint}/posts?category=${id}`);
+      const { data } = await axios.get(
+        `${endpoint}/posts?category=${id}&status=1`
+      );
       setLoading(false);
       setCategoryPosts(data.posts);
     } catch (err) {
@@ -307,6 +322,7 @@ export const ContextApp = ({ children }) => {
       setNotification({ text: data.msg, theme: "success", status: true });
       await getUserPosts();
       await getPosts();
+      await getAllPosts();
     } catch (err) {
       const {
         response: { data },
@@ -331,6 +347,7 @@ export const ContextApp = ({ children }) => {
       setNotification({ text: data.msg, theme: "success", status: true });
       await getUserPosts();
       await getPosts();
+      await getAllPosts();
     } catch (err) {
       const {
         response: { data },
@@ -396,7 +413,9 @@ export const ContextApp = ({ children }) => {
       });
 
       setNotification({ text: data.msg, theme: "success", status: true });
-      getPosts();
+      await getPosts();
+      await getAllPosts();
+
       setBtnLoad(false);
     } catch (err) {
       const {
@@ -417,7 +436,8 @@ export const ContextApp = ({ children }) => {
         },
       });
       setNotification({ text: data.msg, theme: "success", status: true });
-      getPosts();
+      await getPosts();
+      await getAllPosts();
     } catch (err) {
       const {
         response: { data },
@@ -455,7 +475,7 @@ export const ContextApp = ({ children }) => {
   const getBloggerPosts = async (id) => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`${endpoint}/posts?user=${id}`);
+      const { data } = await axios.get(`${endpoint}/posts?user=${id}&status=1`);
       setLoading(false);
       setBloggerPosts(data.posts);
     } catch (err) {
@@ -631,6 +651,8 @@ export const ContextApp = ({ children }) => {
         updateCategory,
         //
         posts,
+        allPosts,
+        getAllPosts,
         getPosts,
         getPost,
         getFeaturedPost,

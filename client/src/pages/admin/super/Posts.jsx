@@ -17,7 +17,12 @@ import DelPost from "../../../components/modals/DelPost";
 const Posts = () => {
   const navigate = useNavigate();
 
-  const { posts, updatePost, featurePost, btnLoad } = useGlobalContext();
+  const {
+    allPosts: posts,
+    updatePost,
+    featurePost,
+    btnLoad,
+  } = useGlobalContext();
 
   const [currPost, setCurrPost] = useState([]);
   const [delPostClosed, setDelPostClosed] = useState(true);

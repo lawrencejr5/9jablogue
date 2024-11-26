@@ -71,7 +71,7 @@ const Home = () => {
         <section className="posts">
           <h1 className="header">Latest posts</h1>
           <article className="singlePost-container">
-            {posts.slice(0, 3).map((post, key) => {
+            {posts.slice(0, 6).map((post, key) => {
               return <PostSingle key={key} data={post} />;
             })}
           </article>

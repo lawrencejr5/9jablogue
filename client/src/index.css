@@ -501,6 +501,7 @@ nav .links-container {
   margin: 1rem;
   border-radius: 30px;
   text-transform: capitalize;
+  cursor: pointer;
   color: #074d07;
   text-decoration: none;
   box-shadow: 0px 8px 24px rgba(209, 205, 205, 0.741);

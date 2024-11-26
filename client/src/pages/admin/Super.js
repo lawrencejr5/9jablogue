@@ -16,7 +16,7 @@ import { useGlobalContext } from "../../context";
 
 const Super = () => {
   const {
-    getPosts,
+    getAllPosts,
     getDuks,
     getBloggers,
     getCategories,
@@ -27,7 +27,7 @@ const Super = () => {
   useEffect(() => {
     getDuks();
     getCategories();
-    getPosts();
+    getAllPosts();
     getBloggers();
   }, []);
 
