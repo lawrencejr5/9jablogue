@@ -20,6 +20,76 @@ const getPosts = async (req, res) => {
   }
 };
 
+const searchPosts = async (req, res) => {
+  try {
+    const { query } = req.query;
+
+    const posts = await Post.find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { desc: { $regex: query, $options: "i" } },
+      ],
+    })
+      .populate("categories", "category")
+      .populate("author", "username profilePic");
+
+    // const posts = await Post.aggregate([
+    //   {
+    //     $lookup: {
+    //       from: "categories",
+    //       as: "categories",
+    //       localField: "categories",
+    //       foreignField: "_id",
+    //     },
+    //   },
+    //   {
+    //     $lookup: {
+    //       from: "authors",
+    //       as: "author",
+    //       localField: "author",
+    //       foreignField: "_id",
+    //     },
+    //   },
+    //   {
+    //     $match: {
+    //       $or: [
+    //         { title: { $regex: query, $options: "i" } },
+    //         { desc: { $regex: query, $options: "i" } },
+    //         { "categories.category": { $regex: query, $options: "i" } },
+    //         { "author.username": { $regex: query, $options: "i" } },
+    //       ],
+    //     },
+    //   },
+    //   {
+    //     $addFields: {
+    //       categories: {
+    //         $map: {
+    //           input: "$categoriesDetails",
+    //           as: "category",
+    //           in: { _id: "$$category._id", category: "$$category.category" },
+    //         },
+    //       },
+    //       author: {
+    //         $arrayElemAt: [
+    //           {
+    //             _id: { $arrayElemAt: ["$authorDetails._id", 0] },
+    //             username: { $arrayElemAt: ["$authorDetails.username", 0] },
+    //             profilePic: { $arrayElemAt: ["$authorDetails.profilePic", 0] },
+    //           },
+    //           0,
+    //         ],
+    //       },
+    //     },
+    //   },
+    //   { $project: { categoriesDetails: 0, authorDetails: 0 } },
+    // ]);
+
+    res.status(200).json({ msg: "success", rowCount: posts.length, posts });
+  } catch (err) {
+    res.status(500).json({ msg: "an error ocurred", err });
+  }
+};
+
 const getFeaturedPost = async (req, res) => {
   try {
     const post = await Post.findOne({ featured: true })
@@ -149,6 +219,7 @@ const delPost = async (req, res) => {
 
 module.exports = {
   getPosts,
+  searchPosts,
   getPost,
   createPost,
   updatePost,

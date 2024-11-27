@@ -14,10 +14,12 @@ const {
   viewPost,
   likePost,
   delPost,
+  searchPosts,
 } = require("../controllers/posts");
 
 postRouter.get("/", getPosts);
 postRouter.get("/featured/post", getFeaturedPost);
+postRouter.get("/search/post", searchPosts);
 postRouter.get("/:id", getPost);
 postRouter.post(
   "/",

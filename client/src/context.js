@@ -309,6 +309,20 @@ export const ContextApp = ({ children }) => {
     }
   };
 
+  const searchPosts = async (query) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(
+        `${endpoint}/posts/search/post?query=${query}`
+      );
+      setLoading(false);
+      setPosts(data.posts);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   const updatePost = async (id, formdata) => {
     setBtnLoad(true);
     try {
@@ -655,6 +669,7 @@ export const ContextApp = ({ children }) => {
         getAllPosts,
         getPosts,
         getPost,
+        searchPosts,
         getFeaturedPost,
         getUserPosts,
         getCategoryPosts,
