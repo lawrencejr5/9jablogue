@@ -2,7 +2,7 @@ const Duk = require("../models/duk");
 
 const getDuks = async (req, res) => {
   try {
-    const duks = await Duk.find();
+    const duks = await Duk.find().sort("-createdAt");
     res.status(200).json({ msg: "success", duks });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });

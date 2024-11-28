@@ -13,7 +13,8 @@ const getPosts = async (req, res) => {
 
     const posts = await Post.find(queryObj)
       .populate("categories", "category")
-      .populate("author", "username profilePic");
+      .populate("author", "username profilePic")
+      .sort("-createdAt");
     res.status(200).json({ msg: "success", rowCount: posts.length, posts });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
@@ -31,7 +32,8 @@ const searchPosts = async (req, res) => {
       ],
     })
       .populate("categories", "category")
-      .populate("author", "username profilePic");
+      .populate("author", "username profilePic")
+      .sort("-createdAt");
 
     // const posts = await Post.aggregate([
     //   {

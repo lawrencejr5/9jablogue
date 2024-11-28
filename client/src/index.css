@@ -1233,6 +1233,31 @@ footer .news-letter {
   background-color: transparent;
   margin-right: 1rem;
 }
+.admin-main.dashboard table td .upload-btn {
+  background-color: #054e05;
+  color: #fff;
+  border-radius: 3px;
+  padding-top: 0.3rem;
+  text-align: center;
+}
+.admin-main.dashboard table td .status-warning {
+  background-color: #fbf0a9;
+  color: #998502;
+  border-radius: 10px;
+  padding: 0 0.4rem;
+}
+.admin-main.dashboard table td .status-success {
+  background-color: #a9fbcc;
+  color: #036c24;
+  border-radius: 10px;
+  padding: 0 0.4rem;
+}
+.admin-main.dashboard table td .status-danger {
+  background-color: #f8c2c2;
+  color: #920000;
+  border-radius: 10px;
+  padding: 0 0.4rem;
+}
 .admin-main.dashboard table td.post .content {
   margin-left: 1rem;
   width: 400px;

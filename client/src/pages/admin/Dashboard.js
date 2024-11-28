@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import {
   FaEye,
   FaThumbsUp,
-  FaShare,
   FaChartLine,
   FaEdit,
   FaTrash,
-  FaRegHeart,
   FaBars,
+  FaFileUpload,
+  FaCheckCircle,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 import AdminNav from "../../components/AdminNav";
 import Logo from "../../components/Logo";
 import AdminDd from "../../components/AdminDd";
 import DelPost from "../../components/modals/DelPost";
-
-import { posts } from "../../data/posts";
 
 import { useGlobalContext } from "../../context";
 
@@ -26,6 +25,7 @@ const Dashboard = () => {
   const {
     userPosts,
     getUserPosts,
+    updatePost,
     signedInUser,
     getUser,
     getUserTotalViews,
@@ -47,6 +47,13 @@ const Dashboard = () => {
   const delFunc = (post) => {
     setDelPostClosed(false);
     setCurrPost(post);
+  };
+
+  const uploadPost = async (id) => {
+    const formdata = {
+      status: 2,
+    };
+    await updatePost(id, formdata);
   };
 
   return (
@@ -103,9 +110,8 @@ const Dashboard = () => {
                 <th>
                   <FaThumbsUp className="icon" />
                 </th>
-                {/* <th>
-                  <FaShare className="icon" />
-                </th> */}
+                <th>Upload</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -136,16 +142,42 @@ const Dashboard = () => {
                         );
                       })}
                     </td>
-                    <td>{post.createdAt.split("T")[0]}</td>
+                    <td>{format(post.createdAt, "PPpp")}</td>
                     <td>
                       {post.views} <FaEye />
                     </td>
                     <td>
                       {post.likes} <FaThumbsUp />
                     </td>
-                    {/* <td>
-                      281 <FaShare />
-                    </td> */}
+                    <td>
+                      {!post.status ? (
+                        <button
+                          className="upload-btn"
+                          onClick={() => uploadPost(post._id)}
+                        >
+                          upload &nbsp;
+                          <FaFileUpload />
+                        </button>
+                      ) : (
+                        <button
+                          className="upload-btn"
+                          style={{ background: "#8383fe" }}
+                          disabled
+                        >
+                          uploaded &nbsp;
+                          <FaCheckCircle />
+                        </button>
+                      )}
+                    </td>
+                    <td>
+                      {!post.status ? (
+                        <span className="status-danger">not uploaded</span>
+                      ) : post.status === 1 ? (
+                        <span className="status-success">published</span>
+                      ) : (
+                        <span className="status-warning">pending...</span>
+                      )}
+                    </td>
                     <td>
                       <div className="actn-btns">
                         <button
