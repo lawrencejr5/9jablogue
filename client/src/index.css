@@ -1320,6 +1320,10 @@ footer .news-letter {
 .admin-main.dashboard .categories form {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 }
 .admin-main.dashboard .categories form .inp-holder {
   border: 1px solid #054e05;
@@ -1356,6 +1360,10 @@ footer .news-letter {
   display: flex;
   align-items: center;
   width: 70%;
+  padding-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 }
 .admin-main.dashboard .duks form .inp-holder {
   border: 1px solid #054e05;

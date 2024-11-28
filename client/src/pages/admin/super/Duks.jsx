@@ -99,7 +99,7 @@ const Duks = () => {
             {duks.map((duk, i) => {
               return (
                 <tr key={i}>
-                  <td>{duk._id}</td>
+                  <td>{i + 1}</td>
                   <td className="post">{duk.text}</td>
                   <td>
                     <div className="actn-btns">

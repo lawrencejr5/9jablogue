@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import { useGlobalContext } from "../../../context";
 
@@ -8,6 +9,7 @@ import DelCat from "../../../components/modals/DelCat";
 const Categories = () => {
   const { categories, createCategory, updateCategory, btnLoad, endpoint } =
     useGlobalContext();
+  const navigate = useNavigate();
 
   // Inputs
   const [input, setInput] = useState({
@@ -56,6 +58,7 @@ const Categories = () => {
   const editCategFunc = (categ) => {
     setCurrCateg(categ);
     setCategEditing(true);
+    navigate("#cat");
     setInput({
       ...input,
       category: categ.category,
@@ -80,7 +83,7 @@ const Categories = () => {
 
   return (
     <div className="categories">
-      <h1>Categories</h1>
+      <h1 id="cat">Categories</h1>
       <h3>
         Create category <FaPlus size={13} />
       </h3>

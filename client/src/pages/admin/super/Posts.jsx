@@ -39,7 +39,7 @@ const Posts = () => {
   };
   const disApprovePost = async (id) => {
     const formdata = {
-      status: 0,
+      status: 2,
     };
     await updatePost(id, formdata);
   };
@@ -67,6 +67,7 @@ const Posts = () => {
                 <FaThumbsUp className="icon" />
               </th>
               <th>Actions</th>
+              <th>Status</th>
               <th>Approve</th>
             </tr>
           </thead>
@@ -130,6 +131,15 @@ const Posts = () => {
                   </td>
                   <td>
                     {!post.status ? (
+                      <span className="status-danger">not uploaded</span>
+                    ) : post.status === 1 ? (
+                      <span className="status-success">published</span>
+                    ) : (
+                      <span className="status-warning">pending...</span>
+                    )}
+                  </td>
+                  <td>
+                    {!post.status || post.status === 2 ? (
                       <button
                         id="approve-btn"
                         onClick={() => {
