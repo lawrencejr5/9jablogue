@@ -7,7 +7,7 @@ import { useGlobalContext } from "../../../context";
 import DelCat from "../../../components/modals/DelCat";
 
 const Categories = () => {
-  const { categories, createCategory, updateCategory, btnLoad, endpoint } =
+  const { categories, createCategory, updateCategory, btnLoad, fileEndpoint } =
     useGlobalContext();
   const navigate = useNavigate();
 
@@ -147,7 +147,7 @@ const Categories = () => {
                     <div
                       className="img"
                       style={{
-                        backgroundImage: `url(${endpoint}/uploads/${categ.img})`,
+                        backgroundImage: `url(${fileEndpoint}/${categ.img})`,
                       }}
                     ></div>
                     <div className="content">

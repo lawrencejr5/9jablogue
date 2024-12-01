@@ -8,7 +8,7 @@ import EditUsr from "../../../components/modals/EditUsr";
 import Application from "../../../components/modals/Application";
 
 const Users = () => {
-  const { bloggers, updateUser, btnLoad } = useGlobalContext();
+  const { bloggers, updateUser, btnLoad, fileEndpoint } = useGlobalContext();
 
   const [delUsrClosed, setDelUsrClosed] = useState(true);
   const [editUsrClosed, setEditUsrClosed] = useState(true);
@@ -78,7 +78,7 @@ const Users = () => {
                     <div
                       className="img"
                       style={{
-                        backgroundImage: `url(http://localhost:5000/api/v1/uploads/${blogger.profilePic})`,
+                        backgroundImage: `url(${fileEndpoint}/${blogger.profilePic})`,
                       }}
                     ></div>
                     <div className="content">

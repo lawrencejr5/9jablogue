@@ -22,6 +22,7 @@ const Posts = () => {
     updatePost,
     featurePost,
     btnLoad,
+    fileEndpoint,
   } = useGlobalContext();
 
   const [currPost, setCurrPost] = useState([]);
@@ -79,7 +80,7 @@ const Posts = () => {
                     <div
                       className="img"
                       style={{
-                        backgroundImage: `url(http://localhost:5000/api/v1/uploads/${post.thumb})`,
+                        backgroundImage: `url(${fileEndpoint}/${post.thumb})`,
                       }}
                     ></div>
                     <div className="content">

@@ -15,7 +15,7 @@ const MyPosts = () => {
   const navigate = useNavigate();
 
   const [delClosed, setDelClosed] = useState(true);
-  const { getUserPosts, userPosts } = useGlobalContext();
+  const { getUserPosts, userPosts, fileEndpoint } = useGlobalContext();
 
   useEffect(() => {
     getUserPosts();
@@ -37,7 +37,7 @@ const MyPosts = () => {
                 className="thumb"
                 onClick={() => navigate(`/post/${post._id}`)}
                 style={{
-                  backgroundImage: `url(http://localhost:5000/api/v1/uploads/${post.thumb})`,
+                  backgroundImage: `url(${fileEndpoint}/${post.thumb})`,
                 }}
               ></div>
               <div className="content">
