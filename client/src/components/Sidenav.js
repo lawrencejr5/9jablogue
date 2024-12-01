@@ -17,7 +17,7 @@ const Sidenav = () => {
             <FaTimes />
           </button>
         </div>
-        {links.map((link, index) => {
+        {links.slice(0, 6).map((link, index) => {
           const { name, linkto, icon } = link;
           return (
             <Link

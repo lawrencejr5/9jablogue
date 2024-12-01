@@ -28,7 +28,7 @@ const getAuthor = async (req, res) => {
   try {
     const { id } = req.params;
     const author = await Author.findById(id);
-    res.status(200).json({ msg: "success", author });
+    res.status(200).json({ msg: "success", author, admin: author.admin });
   } catch (err) {
     res.status(500).json({ msg: "an error ocurred", err });
   }

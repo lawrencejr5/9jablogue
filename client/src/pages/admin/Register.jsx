@@ -76,101 +76,103 @@ const Register = () => {
     }
   };
   return (
-    <main className="login-container">
-      <form onSubmit={handleSubmit}>
-        <div className="inp-handler">
-          <Notification notification={notification} />
-          <Logo />
-          <div className="inp-holder">
-            <FaUser />
-            <input
-              type="text"
-              name="fullname"
-              value={input.fullname}
-              onChange={handleChange}
-              placeholder="fullname"
-            />
-          </div>
-          <div className="inp-holder">
-            <FaUser />
-            <input
-              type="text"
-              name="username"
-              value={input.username}
-              onChange={handleChange}
-              placeholder="username"
-            />
-          </div>
-          <div className="inp-holder">
-            <FaEnvelope />
-            <input
-              type="email"
-              name="email"
-              value={input.email}
-              onChange={handleChange}
-              placeholder="email"
-            />
-          </div>
+    <>
+      <Notification notification={notification} />
+      <main className="login-container">
+        <form onSubmit={handleSubmit}>
+          <div className="inp-handler">
+            <Logo />
+            <div className="inp-holder">
+              <FaUser />
+              <input
+                type="text"
+                name="fullname"
+                value={input.fullname}
+                onChange={handleChange}
+                placeholder="fullname"
+              />
+            </div>
+            <div className="inp-holder">
+              <FaUser />
+              <input
+                type="text"
+                name="username"
+                value={input.username}
+                onChange={handleChange}
+                placeholder="username"
+              />
+            </div>
+            <div className="inp-holder">
+              <FaEnvelope />
+              <input
+                type="email"
+                name="email"
+                value={input.email}
+                onChange={handleChange}
+                placeholder="email"
+              />
+            </div>
 
-          <div className="inp-holder">
-            <FaLock />
-            <input
-              type={show ? "text" : "password"}
-              name="password"
-              value={input.password}
-              onChange={handleChange}
-              placeholder="password"
-            />
-            {input.password.length ? (
-              show ? (
-                <FaRegEyeSlash onClick={handleShow} />
+            <div className="inp-holder">
+              <FaLock />
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                value={input.password}
+                onChange={handleChange}
+                placeholder="password"
+              />
+              {input.password.length ? (
+                show ? (
+                  <FaRegEyeSlash onClick={handleShow} />
+                ) : (
+                  <FaEye onClick={handleShow} />
+                )
               ) : (
-                <FaEye onClick={handleShow} />
-              )
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="inp-holder">
-            <FaLock />
-            <input
-              type={show ? "text" : "password"}
-              name="cPassword"
-              value={input.cPassword}
-              onChange={handleChange}
-              placeholder="confirm password"
-            />
-            {input.cPassword.length ? (
-              show ? (
-                <FaRegEyeSlash onClick={handleShow} />
+                ""
+              )}
+            </div>
+            <div className="inp-holder">
+              <FaLock />
+              <input
+                type={show ? "text" : "password"}
+                name="cPassword"
+                value={input.cPassword}
+                onChange={handleChange}
+                placeholder="confirm password"
+              />
+              {input.cPassword.length ? (
+                show ? (
+                  <FaRegEyeSlash onClick={handleShow} />
+                ) : (
+                  <FaEye onClick={handleShow} />
+                )
               ) : (
-                <FaEye onClick={handleShow} />
-              )
-            ) : (
-              ""
-            )}
+                ""
+              )}
+            </div>
+            <div className="btn-holder">
+              <button>{btnLoad ? "Registering..." : "Register"}</button>
+            </div>
+            <br />
+            <span>
+              I already have an account,{" "}
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "green",
+                  fontWeight: "600",
+                }}
+                to="/login"
+              >
+                Login...
+              </Link>
+            </span>
           </div>
-          <div className="btn-holder">
-            <button>{btnLoad ? "Registering..." : "Register"}</button>
-          </div>
-          <br />
-          <span>
-            I already have an account,{" "}
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "green",
-                fontWeight: "600",
-              }}
-              to="/login"
-            >
-              Login...
-            </Link>
-          </span>
-        </div>
-      </form>
-      <section className="rh-sec"></section>
-    </main>
+        </form>
+        <section className="rh-sec"></section>
+      </main>
+    </>
   );
 };
 

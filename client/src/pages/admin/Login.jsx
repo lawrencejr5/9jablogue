@@ -67,61 +67,63 @@ const Login = () => {
     }
   };
   return (
-    <main className="login-container">
-      <form onSubmit={handleSUbmit}>
-        <div className="inp-handler">
-          <Notification notification={notification} />
-          <Logo />
-          <div className="inp-holder">
-            <FaUser />
-            <input
-              type="text"
-              name="user"
-              value={input.user}
-              onChange={handleChange}
-              placeholder="username or email"
-            />
-          </div>
-          <div className="inp-holder">
-            <FaLock />
-            <input
-              type={show ? "text" : "password"}
-              name="password"
-              value={input.password}
-              onChange={handleChange}
-              placeholder="password"
-            />
-            {input.password.length ? (
-              show ? (
-                <FaRegEyeSlash onClick={handleShow} />
+    <>
+      <Notification notification={notification} />
+      <main className="login-container">
+        <form onSubmit={handleSUbmit}>
+          <div className="inp-handler">
+            <Logo />
+            <div className="inp-holder">
+              <FaUser />
+              <input
+                type="text"
+                name="user"
+                value={input.user}
+                onChange={handleChange}
+                placeholder="username or email"
+              />
+            </div>
+            <div className="inp-holder">
+              <FaLock />
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                value={input.password}
+                onChange={handleChange}
+                placeholder="password"
+              />
+              {input.password.length ? (
+                show ? (
+                  <FaRegEyeSlash onClick={handleShow} />
+                ) : (
+                  <FaEye onClick={handleShow} />
+                )
               ) : (
-                <FaEye onClick={handleShow} />
-              )
-            ) : (
-              ""
-            )}
+                ""
+              )}
+            </div>
+            <div className="btn-holder">
+              <button>{btnLoad ? "Loging in..." : "Login"}</button>
+            </div>
+            <br />
+            <span>
+              I don't have an account,{" "}
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "green",
+                  fontWeight: "600",
+                }}
+                to="/register"
+              >
+                Register...
+              </Link>
+            </span>
           </div>
-          <div className="btn-holder">
-            <button>{btnLoad ? "Loging in..." : "Login"}</button>
-          </div>
-          <br />
-          <span>
-            I don't have an account,{" "}
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "green",
-                fontWeight: "600",
-              }}
-              to="/register"
-            >
-              Register...
-            </Link>
-          </span>
-        </div>
-      </form>
-      <section className="rh-sec"></section>
-    </main>
+        </form>
+        <section className="rh-sec"></section>
+      </main>
+    </>
   );
 };
 

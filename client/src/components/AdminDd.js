@@ -10,6 +10,12 @@ const AdminDd = () => {
 
   const { signedInUser } = useGlobalContext();
 
+  const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="admin-dd">
@@ -17,10 +23,7 @@ const AdminDd = () => {
           Admin, {signedInUser && signedInUser.username} &nbsp;
           {dd ? <FaChevronUp /> : <FaChevronDown />}
         </div>
-        <div
-          className={`dd-list ${dd ? "" : "hide"}`}
-          onClick={() => navigate("/login")}
-        >
+        <div className={`dd-list ${dd ? "" : "hide"}`} onClick={logout}>
           Logout&nbsp;
           <FaPowerOff size={"12px"} />
         </div>

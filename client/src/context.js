@@ -21,6 +21,7 @@ export const ContextApp = ({ children }) => {
   const [singlePost, setSinglePost] = useState([]);
   const [bloggers, setBloggers] = useState([]);
   const [blogger, setBlogger] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const [userTotalLikes, setUserTotalLikes] = useState(0);
   const [userTotalViews, setUserTotalViews] = useState(0);
@@ -503,6 +504,7 @@ export const ContextApp = ({ children }) => {
     try {
       const { data } = await axios.get(`${endpoint}/authors/${signedIn}`);
       setSignedInUser(data.author);
+      setIsAdmin(data.admin);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -646,6 +648,7 @@ export const ContextApp = ({ children }) => {
         fileEndpoint,
         signedIn,
         token,
+        isAdmin,
         //
         getUser,
         //

@@ -24,10 +24,13 @@ import EditPost from "./pages/admin/EditPost";
 import Super from "./pages/admin/Super";
 import Application from "./pages/admin/Application";
 
+// Error page
 import ErrorPage from "./pages/Error";
 
 // Components
 import ScrollTop from "./components/ScrollTop";
+import Protected from "./components/routes/Protected";
+import Private from "./components/routes/Private";
 
 const App = () => {
   return (
@@ -49,12 +52,58 @@ const App = () => {
           <Route path="/register" element={<Register />} />
 
           <Route path="/application" element={<Application />} />
-          <Route path="/admin/" element={<Dashboard />} />
-          <Route path="/admin/super" element={<Super />} />
-          <Route path="admin/posts/" element={<MyPosts />} />
-          <Route path="admin/write/" element={<Write />} />
-          <Route path="admin/edit-post/:id" element={<EditPost />} />
-          <Route path="admin/account/" element={<Account />} />
+
+          <Route
+            path="/admin/"
+            element={
+              <Protected>
+                <Dashboard />
+              </Protected>
+            }
+          />
+
+          <Route
+            path="admin/posts/"
+            element={
+              <Protected>
+                <MyPosts />
+              </Protected>
+            }
+          />
+          <Route
+            path="admin/write/"
+            element={
+              <Protected>
+                <Write />
+              </Protected>
+            }
+          />
+          <Route
+            path="admin/edit-post/:id"
+            element={
+              <Protected>
+                <EditPost />
+              </Protected>
+            }
+          />
+          <Route
+            path="admin/account/"
+            element={
+              <Protected>
+                <Account />
+              </Protected>
+            }
+          />
+          <Route
+            path="/admin/super"
+            element={
+              <Protected>
+                <Private>
+                  <Super />
+                </Private>
+              </Protected>
+            }
+          />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
