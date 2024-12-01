@@ -56,6 +56,8 @@ const Write = () => {
       formData.append(`categories[]`, category);
     });
     await createPost(formData);
+    setInput({ title: "", thumb: "", desc: "", categories: [], body: "" });
+    thumbRef.value = "";
   };
   return (
     <main className="admin-main write">
@@ -84,6 +86,7 @@ const Write = () => {
             type="file"
             name="thumb"
             ref={thumbRef}
+            accept=".jpeg, .jpg, .png, .jfif, .avif, .gif"
             onChange={handleChange}
             id=""
           />

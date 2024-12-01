@@ -13,7 +13,7 @@ const modules = {
       { indent: "-1" },
       { indent: "+1" },
     ],
-    ["link", "image"],
+    // ["link", "image"],
     [{ color: [] }, { background: [] }], // Add the color options
     ["clean"],
   ],
