@@ -30,40 +30,43 @@ const CategoryPosts = () => {
     return <Loading />;
   }
   return (
-    <main>
-      <Navbaek />
-      <Sidenav />
-      <section className="cat_posts_container">
-        <article className="header">
-          <div className="header-center">
-            <div
-              className="img"
-              style={{
-                backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${fileEndpoint}/${category.img})`,
-              }}
-            >
-              <div>
-                <h1>{category.category}</h1>
-                <p>{category.description}</p>
+    <>
+      {loading && <Loading />}
+      <main>
+        <Navbaek />
+        <Sidenav />
+        <section className="cat_posts_container">
+          <article className="header">
+            <div className="header-center">
+              <div
+                className="img"
+                style={{
+                  backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${fileEndpoint}/${category.img})`,
+                }}
+              >
+                <div>
+                  <h1>{category.category}</h1>
+                  <p>{category.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
-        <article className="cat_posts">
-          <div className="cat_posts_header">Posts on {category.category}</div>
-          {categoryPosts.length > 0 ? (
-            <article className="singlePost-container">
-              {categoryPosts.map((post, i) => {
-                return <PostSingle key={i} data={post} />;
-              })}
-            </article>
-          ) : (
-            <h1>No posts</h1>
-          )}
-        </article>
-      </section>
-      <Footer />
-    </main>
+          </article>
+          <article className="cat_posts">
+            <div className="cat_posts_header">Posts on {category.category}</div>
+            {categoryPosts.length > 0 ? (
+              <article className="singlePost-container">
+                {categoryPosts.map((post, i) => {
+                  return <PostSingle key={i} data={post} />;
+                })}
+              </article>
+            ) : (
+              <h1>No posts</h1>
+            )}
+          </article>
+        </section>
+        <Footer />
+      </main>
+    </>
   );
 };
 
