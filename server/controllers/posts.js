@@ -1,5 +1,7 @@
 const Post = require("../models/posts");
 
+const { cloudinary } = require("../middlewares/upload");
+
 const getPosts = async (req, res) => {
   try {
     const { user, category, featured, status } = req.query;
@@ -34,57 +36,6 @@ const searchPosts = async (req, res) => {
       .populate("categories", "category")
       .populate("author", "username profilePic")
       .sort("-createdAt");
-
-    // const posts = await Post.aggregate([
-    //   {
-    //     $lookup: {
-    //       from: "categories",
-    //       as: "categories",
-    //       localField: "categories",
-    //       foreignField: "_id",
-    //     },
-    //   },
-    //   {
-    //     $lookup: {
-    //       from: "authors",
-    //       as: "author",
-    //       localField: "author",
-    //       foreignField: "_id",
-    //     },
-    //   },
-    //   {
-    //     $match: {
-    //       $or: [
-    //         { title: { $regex: query, $options: "i" } },
-    //         { desc: { $regex: query, $options: "i" } },
-    //         { "categories.category": { $regex: query, $options: "i" } },
-    //         { "author.username": { $regex: query, $options: "i" } },
-    //       ],
-    //     },
-    //   },
-    //   {
-    //     $addFields: {
-    //       categories: {
-    //         $map: {
-    //           input: "$categoriesDetails",
-    //           as: "category",
-    //           in: { _id: "$$category._id", category: "$$category.category" },
-    //         },
-    //       },
-    //       author: {
-    //         $arrayElemAt: [
-    //           {
-    //             _id: { $arrayElemAt: ["$authorDetails._id", 0] },
-    //             username: { $arrayElemAt: ["$authorDetails.username", 0] },
-    //             profilePic: { $arrayElemAt: ["$authorDetails.profilePic", 0] },
-    //           },
-    //           0,
-    //         ],
-    //       },
-    //     },
-    //   },
-    //   { $project: { categoriesDetails: 0, authorDetails: 0 } },
-    // ]);
 
     res.status(200).json({ msg: "success", rowCount: posts.length, posts });
   } catch (err) {
@@ -123,7 +74,17 @@ const createPost = async (req, res) => {
     const { userId } = req.user;
     if (!title || !desc || !categories || !body)
       return res.status(400).json({ msg: "Fill in required fields" });
-    const thumb = req.file.path.split(`\\`)[1];
+
+    const fileName = req.file.originalname.replace(/[\s\(\)\.com]/g, "_");
+    const filePath = req.file.path;
+
+    const uploadResult = await cloudinary.uploader.upload(filePath, {
+      folder: "9jablogue_images",
+      resource_type: "image",
+      public_id: fileName,
+    });
+    const thumb = uploadResult.url;
+
     const post = await Post.create({
       ...req.body,
       author: userId,
@@ -144,10 +105,21 @@ const updatePost = async (req, res) => {
       body: { title, desc, categories, body, status },
     } = req;
 
-    const thumb = req.file && req.file.path.split(`\\`)[1];
-
-    if (!title && !desc && !categories && !body && !status && !thumb)
+    if (!title && !desc && !categories && !body && !status && !req.file)
       return res.status(400).json({ msg: "Nothing to update" });
+
+    let thumb;
+    if (req.file) {
+      const fileName = req.file.originalname.replace(/[\s\(\)\.com]/g, "_");
+      const filePath = req.file.path;
+
+      const uploadResult = await cloudinary.uploader.upload(filePath, {
+        folder: "9jablogue_images",
+        resource_type: "image",
+        public_id: fileName,
+      });
+      thumb = uploadResult.url;
+    }
 
     const updatedPost = await Post.findByIdAndUpdate(
       id,

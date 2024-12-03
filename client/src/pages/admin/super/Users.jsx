@@ -78,7 +78,7 @@ const Users = () => {
                     <div
                       className="img"
                       style={{
-                        backgroundImage: `url(${fileEndpoint}/${blogger.profilePic})`,
+                        backgroundImage: `url(${blogger.profilePic})`,
                       }}
                     ></div>
                     <div className="content">

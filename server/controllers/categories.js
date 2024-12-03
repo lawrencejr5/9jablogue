@@ -1,4 +1,5 @@
 const Category = require("../models/categories");
+const { cloudinary } = require("../middlewares/upload");
 
 const getCategories = async (req, res) => {
   try {
@@ -26,7 +27,16 @@ const createCategory = async (req, res) => {
     if (!category || !description)
       return res.status(500).json({ msg: "fill in required fields oga!" });
 
-    const img = req.file.path.split("\\")[1];
+    const filePath = req.file.path;
+    const fileName =
+      Date.now() + "_" + req.file.originalname.replace(/[\s\(\)\.com]/g, "_");
+
+    const uploadResult = await cloudinary.uploader.upload(filePath, {
+      resource_type: "image",
+      public_id: fileName,
+      folder: "9jablogue_images",
+    });
+    const img = uploadResult.url;
 
     const categoryCreated = await Category.create({
       ...req.body,
@@ -41,23 +51,47 @@ const createCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   try {
-    const {
-      body: { category, description },
-      params: { id },
-    } = req;
-    const img = req.file && req.file.path.split("\\")[1];
+    const { category, description } = req.body;
+    const { id } = req.params;
 
-    if (!img && !category && !description)
-      return res.status(500).json({ msg: "wetin you come dey update" });
+    // Validate input fields
+    if (!category && !description && !req.file) {
+      return res.status(400).json({ msg: "Nothing to update!" });
+    }
 
-    const updatedCategory = await Category.findByIdAndUpdate(
-      id,
-      { ...req.body, img },
-      { new: true, runValidators: true }
-    );
-    res.status(200).json({ msg: "success", updatedCategory });
+    let img;
+
+    // Handle image upload if file is provided
+    if (req.file) {
+      const fileName =
+        Date.now() + "_" + req.file.originalname.replace(/[\s\(\)\.com]/g, "_");
+      const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+        resource_type: "image",
+        public_id: fileName,
+        folder: "9jablogue_images",
+      });
+      img = uploadResult.url;
+    }
+
+    // Build update object
+    const updateData = { ...req.body };
+    if (img) {
+      updateData.img = img;
+    }
+
+    const updatedCategory = await Category.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedCategory) {
+      return res.status(404).json({ msg: "Category not found!" });
+    }
+
+    res.status(200).json({ msg: "Success", updatedCategory });
   } catch (err) {
-    res.status(500).json({ msg: "an error ocurred", err });
+    console.error("Error updating category:", err);
+    res.status(500).json({ msg: "An error occurred", err });
   }
 };
 

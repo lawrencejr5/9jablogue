@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 
+const { cloudinary } = require("../middlewares/upload");
+
 const Author = require("../models/authors");
 const Post = require("../models/posts");
 
@@ -67,10 +69,8 @@ const updateAuthor = async (req, res) => {
       body: { fullname, username, email, status, admin, socials },
     } = req;
 
-    const profilePic = req.file && req.file.path.split("\\")[1];
-
     if (
-      !profilePic &&
+      !req.file &&
       !fullname &&
       !username &&
       !email &&
@@ -79,6 +79,20 @@ const updateAuthor = async (req, res) => {
       !socials
     )
       return res.status(500).json({ msg: "wetin you dey update" });
+
+    let profilePic;
+    if (req.file) {
+      const filePath = req.file.path;
+      const fileName =
+        Date.now() + "_" + req.file.originalname.replace(/[\s\(\)\.com]/g, "_");
+
+      const uploadResult = await cloudinary.uploader.upload(filePath, {
+        resource_type: "image",
+        public_id: fileName,
+        folder: "9jablogue_images",
+      });
+      profilePic = uploadResult.url;
+    }
 
     const updatedAuthor = await Author.findByIdAndUpdate(
       id,

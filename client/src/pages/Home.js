@@ -64,10 +64,15 @@ const Home = () => {
           </h1>
           <TagSingle data={categories} />
         </section>
-        <section className="posts featured">
-          <h1 className="header">Editor's pick</h1>
-          <FeaturedPost data={featuredPost} />
-        </section>
+        {featuredPost ? (
+          <section className="posts featured">
+            <h1 className="header">Editor's pick</h1>
+            <FeaturedPost data={featuredPost} />
+          </section>
+        ) : (
+          ""
+        )}
+
         <section className="posts">
           <h1 className="header">Latest posts</h1>
           <article className="singlePost-container">

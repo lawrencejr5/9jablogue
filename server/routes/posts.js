@@ -1,8 +1,8 @@
 const express = require("express");
 const postRouter = express.Router();
 
-const uploadMiddleware = require("../middlewares/upload");
 const authMiddleware = require("../middlewares/auth");
+const { upload } = require("../middlewares/upload");
 
 const {
   getPosts,
@@ -21,16 +21,8 @@ postRouter.get("/", getPosts);
 postRouter.get("/featured/post", getFeaturedPost);
 postRouter.get("/search/post", searchPosts);
 postRouter.get("/:id", getPost);
-postRouter.post(
-  "/",
-  [authMiddleware, uploadMiddleware.single("thumb")],
-  createPost
-);
-postRouter.patch(
-  "/:id",
-  [authMiddleware, uploadMiddleware.single("thumb")],
-  updatePost
-);
+postRouter.post("/", [authMiddleware, upload.single("thumb")], createPost);
+postRouter.patch("/:id", [authMiddleware, upload.single("thumb")], updatePost);
 postRouter.patch("/feature/:id", authMiddleware, featurePost);
 postRouter.patch("/view/:id", viewPost);
 postRouter.patch("/like/:id", likePost);

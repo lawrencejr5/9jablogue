@@ -147,7 +147,7 @@ const Categories = () => {
                     <div
                       className="img"
                       style={{
-                        backgroundImage: `url(${fileEndpoint}/${categ.img})`,
+                        backgroundImage: `url(${categ.img})`,
                       }}
                     ></div>
                     <div className="content">

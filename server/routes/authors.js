@@ -2,7 +2,7 @@ const express = require("express");
 const authorRouter = express.Router();
 
 const authMiddleware = require("../middlewares/auth");
-const uploadMiddleware = require("../middlewares/upload");
+const { upload } = require("../middlewares/upload");
 
 const {
   getAuthors,
@@ -20,7 +20,7 @@ authorRouter.get("/", getAuthors);
 authorRouter.get("/:id", getAuthor);
 authorRouter.patch(
   "/:id",
-  [authMiddleware, uploadMiddleware.single("profilePic")],
+  [authMiddleware, upload.single("profilePic")],
   updateAuthor
 );
 authorRouter.delete("/:id", authMiddleware, delAuthor);
@@ -30,10 +30,5 @@ authorRouter.get("/posts/views", authMiddleware, getAuthorNumOfViews);
 
 authorRouter.patch("/register/application", authMiddleware, application);
 authorRouter.patch("/password/update", authMiddleware, updatePassword);
-authorRouter.patch(
-  "/profilePic/:id",
-  uploadMiddleware.single("pic"),
-  updateProfilePic
-);
 
 module.exports = authorRouter;

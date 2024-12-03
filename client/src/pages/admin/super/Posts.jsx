@@ -80,7 +80,7 @@ const Posts = () => {
                     <div
                       className="img"
                       style={{
-                        backgroundImage: `url(${fileEndpoint}/${post.thumb})`,
+                        backgroundImage: `url(${post.thumb})`,
                       }}
                     ></div>
                     <div className="content">
