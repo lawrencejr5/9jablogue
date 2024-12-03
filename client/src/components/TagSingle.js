@@ -20,7 +20,7 @@ const TagSingle = ({ data }) => {
             <div
               className="img"
               style={{
-                backgroundImage: `url(${fileEndpoint}/${datum.img})`,
+                backgroundImage: `url(${datum.img})`,
               }}
             ></div>
             <span>{datum.category}</span>

@@ -18,7 +18,7 @@ const SingleBlogger = ({ data }) => {
     <Link className="layout" to={`/bloggers/${id}`}>
       <div
         className="img"
-        style={{ backgroundImage: `url(${fileEndpoint}/${profilePic})` }}
+        style={{ backgroundImage: `url(${profilePic})` }}
       ></div>
       <div className="content">
         <strong>{fullname}</strong>

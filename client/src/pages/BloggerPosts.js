@@ -40,7 +40,7 @@ const BloggerPosts = () => {
               <div
                 className="img"
                 style={{
-                  backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${fileEndpoint}/${blogger.profilePic})`,
+                  backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${blogger.profilePic})`,
                 }}
               >
                 <h1>{blogger.username}'s posts</h1>

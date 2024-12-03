@@ -37,7 +37,7 @@ const Categories = () => {
                   <div
                     className="img"
                     style={{
-                      backgroundImage: `url(${fileEndpoint}/${img})`,
+                      backgroundImage: `url(${img})`,
                     }}
                   ></div>
                   <Link to={`../categories/${id}`} className="content-link">

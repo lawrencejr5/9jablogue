@@ -122,7 +122,7 @@ const Account = () => {
           <div
             className="img"
             style={{
-              backgroundImage: `url(http://localhost:5000/api/v1/uploads/${
+              backgroundImage: `url(${
                 signedInUser && signedInUser.profilePic
               })`,
             }}

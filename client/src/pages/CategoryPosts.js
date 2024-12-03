@@ -41,7 +41,7 @@ const CategoryPosts = () => {
               <div
                 className="img"
                 style={{
-                  backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${fileEndpoint}/${category.img})`,
+                  backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${category.img})`,
                 }}
               >
                 <div>

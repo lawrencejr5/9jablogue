@@ -123,7 +123,7 @@ const Dashboard = () => {
                       <div
                         className="img"
                         style={{
-                          backgroundImage: `url(http://localhost:5000/api/v1/uploads/${post.thumb})`,
+                          backgroundImage: `url(${post.thumb})`,
                         }}
                       ></div>
                       <div className="content">

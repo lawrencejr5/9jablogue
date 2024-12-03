@@ -14,10 +14,7 @@ const FeaturedPost = ({ data }) => {
 
   return (
     <div className="post">
-      <div
-        className="img"
-        style={{ backgroundImage: `url(${fileEndpoint}/${thumb})` }}
-      ></div>
+      <div className="img" style={{ backgroundImage: `url(${thumb})` }}></div>
       <div className="content">
         <h1 onClick={() => navigate(`/post/${id}`)}>{title}</h1>
         {data.categories &&
@@ -39,7 +36,7 @@ const FeaturedPost = ({ data }) => {
             to={`/bloggers/${data.author && data.author._id}`}
           >
             <img
-              src={`${fileEndpoint}/${data.author && data.author.profilePic}`}
+              src={`${data.author && data.author.profilePic}`}
               width="20px"
               height="20px"
               alt=""

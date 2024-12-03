@@ -13,7 +13,7 @@ const PostSingle = ({ data }) => {
       <div
         className="img"
         style={{
-          backgroundImage: `url(${fileEndpoint}/${thumb})`,
+          backgroundImage: `url(${thumb})`,
         }}
       ></div>
       <div className="content" onClick={() => viewPost(id)}>
@@ -35,7 +35,7 @@ const PostSingle = ({ data }) => {
           <small>
             <Link className="post_by" to={`/bloggers/${author._id}`}>
               <img
-                src={`${fileEndpoint}/${author.profilePic}`}
+                src={`${author.profilePic}`}
                 width="20px"
                 height="20px"
                 alt=""

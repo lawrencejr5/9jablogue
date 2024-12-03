@@ -37,7 +37,7 @@ const MyPosts = () => {
                 className="thumb"
                 onClick={() => navigate(`/post/${post._id}`)}
                 style={{
-                  backgroundImage: `url(${fileEndpoint}/${post.thumb})`,
+                  backgroundImage: `url(${post.thumb})`,
                 }}
               ></div>
               <div className="content">

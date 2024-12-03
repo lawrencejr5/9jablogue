@@ -44,7 +44,7 @@ const Post = () => {
             <div
               className="postImg"
               style={{
-                backgroundImage: `url(${fileEndpoint}/${newPost.thumb})`,
+                backgroundImage: `url(${newPost.thumb})`,
               }}
             ></div>
             <div className="entry_header">
@@ -52,7 +52,7 @@ const Post = () => {
                 <div
                   className="img"
                   style={{
-                    backgroundImage: `url(${fileEndpoint}/${
+                    backgroundImage: `url(${
                       newPost.author ? newPost.author.profilePic : ""
                     })`,
                   }}
