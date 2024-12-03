@@ -1,3 +1,4 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = async (req, res, next) => {
@@ -7,7 +8,7 @@ const authMiddleware = async (req, res, next) => {
       return res.status(401).json({ msg: "User not authenticated" });
 
     const token = authorization.split(" ")[1];
-    const payload = jwt.verify(token, "bankai");
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.user = { ...payload };
     next();
   } catch (err) {

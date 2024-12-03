@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Author = require("../models/authors");
 
 const jwt = require("jsonwebtoken");
@@ -26,7 +27,7 @@ const register = async (req, res) => {
 
     const dataObj = {
       fullname: fullname.toLowerCase(),
-      username: username.toLowerCase().replace(/[\s\&\(\)\.com]/g, "_"),
+      username: username.toLowerCase().replace(/[\s\&\(\)]/g, "_"),
       email: email.toLowerCase(),
       password: newPassword,
     };
@@ -34,9 +35,9 @@ const register = async (req, res) => {
 
     const token = jwt.sign(
       { userId: data._id, admin: data.admin, status: data.status },
-      "bankai",
+      process.env.JWT_SECRET,
       {
-        expiresIn: "7d",
+        expiresIn: process.env.JWT_LIFETIME,
       }
     );
 
@@ -80,8 +81,10 @@ const login = async (req, res) => {
 
     const token = jwt.sign(
       { userId: userData._id, admin: userData.admin, status: userData.status },
-      "bankai",
-      { expiresIn: "7d" }
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_LIFETIME,
+      }
     );
     res.status(201).json({
       msg: "Signed in succesfully, redirecting...",
