@@ -27,8 +27,8 @@ export const ContextApp = ({ children }) => {
   const [userTotalViews, setUserTotalViews] = useState(0);
 
   // constants
-  const endpoint = "http://localhost:5000/api/v1";
-  const fileEndpoint = "http://localhost:5000/api/v1/uploads";
+  const endpoint = "https://9jablogue.vercel.app/api/v1";
+  const fileEndpoint = "https://9jablogue.vercel.app/api/v1/uploads";
   const signedIn = localStorage.getItem("user");
   const [signedInUser, setSignedInUser] = useState(null);
   const token = localStorage.getItem("token");
